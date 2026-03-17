@@ -23,7 +23,7 @@ Informe aqui os tipos de usuário que irão interagir com a aplicação. Ex: adm
 
 ## :triangular_flag_on_post:	 Principais funcionalidades da aplicação
 
-Descreve ou liste brevemente as principais funcionalidades da aplicação que será desenvolvida. Destaque a funcionalidades que serão acessévies a todos os usuários e aquelas restriras a usuários logados.
+Descreva ou liste brevemente as principais funcionalidades da aplicação que será desenvolvida. Destaque a funcionalidades que serão acessíveis a todos os usuários e aquelas restritas a usuários logados.
 
 ## :spiral_calendar: Entidades ou tabelas do sistema
 
