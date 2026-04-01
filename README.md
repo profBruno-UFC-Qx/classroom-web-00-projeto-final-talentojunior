@@ -1,117 +1,113 @@
 [![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-22041afd0340ce965d47ae6ef1cefeee28c7c493a6346c4f15d667ab976d596c.svg)](https://classroom.github.com/a/IDEzcQ6G)
 [![Open in Codespaces](https://classroom.github.com/assets/launch-codespace-2972f46106e565e64193e422d61a12cf1da4916b45550586e14ef0a7c637dd04.svg)](https://classroom.github.com/open-in-codespaces?assignment_repo_id=23242006)
-# :checkered_flag: Talento Junior
 
-O projeto *TalentoJúnior* é uma plataforma web desenvolvida com o objetivo de aproximar estudantes e recém-formados do mercado de trabalho local. A plataforma facilita a conexão entre universitários que buscam sua primeira oportunidade e empresas da região que procuram talentos em início de carreira (estágio, trainee e nível júnior).
+## 🐶🏠 Adote Lar
 
+O projeto Adote Lar é uma plataforma web desenvolvida com o objetivo de apoiar a proteção animal por meio da conexão entre ONGs, abrigos e protetores independentes com pessoas dispostas a oferecer lares temporários para animais resgatados.
 
 ## :technologist: Membros da equipe
-569554 - Antônio Kauã Silva Barros - Ciências da computação
-569707 - Íkaro Freitas de Almeida - Ciências da computação
 
+569554 - Antônio Kauã Silva Barros - Ciências da computação
+
+569707 - Íkaro Freitas de Almeida - Ciências da computação
 
 ## :bulb: Objetivo Geral
 
-Diferente de plataformas tradicionais, o foco é exclusivo no público universitário, reduzindo as barreiras da "experiência prévia". O viés de extensão e o impacto social se dão por:
-* Facilitar o acesso de recém-formados a oportunidades de emprego.
-* Apoiar estudantes em situação de vulnerabilidade na conquista do primeiro emprego.
-* Incentivar o desenvolvimento econômico local, fortalecendo a relação entre a universidade e o setor produtivo.
+ONGs e protetores independentes frequentemente resgatam animais feridos, abandonados ou em situação de risco, porém enfrentam uma limitação crítica: a falta de espaço físico. Enquanto um animal ocupa uma vaga em abrigo ou lar temporário, novos animais continuam expostos a riscos nas ruas, criando um "efeito funil" que impede novos resgates.
+
+O Adote Lar surge como uma solução para esse problema, funcionando como um marketplace de micro-voluntariado, conectando abrigos e protetores que possuem animais resgatados com voluntários dispostos a oferecer lares temporários.
+
+O viés de extensão e impacto social se dá por:
+- Aumentar a capacidade de resgate de ONGs e protetores independentes
+- Reduzir o número de animais abandonados nas ruas
+- Proporcionar um ambiente doméstico mais saudável para os animais resgatados
+- Facilitar a socialização dos animais, aumentando as chances de adoção definitiva
+- Incentivar a cultura de voluntariado e proteção animal na comunidade
 
 ## :eyes: Público-Alvo
-1. Estudantes e Recém-formados:
-  - Alunos de graduação em busca de estágios obrigatórios ou não obrigatórios.
-  - Egressos (recém-formados) que procuram posições de nível Trainee ou Júnior.
-  - Jovens talentos que possuem forte base acadêmica, mas enfrentam a barreira da "falta de experiência prévia" exigida em plataformas tradicionais.
-2. Empresas e Empregadores Locais:
-  - Pequenas e médias empresas (PMEs), startups e comércios da região que buscam talentos com vontade de aprender e inovar.
-  - Departamentos de Recursos Humanos que desejam otimizar o recrutamento focando exclusivamente em profissionais em início de carreira, reduzindo custos de contratação.
-3. Universidade (Mediadora):
-  - Coordenações de cursos e projetos de extensão que precisam de uma ferramenta para monitorar a inserção de seus alunos no mercado de trabalho.
+
+Protetores de Lar Temporário:
+
+- Pessoas interessadas em acolher animais temporariamente
+- Voluntários que desejam contribuir com a causa animal
+- Famílias que possuem espaço e disponibilidade para cuidados temporários
+- ONGs / Abrigos / Protetores Independentes:
+- Organizações de proteção animal
+- Abrigos com limitação de espaço físico
+- Protetores independentes que realizam resgates
+
+Comunidade em Geral:
+
+- Pessoas interessadas em conhecer a causa
+- Possíveis adotantes futuros
+- Voluntários e apoiadores da proteção animal
 
 ## :star2: Impacto Esperado
-Impacto Social e Inclusão: Democratiza o acesso à primeira oportunidade de emprego, apoiando especialmente estudantes em situação de vulnerabilidade que não possuem forte networking profissional (o famoso "QI - Quem Indica").
+
+Impacto Social e Inclusão: O projeto busca ampliar a capacidade de resgate de animais, reduzir o abandono e incentivar a cultura de voluntariado. Ao facilitar o acesso a lares temporários, mais animais poderão ser retirados das ruas e encaminhados para adoção responsável.
 
 ## :people_holding_hands: Papéis ou tipos de usuário da aplicação
 
-1. *Estudante / Recém-formado (Autenticado):*
-   * Acesso à área pública e ao Painel do Candidato.
-   * Pode visualizar todas as vagas e realizar candidaturas.
-   * Pode gerenciar (visualizar e cancelar) as suas próprias candidaturas.
-   * Não pode criar ou gerenciar vagas.
+Protetor de Lar Temporário (Autenticado):
 
-2. *Empresa / Recrutador (Autenticado):*
-   * Acesso ao Painel da Empresa.
-   * Possui permissão total (CRUD) sobre a entidade *Vaga*, mas gerencia apenas as vagas que a própria empresa publicou.
-   * Pode visualizar os estudantes que se candidataram às suas vagas.
-   * Não pode se candidatar a vagas de outras empresas.
+- Acesso à área pública e ao Painel do Voluntário
+- Pode visualizar animais disponíveis
+- Pode solicitar acolhimento temporário
+- Pode gerenciar suas próprias solicitações
+- Pode atualizar o status do animal sob seus cuidados
+- Não pode cadastrar novos animais
 
-3. *Administrador / Coordenação de Extensão (Autenticado):*
-   * Acesso total ao sistema.
-   * Pode aprovar, suspender ou excluir cadastros de Empresas para garantir a segurança dos estudantes.
-   * Pode remover vagas que não estejam de acordo com as diretrizes do projeto (ex: vagas que exijam experiência prévia abusiva).
+ONG / Abrigo / Protetor Independente (Autenticado):
 
-> Tenha em mente que obrigatoriamente a aplicação deve possuir funcionalidades acessíveis a todos os tipos de usuário e outra funcionalidades restritas a certos tipos de usuários.
+- Acesso ao Painel da Organização
+- Possui permissão total (CRUD) sobre a entidade Animal
+- Pode visualizar solicitações de voluntários
+- Pode aprovar ou recusar solicitações
+- Pode acompanhar status dos animais
+Administrador (Autenticado):
 
-## :triangular_flag_on_post:	 Principais funcionalidades da aplicação
+- Acesso total ao sistema
+- Pode aprovar, suspender ou excluir cadastros
+- Pode remover animais ou solicitações indevidas
+- Pode gerenciar todo o sistema
 
-Para Estudantes / Recém-formados:
-  - Perfil Profissional Acadêmico: Criação de um currículo digital destacando curso, semestre, projetos acadêmicos e habilidades (hard e soft skills).
-  - Mural de Vagas Filtrado: Busca de oportunidades exclusivas para quem tem pouca ou nenhuma experiência, com filtros por área de atuação e tipo de vaga (Estágio, Trainee, Júnior).
-  - Candidatura Simplificada: Aplicação para as vagas com apenas um clique e acompanhamento em tempo real do status do processo seletivo (Em análise, Aprovado, Recusado).
+Tenha em mente que obrigatoriamente a aplicação deve possuir funcionalidades acessíveis a todos os tipos de usuário e outras funcionalidades restritas a certos tipos de usuários.
 
-Para Empresas:
-  - Gestão de Vagas (CRUD): Painel intuitivo para criar, editar, pausar e excluir oportunidades de emprego de forma autônoma.
-  - Triagem de Talentos: Visualização da lista de estudantes que se candidataram a uma vaga específica, com acesso direto aos perfis e contatos dos candidatos.
-  - Gestão de Candidaturas: Ferramenta para atualizar o status do candidato, organizando o funil de recrutamento.
+## :triangular_flag_on_post: Principais funcionalidades da aplicação
+
+Para Protetores de Lar Temporário:
+- Visualização de Animais Disponíveis
+- Solicitação de Lar Temporário
+- Acompanhamento do status da solicitação
+- Atualização do status do animal sob cuidados
+
+Para ONGs / Abrigos:
+
+- Gestão de Animais (CRUD)
+- Visualização de Solicitações
+- Aprovação ou Recusa de Voluntários
+- Acompanhamento do status dos animais
 
 Funcionalidades Gerais do Sistema:
-  - Vitrine Pública: Área não logada para dar visibilidade às vagas e atrair novos usuários.
-  - Segurança e Controle de Acesso: Sistema de autenticação via token (JWT) com permissões estritas baseadas no papel do usuário (Estudante não vê painel de Empresa e vice-versa).
-  - Design Responsivo: Interface construída com Bootstrap, garantindo que estudantes possam buscar vagas pelo celular e recrutadores possam gerenciar processos pelo computador.
+- Vitrine Pública com animais disponíveis
+- Cadastro de voluntários e organizações
+- Segurança e Controle de Acesso com JWT
+- Design Responsivo com Bootstrap
 
 ## :spiral_calendar: Entidades ou tabelas do sistema
 
-1. *User (Usuário):* Tabela padrão do Strapi. Armazena os dados de acesso, informações de perfil (nome/razão social, contato) e o papel (Role: Estudante, Empresa ou Admin).
-2. *Vaga:* Entidade que representa a oportunidade de emprego.
-   * Atributos: Titulo, Descricao, Requisitos, BolsaSalario, Tipo (Estágio, Trainee, Júnior), Status (Aberta/Fechada).
-   * Relacionamento: Pertence a 1 User (a Empresa criadora).
-3. *Candidatura:* Entidade dependente que conecta o Estudante à Vaga.
-   * Atributos: DataCandidatura, Status (Em Análise, Aprovado, Recusado).
-   * Relacionamento: Pertence a 1 User (Estudante) e a 1 Vaga. *Justificativa da restrição:* Os CRUDs não são independentes, pois é impossível criar uma candidatura no sistema sem vinculá-la a uma vaga previamente existente.
+User (Usuário):
+- Tabela padrão do Strapi. Armazena os dados de acesso, informações de perfil e o papel do usuário (Protetor, ONG ou Admin).
 
+Animal:
+- Entidade que representa o animal disponível para lar temporário.
+- Atributos: Nome, Especie, Idade, Descricao, Status (Disponível, Em Lar Temporário, Adotado), NecessidadesEspeciais, Foto
+- Relacionamento: Pertence a 1 User (ONG/Abrigo responsável)
 
-----
+SolicitacaoLarTemporario:
+- Entidade dependente que conecta o voluntário ao animal.
+- Atributos: DataSolicitacao, Status (Pendente, Aprovado, Recusado, Finalizado)
+- Relacionamento: Pertence a 1 User (Protetor de Lar Temporário) e a 1 Animal
 
-:warning::warning::warning: As informações a seguir devem ser enviadas juntamente com a versão final do projeto. :warning::warning::warning:
-
-
-----
-
-## :desktop_computer: Tecnologias e frameworks utilizados
-
-**Frontend:**
-
-Lista as tecnologias, frameworks e bibliotecas utilizados.
-
-**Backend:**
-
-Lista as tecnologias, frameworks e bibliotecas utilizados.
-
-
-## :shipit: Operações implementadas para cada entidade da aplicação
-
-
-| Entidade| Criação | Leitura | Atualização | Remoção |
-| --- | --- | --- | --- | --- |
-| Entidade 1 | X |  X  |  | X |
-| Entidade 2 | X |    |  X | X |
-| Entidade 3 | X |    |  |  |
-
-> Lembre-se que é necessário implementar o CRUD de pelo menos duas entidades.
-
-## :neckbeard: Rotas da API REST utilizadas
-
-| Método HTTP | URL |
-| --- | --- |
-| GET | api/entidade1/|
-| POST | api/entidade2 |
+Justificativa da restrição:
+- Não é possível criar uma solicitação sem que exista previamente um animal cadastrado.
