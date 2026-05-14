@@ -1,0 +1,89 @@
+:root {
+    --primary: #e07a5f;
+    --on-primary: #fff;
+    --primary-container: #f2ccbb;
+    --on-primary-container: #3d1d16;
+    --secondary: #3d5a80;
+    --on-secondary: #fff;
+    --secondary-container: #d2dae2;
+    --on-secondary-container: #0a1d37;
+    --background: #f5f5f5;
+    --surface: #f9f7f5;
+    --primary-hover: #bc5d44;
+    --secondary-light: #98c1d9;
+    --text-main: #293241;
+    --text-muted: #6c757d;
+    --border-color: #dee2e6;
+    --sucess: #81b29a;
+    --error: #e63946;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.nav-bar {
+    width: 100%;
+    height: 80px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.nav-bar .nav-logo {
+    color: var(--primary);
+    font-size: 38px;
+    font-weight: bold;
+    text-decoration: none;
+}
+.nav-bar .nav-logo:hover {
+    scale: 1.05;
+    transition: all 0.3s ease;
+}
+.nav-bar .nav-links {
+    list-style: none;
+    display: flex;
+    gap: 22px;
+}
+.nav-link-item a {
+    color: var(--text-main);
+    font-size: 22px;
+    font-weight: medium;
+    text-decoration: none;
+}
+.nav-link-item a:hover {
+    color: var(--primary);
+    transition: all 0.3s ease;
+}
+.nav-buttons {
+    display: flex;
+    gap: 22px;
+}
+.nav-buttons button {
+    color: var(--on-primary);
+    border: none;
+    padding: 10px 24px;
+    border-radius: 12px;
+    cursor: pointer;
+    font-size: 22px;
+}
+#button-login {
+    background: none;
+    color: var(--text-main);
+}
+#button-login:hover {
+    color: var(--primary);
+    transition: all 0.3s ease;
+}
+#button-register {
+    background: var(--primary);
+    color: #fff;
+}
+#button-register:hover {
+    background: var(--primary-hover);
+    transition: all 0.3s ease;
+}
