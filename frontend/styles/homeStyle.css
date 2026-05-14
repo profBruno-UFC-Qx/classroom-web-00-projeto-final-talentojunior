@@ -44,7 +44,7 @@
     scale: 1.05;
     transition: all 0.3s ease;
 }
-.nav-bar .nav-links {
+.nav-links {
     list-style: none;
     display: flex;
     gap: 22px;
@@ -63,7 +63,7 @@
     display: flex;
     gap: 22px;
 }
-.nav-buttons button {
+.nav-button {
     color: var(--on-primary);
     border: none;
     padding: 10px 24px;
@@ -86,4 +86,98 @@
 #button-register:hover {
     background: var(--primary-hover);
     transition: all 0.3s ease;
+}
+/* Mobile nav style */
+.nav-links-mobile {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 22px;
+}
+.nav-links-mobile a {
+    color: var(--text-main);
+    font-size: 28px;
+    font-weight: medium;
+    text-decoration: none;
+}
+.hamburger {
+    display: none;
+    cursor: pointer;
+    background: none;
+    border: none;
+    flex-direction: column;
+    gap: 5px;
+    z-index: 2;
+}
+.bar {
+  width: 35px;
+  height: 3px;
+  background-color: var(--primary);
+  transition: 0.3s;
+  border-radius: 12px;
+}
+.mobile-nav-container{
+    display: none;
+    position: fixed;
+    top: -100vh;
+    width: 100vw;
+    height: 100vh;
+    background-color: var(--surface);
+    transition: 0.4s ease-in-out;
+    left: 0;
+}
+.mobile-nav-container.active {
+    top: 0;
+}
+.hamburger.active .bar:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+}
+
+.hamburger.active .bar:nth-child(2) {
+    opacity: 0;
+}
+
+.hamburger.active .bar:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
+}
+.nav-buttons-mobile {
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+}
+#button-login-mobile {
+    background: var(--primary);
+    color: var(--on-primary);
+}
+#button-login-mobile:hover {
+    color: var(--on-primary);
+    transition: all 0.3s ease;
+    background-color: var(--primary-hover);
+}
+#button-register-mobile {
+    background: var(--secondary);
+    color: var(--on-secondary);
+}
+#button-register-mobile:hover {
+    background: var(--secondary-container);
+    transition: all 0.3s ease;
+}
+@media(max-width: 900px) {
+    .hamburger {
+        display: flex;
+    }
+    .nav-links {
+        display: none;
+    }
+    .nav-buttons {
+        display: none;
+    }
+    .mobile-nav-container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        gap: 22px;
+    }
 }
