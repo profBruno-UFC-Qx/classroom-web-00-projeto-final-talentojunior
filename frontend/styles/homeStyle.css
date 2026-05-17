@@ -245,6 +245,97 @@ main {
     font-size: 14px;
     color: var(--text-muted);
 }
+.how-to-help {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 22px;
+    padding: 40px 20px;
+}
+.section-title {
+    font-size: 32px;
+    font-weight: bold;
+    color: var(--primary);
+    text-align: center;
+}
+.how-to-help > p {
+    font-size: 18px;
+    color: var(--text-main);
+    font-weight: medium;
+    text-align: center;
+    max-width: 600px;
+}
+.help-profiles {
+    display: flex;
+    gap: 22px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.help-card {
+    background-color: var(--surface);
+    border-radius: 12px;
+    padding: 20px;
+    width: 100%;
+    max-width: 400px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    border: 1px solid var(--border-color);
+}
+.help-card-icon {
+    background-color: var(--primary-container);
+    color: var(--on-primary-container);
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+}
+.help-card > h3 {
+    font-size: 22px;
+    font-weight: bold;
+    color: var(--primary);
+}
+.help-card > p {
+    font-size: 16px;
+    color: var(--text-main);
+    font-weight: medium;
+}
+.help-card:hover {
+    border-color: var(--primary);
+    transition: all 0.3s ease;
+}
+.help-card-link {
+    display: flex; 
+    align-items: center;
+    height: 40px;
+    color: var(--primary);
+    gap: 8px;
+}
+.help-card-link a {
+    color: var(--primary);
+    font-size: 16px;
+    font-weight: bold;
+    text-decoration: none;
+}
+.help-profiles > .help-card:nth-child(2) .help-card-icon {
+    background-color: var(--secondary-container);
+    color: var(--on-secondary-container);
+}
+.help-profiles > .help-card:nth-child(2) > h3 {
+    color: var(--secondary);
+}
+.help-profiles > .help-card:nth-child(2):hover {
+    border-color: var(--secondary);
+}
+.help-profiles > .help-card:nth-child(2) .help-card-link {
+    color: var(--secondary);
+}
+.help-profiles > .help-card:nth-child(2) .help-card-link a {
+    color: var(--secondary);
+}
 @media(max-width: 900px) {
     .hamburger {
         display: flex;

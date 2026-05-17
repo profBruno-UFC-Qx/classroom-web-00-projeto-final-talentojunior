@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,6 +8,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
     <title>Adote Lar</title>
 </head>
+
 <body>
     <nav class="nav-bar">
         <a class="nav-logo" href="">Adote Lar</a>
@@ -20,13 +22,13 @@
             <button id="button-register" class="nav-button">Cadastrar</button>
         </div>
         <!-- Mobile Nav Bar -->
-         <button id="menu-btn" class="hamburger" aria-label="Abrir Menu">
+        <button id="menu-btn" class="hamburger" aria-label="Abrir Menu">
             <div class="bar"></div>
             <div class="bar"></div>
             <div class="bar"></div>
-         </button>
+        </button>
 
-         <div class="mobile-nav-container" id="nav-mobile-menu">
+        <div class="mobile-nav-container" id="nav-mobile-menu">
             <ul class="nav-links-mobile">
                 <li class="nav-link-item"><a href="">Animais</a></li>
                 <li class="nav-link-item"><a href="">Como Funciona</a></li>
@@ -36,7 +38,7 @@
                 <button id="button-login-mobile" class="nav-button">Entrar</button>
                 <button id="button-register-mobile" class="nav-button">Cadastrar</button>
             </div>
-         </div>
+        </div>
     </nav>
     <main>
         <section class="hero">
@@ -44,11 +46,13 @@
                 <p class="slogan">Juntos salvamos vidas.</p>
                 <h1 class="project-name">Adote Lar</h1>
                 <p class="description">
-                    Conectando ONGs e abrigos a lares cheios de amor. Juntos, reduzimos o abandono e salvamos vidas oferecendo um teto temporário.
+                    Conectando ONGs e abrigos a lares cheios de amor. Juntos, reduzimos o abandono e salvamos vidas
+                    oferecendo um teto temporário.
                 </p>
             </div>
             <div class="hero-image-section">
-                <img  class="hero-image" src="assets/hero-image.png" alt="Imagem de um cachorro, simbolizando a missão do Adote Lar de conectar ONGs e abrigos a lares cheios de amor.">
+                <img class="hero-image" src="assets/hero-image.png"
+                    alt="Imagem de um cachorro, simbolizando a missão do Adote Lar de conectar ONGs e abrigos a lares cheios de amor.">
                 <div class="image-overlay">
                     <div class="overlay-content">
                         <div class="overlay-image-icon">
@@ -62,8 +66,40 @@
                 </div>
             </div>
         </section>
+        <section class="how-to-help">
+            <h2 class="section-title">Como você pode ajudar?</h2>
+            <p>Escolha seu perfil e comece a transformar realidades hoje.</p>
+            <div class="help-profiles">
+                <div class="help-card">
+                    <div class="help-card-icon">
+                        <i class="bi bi-heart"></i>
+                    </div>
+                    <h3>Voluntários</h3>
+                    <p>Explore a vitrine de animais, solicite o acolhimento temporário e atualize o status do pet sob
+                        seus cuidados. Sua casa pode ser o primeiro passo para um final feliz.</p>
+                    <div class="help-card-link">
+                        <a href="" class="help-card-link-text">Quero ser um voluntário</a>
+                        <i class="bi bi-arrow-right"></i>
+                    </div>
+                </div>
+                <div class="help-card">
+                    <div class="help-card-icon">
+                        <i class="bi bi-house-heart-fill"></i>
+                    </div>
+                    <h3>ONGs e abrigos</h3>
+                    <p>Cadastre e faça a gestão dos animais resgatados, aprove novos lares temporários e acompanhe o
+                        status de cada pet. Organize sua rede de apoio com eficiência.</p>
+                    <div class="help-card-link">
+                        <a href="" class="help-card-link-text">Cadastrar minha ONG</a>
+                        <i class="bi bi-arrow-right"></i>
+                    </div>
+                </div>
+            </div>
+
+        </section>
     </main>
 
     <script src="dist/scripts/homeScript.js"></script>
 </body>
+
 </html>
