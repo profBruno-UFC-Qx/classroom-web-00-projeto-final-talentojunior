@@ -555,6 +555,42 @@ main {
     gap: 4px;
     color: var(--text-muted);
 }
+.call-to-action {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 22px;
+    padding: 40px 20px;
+    background-color: var(--primary);
+}
+.call-to-action>h2 {
+    font-size: 38px;
+    font-weight: bold;
+    color: var(--on-primary);
+    text-align: center;
+}
+.call-to-action>p {
+    font-size: 22px;
+    color: var(--on-primary);
+    font-weight: medium;
+    text-align: center;
+}
+.call-to-action-button {
+    background-color: var(--on-primary);
+    color: var(--primary);
+    border: none;
+    padding: 12px 28px;
+    border-radius: 12px;
+    font-size: 22px;
+    font-weight: bold;
+    cursor: pointer;
+} 
+.call-to-action-button:hover {
+    background-color: var(--on-primary);
+    color: var(--primary-hover);
+    transition: all 0.3s ease;
+    scale: 1.05;
+}
 @media(max-width: 980px) {
     .hamburger {
         display: flex;
