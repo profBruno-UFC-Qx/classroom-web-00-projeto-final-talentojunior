@@ -443,7 +443,118 @@ main {
 .down-arrow-step {
     display: none;
 }
-
+.partner-ongs {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 22px;
+    padding: 40px 20px;
+}
+.partner-ongs>p {
+    font-size: 18px;
+    color: var(--text-main);
+    font-weight: medium;
+    text-align: center;
+    max-width: 600px;
+}
+.ongs-list {
+    display: flex;
+    gap: 22px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.ong-card {
+    background-color: var(--surface);
+    border-radius: 12px;
+    padding: 20px;
+    width: 100%;
+    max-width: 400px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    border: 1px solid var(--border-color);
+}
+.ong-logo {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 12px;
+}
+.ong-card>h3 {
+    font-size: 22px;
+    font-weight: bold;
+    color: var(--primary);
+}
+.ong-card>p {
+    font-size: 18px;
+    color: var(--text-main);
+    font-weight: medium;
+}
+.animals-showcase {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 22px;
+    background-color: var(--surface);
+    padding: 40px 20px;
+}
+.animals-showcase>p {
+    font-size: 18px;
+    color: var(--text-main);
+    font-weight: medium;
+    text-align: center;
+    max-width: 600px;
+}
+.animal-cards {
+    width: 100%;
+    display: flex;
+    gap: 22px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.animal-card {
+    background-color: var(--background);
+    border-radius: 12px;
+    width: 100%;
+    max-width: 400px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    border: 1px solid var(--border-color);
+}
+.animal-image {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+    border-radius: 12px 12px 0px 0px;
+}
+.animal-info {
+    padding: 0 12px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 4px;
+}
+.animal-name {
+    font-size: 22px;
+    font-weight: bold;
+    color: var(--primary);
+}
+.animal-race {
+    font-size: 18px;
+    background-color: var(--primary-container);
+    color: var(--on-primary-container);
+    padding: 8px 12px;
+    border-radius: 12px;
+    font-weight: bold;
+}
+.animal-location {
+    padding: 8px 12px;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    color: var(--text-muted);
+}
 @media(max-width: 980px) {
     .hamburger {
         display: flex;
