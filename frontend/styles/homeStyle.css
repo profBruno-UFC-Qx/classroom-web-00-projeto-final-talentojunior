@@ -338,6 +338,7 @@ main {
 .help-card:hover {
     border-color: var(--primary);
     transition: all 0.3s ease;
+    scale: 1.02;
 }
 
 .help-card-link {
@@ -474,6 +475,11 @@ main {
     gap: 12px;
     border: 1px solid var(--border-color);
 }
+.ong-card:hover {
+    border-color: var(--primary);
+    transition: all 0.3s ease;
+    scale: 1.02;
+}
 .ong-logo {
     width: 100%;
     height: 200px;
@@ -521,6 +527,11 @@ main {
     flex-direction: column;
     gap: 12px;
     border: 1px solid var(--border-color);
+}
+.animal-card:hover {
+    border-color: var(--primary);
+    transition: all 0.3s ease;
+    scale: 1.02;
 }
 .animal-image {
     width: 100%;
