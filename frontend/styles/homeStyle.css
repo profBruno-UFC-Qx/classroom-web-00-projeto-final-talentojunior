@@ -17,13 +17,6 @@
     --sucess: #81b29a;
     --error: #e63946;
 }
-
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
 .nav-bar {
     width: 100%;
     height: 80px;
@@ -289,13 +282,6 @@ main {
     align-items: center;
     gap: 22px;
     padding: 40px 20px;
-}
-
-.section-title {
-    font-size: 32px;
-    font-weight: bold;
-    color: var(--primary);
-    text-align: center;
 }
 
 .how-to-help>p {
