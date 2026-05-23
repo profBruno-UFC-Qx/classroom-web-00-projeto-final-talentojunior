@@ -1,7 +1,9 @@
+*{
+  font-family: "Plus Jakarta Sans", sans-serif;
+}
 
 body {
   min-height: 100vh;
-  font-family: "Plus Jakarta Sans", sans-serif;
   background-color: var(--background);
   color: var(--text-main);
   display: flex;
@@ -11,6 +13,7 @@ body {
   animation: fadeIn 0.8s ease forwards;
 }
 
+/* Header e Nav */
 .header {
   width: 100%;
   height: 80px;
@@ -102,6 +105,7 @@ body {
   transition: all 0.3s ease;
 }
 
+/* Conteúdo da esquerda */
 .main-content {
   flex: 1;
   position: relative;
@@ -161,6 +165,7 @@ body {
   font-size: 18px;
 }
 
+/* Formulário */
 .form-container {
   background-color: var(--surface);
   border: 1px solid var(--border-color);
@@ -288,7 +293,6 @@ body {
   border-radius: 12px;
   padding: 14px 14px 14px 46px;
   font-size: 16px;
-  font-family: "Plus Jakarta Sans", sans-serif;
   color: var(--text-main);
   outline: none;
   transition: all 0.3s ease;
@@ -469,7 +473,7 @@ body {
   right: -100px;
 }
 
-
+/* Animação de aparição suave */
 @keyframes fadeIn {
   to {
     opacity: 1;
@@ -477,7 +481,7 @@ body {
   }
 }
 
-
+/* Medias */
 @media (max-width: 980px) {
   .content-grid {
     grid-template-columns: 1fr;
