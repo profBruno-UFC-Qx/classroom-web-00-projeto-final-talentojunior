@@ -466,13 +466,23 @@ main {
 }
 .ongs-list {
     width: 100%;
+    overflow: hidden;
     padding: 10px 0;
-    position: relative;
     min-height: 240px;
     display: flex;
-    justify-content: center;
     align-items: center;
+}
+.ongs-track {
+    display: flex;
     gap: 22px;
+    width: max-content;
+    will-change: transform;
+}
+.ongs-track.animating {
+    animation: scroll-ongs linear infinite;
+}
+.ongs-track.animating:hover {
+    animation-play-state: paused;
 }
 .ong-card {
     background-color: var(--surface);
@@ -712,4 +722,11 @@ footer {
         padding-right: 0;
         padding-bottom: 20px;
     }
+}
+
+/* Animations */
+
+@keyframes scroll-ongs {
+    from { transform: translateX(0);}
+    to { transform: translateX(var(--scroll-distance));}
 }
