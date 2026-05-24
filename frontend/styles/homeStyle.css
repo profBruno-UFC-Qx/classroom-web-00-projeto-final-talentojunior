@@ -455,6 +455,7 @@ main {
     align-items: center;
     gap: 22px;
     padding: 40px 20px;
+    width: 100%;
 }
 .partner-ongs>p {
     font-size: 18px;
@@ -464,17 +465,30 @@ main {
     max-width: 600px;
 }
 .ongs-list {
+    width: 100%;
+    overflow: hidden;
+    padding: 10px 0;
+    min-height: 240px;
+    display: flex;
+    align-items: center;
+}
+.ongs-track {
     display: flex;
     gap: 22px;
-    flex-wrap: wrap;
-    justify-content: center;
+    width: max-content;
+    will-change: transform;
+}
+.ongs-track.animating {
+    animation: scroll-animation linear infinite;
+}
+.ongs-track.animating:hover {
+    animation-play-state: paused;
 }
 .ong-card {
     background-color: var(--surface);
     border-radius: 12px;
     padding: 20px;
-    width: 100%;
-    max-width: 400px;
+    width: 250px;
     display: flex;
     flex-direction: column;
     gap: 12px;
@@ -489,17 +503,6 @@ main {
     width: 100%;
     height: 200px;
     object-fit: cover;
-    border-radius: 12px;
-}
-.ong-card>h3 {
-    font-size: 22px;
-    font-weight: bold;
-    color: var(--primary);
-}
-.ong-card>p {
-    font-size: 18px;
-    color: var(--text-main);
-    font-weight: medium;
 }
 .animals-showcase {
     display: flex;
@@ -518,24 +521,37 @@ main {
 }
 .animal-cards {
     width: 100%;
+    overflow: hidden;
+    padding: 10px 0;
+    min-height: 240px;
+    display: flex;
+    align-items: center;
+}
+.animals-track {
     display: flex;
     gap: 22px;
-    flex-wrap: wrap;
-    justify-content: center;
+    width: max-content;
+    will-change: transform;
+}
+.animals-track.animating {
+    animation: scroll-animation linear infinite;
+}
+.animals-track.animating:hover {
+    animation-play-state: paused;
 }
 .animal-card {
     background-color: var(--background);
     border-radius: 12px;
-    width: 100%;
-    max-width: 400px;
+    width: 250px;
     display: flex;
     flex-direction: column;
     gap: 12px;
     border: 1px solid var(--border-color);
 }
 .animal-card:hover {
-    border-color: var(--primary);
     transition: all 0.3s ease;
+    -webkit-box-shadow: 0px 3px 7px 0px rgba(151,151,151,0.81); 
+    box-shadow: 0px 3px 7px 0px rgba(151,151,151,0.81);
     scale: 1.02;
 }
 .animal-image {
@@ -554,7 +570,7 @@ main {
 .animal-name {
     font-size: 22px;
     font-weight: bold;
-    color: var(--primary);
+    color: var(--text-main);
 }
 .animal-race {
     font-size: 18px;
@@ -719,4 +735,11 @@ footer {
         padding-right: 0;
         padding-bottom: 20px;
     }
+}
+
+/* Animations */
+
+@keyframes scroll-animation {
+    from { transform: translateX(0);}
+    to { transform: translateX(var(--scroll-distance));}
 }
