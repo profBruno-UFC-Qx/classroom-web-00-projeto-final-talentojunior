@@ -26,7 +26,9 @@ buttons.forEach((button) => {
   });
 });
 
+
 // Create a carrousel effect for the ONG cards
+
 function initCarrouselOngs() {
   const list = document.querySelector(".ongs-list") as HTMLElement;
   const track = document.querySelector(".ongs-track") as HTMLElement;
@@ -79,4 +81,58 @@ function initCarrouselOngs() {
   });
 }
 
+// Create a carrousel effect for the animals show case
+function initCarrouselAnimals() {
+  const list = document.querySelector(".animal-cards") as HTMLElement;
+  const track = document.querySelector(".animals-track") as HTMLElement;
+
+  const originalCards = Array.from(track.children) as HTMLElement[];
+  const gap = 22;
+
+  function getOriginalWidth() {
+    return originalCards.reduce((acc, card) => acc + card.offsetWidth + gap, 0);
+  }
+
+  function setup() {
+    // Remove a existing clones
+    track.querySelectorAll(".animal-card-clone").forEach((el) => el.remove());
+    track.classList.remove("animating");
+    track.style.removeProperty("--scroll-distance");
+    track.style.removeProperty("animation-duration");
+
+    const trackWidth = getOriginalWidth();
+    const containerWidth = list.offsetWidth;
+
+    if (trackWidth <= containerWidth) {
+      list.style.justifyContent = "center";
+      return;
+    }
+
+    list.style.justifyContent = "flex-start";
+    
+    originalCards.forEach((card) => {
+      const clone = card.cloneNode(true) as HTMLElement;
+      clone.classList.add("animal-card-clone");
+      clone.setAttribute("aria-hidden", "true");
+      track.appendChild(clone);
+    });
+
+    const speed = 60; // pixels per second
+    const duration = trackWidth / speed;
+
+    track.style.setProperty("--scroll-distance", `-${trackWidth}px`);
+    track.style.setProperty("animation-duration", `${duration}s`);
+    track.classList.add("animating");
+  }
+
+  setup();
+
+  let resizeTimer: ReturnType<typeof setTimeout>;
+  window.addEventListener("resize", () => {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(setup, 150);
+  });
+}
+
 initCarrouselOngs();
+initCarrouselAnimals();

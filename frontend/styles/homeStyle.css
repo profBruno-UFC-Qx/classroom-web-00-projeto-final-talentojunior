@@ -479,7 +479,7 @@ main {
     will-change: transform;
 }
 .ongs-track.animating {
-    animation: scroll-ongs linear infinite;
+    animation: scroll-animation linear infinite;
 }
 .ongs-track.animating:hover {
     animation-play-state: paused;
@@ -521,16 +521,28 @@ main {
 }
 .animal-cards {
     width: 100%;
+    overflow: hidden;
+    padding: 10px 0;
+    min-height: 240px;
+    display: flex;
+    align-items: center;
+}
+.animals-track {
     display: flex;
     gap: 22px;
-    flex-wrap: wrap;
-    justify-content: center;
+    width: max-content;
+    will-change: transform;
+}
+.animals-track.animating {
+    animation: scroll-animation linear infinite;
+}
+.animals-track.animating:hover {
+    animation-play-state: paused;
 }
 .animal-card {
     background-color: var(--background);
     border-radius: 12px;
-    width: 100%;
-    max-width: 300px;
+    width: 250px;
     display: flex;
     flex-direction: column;
     gap: 12px;
@@ -544,7 +556,7 @@ main {
 }
 .animal-image {
     width: 100%;
-    height: 200px;
+    height: 300px;
     object-fit: cover;
     border-radius: 12px 12px 0px 0px;
 }
@@ -727,7 +739,7 @@ footer {
 
 /* Animations */
 
-@keyframes scroll-ongs {
+@keyframes scroll-animation {
     from { transform: translateX(0);}
     to { transform: translateX(var(--scroll-distance));}
 }
