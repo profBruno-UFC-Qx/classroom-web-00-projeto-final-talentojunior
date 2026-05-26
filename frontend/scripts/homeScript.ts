@@ -1,5 +1,52 @@
-// Create a carrousel effect for the ONG cards
+interface Animal {
+  id: number;
+  name: string;
+  species: string;
+  location: string;
+  images: string[];
+}
 
+async function loadAnimals(): Promise<Animal[]> {
+  const res = await fetch("data/animals.json");
+  if (!res.ok) throw new Error("Não foi possível carregar os animais.");
+  return res.json();
+}
+
+function createAnimalCard(animal: Animal): HTMLAnchorElement {
+  const card = document.createElement("a");
+  card.className = "animal-card";
+  card.href = `details.html?id=${animal.id}`;
+  card.innerHTML = `
+    <img class="animal-image" src="${animal.images[0]}" alt="Foto de ${animal.name}, disponível para acolhimento." />
+    <div class="animal-info">
+      <h3 class="animal-name">${animal.name}</h3>
+      <p class="animal-race">${animal.species}</p>
+    </div>
+    <div class="animal-location">
+      <i class="bi bi-geo-alt"></i>
+      <span>${animal.location}</span>
+    </div>
+  `;
+  return card;
+}
+
+async function initAnimals() {
+  const track = document.querySelector(".animals-track") as HTMLElement;
+  if (!track) return;
+
+  try {
+    const animals = await loadAnimals();
+    track.innerHTML = "";
+    animals.forEach((animal) => {
+      track.appendChild(createAnimalCard(animal));
+    });
+  } catch (err) {
+    console.error(err);
+    track.innerHTML = '<p class="error-message">Não foi possível carregar os animais.</p>';
+  }
+}
+
+// Create a carrousel effect for the ONG cards
 function initCarrouselOngs() {
   const list = document.querySelector(".ongs-list") as HTMLElement;
   const track = document.querySelector(".ongs-track") as HTMLElement;
@@ -12,7 +59,6 @@ function initCarrouselOngs() {
   }
 
   function setup() {
-    // Remove a existing clones
     track.querySelectorAll(".ong-card-clone").forEach((el) => el.remove());
     track.classList.remove("animating");
     track.style.removeProperty("--scroll-distance");
@@ -27,7 +73,6 @@ function initCarrouselOngs() {
     }
 
     list.style.justifyContent = "flex-start";
-    
     originalCards.forEach((card) => {
       const clone = card.cloneNode(true) as HTMLElement;
       clone.classList.add("ong-card-clone");
@@ -35,7 +80,7 @@ function initCarrouselOngs() {
       track.appendChild(clone);
     });
 
-    const speed = 60; // pixels per second
+    const speed = 60;
     const duration = trackWidth / speed;
 
     track.style.setProperty("--scroll-distance", `-${trackWidth}px`);
@@ -65,7 +110,6 @@ function initCarrouselAnimals() {
   }
 
   function setup() {
-    // Remove a existing clones
     track.querySelectorAll(".animal-card-clone").forEach((el) => el.remove());
     track.classList.remove("animating");
     track.style.removeProperty("--scroll-distance");
@@ -80,7 +124,6 @@ function initCarrouselAnimals() {
     }
 
     list.style.justifyContent = "flex-start";
-    
     originalCards.forEach((card) => {
       const clone = card.cloneNode(true) as HTMLElement;
       clone.classList.add("animal-card-clone");
@@ -88,7 +131,7 @@ function initCarrouselAnimals() {
       track.appendChild(clone);
     });
 
-    const speed = 60; // pixels per second
+    const speed = 60;
     const duration = trackWidth / speed;
 
     track.style.setProperty("--scroll-distance", `-${trackWidth}px`);
@@ -106,4 +149,4 @@ function initCarrouselAnimals() {
 }
 
 initCarrouselOngs();
-initCarrouselAnimals();
+initAnimals().then(initCarrouselAnimals);
