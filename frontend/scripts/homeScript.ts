@@ -6,7 +6,7 @@ interface Animal {
   images: string[];
 }
 
-async function loadAnimals(): Promise<Animal[]> {
+async function loadHomeAnimals(): Promise<Animal[]> {
   const res = await fetch("data/animals.json");
   if (!res.ok) throw new Error("Não foi possível carregar os animais.");
   return res.json();
@@ -35,7 +35,7 @@ async function initAnimals() {
   if (!track) return;
 
   try {
-    const animals = await loadAnimals();
+    const animals = await loadHomeAnimals();
     track.innerHTML = "";
     animals.forEach((animal) => {
       track.appendChild(createAnimalCard(animal));
