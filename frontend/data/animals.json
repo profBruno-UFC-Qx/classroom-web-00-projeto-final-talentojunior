@@ -77,9 +77,10 @@
     "statusType": "urgent",
     "location": "Quixadá, CE",
     "images": [
-      "assets/dog-2.png",
-      "assets/dog-2.png",
-      "assets/dog-2.png"
+      "assets/rex-container.png",
+      "assets/rex-1.png",
+      "assets/rex-2.png",
+      "assets/rex-3.png"
     ],
     "description": "Rex é um filhote cheio de energia encontrado na rua em situação vulnerável. Apesar da história difícil, é alegre e curioso. Precisa urgentemente de um lar temporário enquanto aguarda adoção definitiva.",
     "specialNeeds": "Necessita de acompanhamento veterinário quinzenal para controle de parasitas (suporte da ONG).",
