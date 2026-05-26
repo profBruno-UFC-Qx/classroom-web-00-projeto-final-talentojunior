@@ -178,6 +178,7 @@ body.no-scroll {
 .nav-buttons-mobile {
     display: flex;
     flex-direction: column;
+    align-items: center;
     gap: 22px;
 }
 
