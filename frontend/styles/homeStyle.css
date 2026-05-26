@@ -366,6 +366,9 @@ main {
     width: max-content;
     will-change: transform;
 }
+.animals-track > a {
+    text-decoration: none;
+}
 .animals-track.animating {
     animation: scroll-animation linear infinite;
 }
@@ -380,6 +383,7 @@ main {
     flex-direction: column;
     gap: 12px;
     border: 1px solid var(--border-color);
+    cursor: pointer;
 }
 .animal-card:hover {
     transition: all 0.3s ease;
