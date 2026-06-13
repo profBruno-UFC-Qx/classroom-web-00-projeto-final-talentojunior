@@ -238,6 +238,7 @@ body {
     align-items: center;
     gap: 24px;
 }
+
 .user-section {
     display: flex;
     align-items: center;
@@ -304,12 +305,14 @@ body {
 .dashboard-main {
     margin-left: 256px;
 }
+
 .dashboard-content {
     padding: 32px 48px;
     display: flex;
     flex-direction: column;
     gap: 40px;
 }
+
 .stats-section {
     width: 100%;
     display: flex;
@@ -320,6 +323,7 @@ body {
     padding: 0 8px;
     box-sizing: border-box;
 }
+
 .stats-card {
     display: flex;
     flex: 1 1 220px;
@@ -334,6 +338,7 @@ body {
     justify-content: center;
     box-sizing: border-box;
 }
+
 .stats-icon {
     display: flex;
     align-items: center;
@@ -344,19 +349,23 @@ body {
     height: 48px;
     border-radius: 12px;
 }
-.stats-icon > i{
+
+.stats-icon>i {
     font-size: 32px;
 }
-.stats-card > h3 {
+
+.stats-card>h3 {
     font-size: 22px;
     font-weight: 600;
     color: var(--text-muted);
 }
+
 .stats-card .stats-value {
     font-size: 38px;
     font-weight: 700;
     color: var(--primary);
 }
+
 /* My animals */
 .section-header {
     display: flex;
@@ -364,22 +373,27 @@ body {
     justify-content: space-between;
     gap: 16px;
 }
+
 .section-header-content h2 {
     font-size: 24px;
     font-weight: 700;
 }
+
 .section-header-content p {
     font-size: 14px;
     font-weight: 600;
     color: var(--text-muted);
 }
+
 .section-header button {
     width: 160px;
 }
+
 .animals-container {
     display: flex;
     gap: 12px;
 }
+
 .animals-grid {
     width: 100%;
     margin-top: 22px;
@@ -387,6 +401,7 @@ body {
     grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
     gap: 24px;
 }
+
 .animal-card {
     display: flex;
     flex-direction: column;
@@ -396,11 +411,13 @@ body {
     padding: 0px 0px 16px 0px;
     border-radius: 12px;
 }
+
 .animal-image-wrapper {
     position: relative;
     width: 100%;
     height: 220px;
 }
+
 .animal-state-indicator {
     position: absolute;
     top: 10px;
@@ -414,6 +431,7 @@ body {
     box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.15);
     z-index: 10;
 }
+
 .animal-card img {
     width: 100%;
     height: 100%;
@@ -421,10 +439,12 @@ body {
     border-top-left-radius: 12px;
     border-top-right-radius: 12px;
 }
+
 .animal-card img:hover {
     filter: brightness(0.9);
     transition: filter 0.2s;
 }
+
 .animals-info {
     display: flex;
     align-items: flex-start;
@@ -432,30 +452,36 @@ body {
     gap: 4px;
     padding: 0px 16px;
 }
+
 .animals-info-content {
     display: flex;
     flex-direction: column;
     gap: 22px;
 }
+
 .animals-info-content h3 {
     font-size: 18px;
     font-weight: 600;
 }
+
 .animal-age {
     display: flex;
     align-items: center;
     gap: 8px;
 }
-.animal-age span{
+
+.animal-age span {
     font-size: 14px;
     font-weight: 500;
     color: var(--text-muted);
 }
+
 .animal-actions {
     display: flex;
     align-items: center;
     gap: 12px;
 }
+
 .animal-actions button {
     padding: 6px 8px;
     border: none;
@@ -467,9 +493,11 @@ body {
     cursor: pointer;
     transition: background-color 0.2s;
 }
+
 .animal-actions button:hover {
     background-color: var(--primary-hover);
 }
+
 .animals-request-side-bar {
     width: 340px;
     height: fit-content;
@@ -479,6 +507,7 @@ body {
     border-radius: 12px;
     transition: transform 0.3s ease-in-out;
 }
+
 .animals-request-side-bar-header {
     display: flex;
     justify-content: space-between;
@@ -486,10 +515,12 @@ body {
     margin-bottom: 16px;
     gap: 12px;
 }
+
 .animals-request-side-bar-header h3 {
     font-size: 18px;
     font-weight: 600;
 }
+
 .btn-close-requests {
     display: none;
     padding: 6px;
@@ -501,9 +532,11 @@ body {
     font-size: 20px;
     transition: background-color 0.2s;
 }
+
 .btn-close-requests:hover {
     background-color: var(--background);
 }
+
 .btn-toggle-requests {
     display: none;
     align-items: center;
@@ -520,10 +553,12 @@ body {
     transition: 0.2s ease-in-out;
     z-index: 35;
 }
+
 .btn-toggle-requests:hover {
     background-color: var(--secondary-light);
     transform: translateY(-2px);
 }
+
 .animals-requests-overlay {
     position: fixed;
     top: 0;
@@ -538,26 +573,31 @@ body {
     transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
     pointer-events: none;
 }
+
 .animals-requests-overlay.active {
     opacity: 1;
     visibility: visible;
     pointer-events: auto;
 }
+
 .animals-request-list {
     display: flex;
     margin-top: 16px;
     flex-direction: column;
     gap: 16px;
 }
+
 .animals-request-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
+
 .animals-request-info h3 {
     font-size: 18px;
     font-weight: 600;
 }
+
 .view-all-requests {
     padding: 6px 8px;
     border: none;
@@ -569,42 +609,50 @@ body {
     cursor: pointer;
     transition: background-color 0.2s;
 }
+
 .view-all-requests:hover {
     background-color: var(--primary-hover);
 }
+
 .request-animal-card {
     padding: 12px;
     background-color: #fff;
     border-radius: 12px;
     flex-direction: column;
 }
+
 .request-animal-info {
     display: flex;
     align-items: center;
     gap: 12px;
     justify-content: space-between;
 }
+
 .request-animal-info img {
     width: 75px;
     height: 75px;
     object-fit: cover;
     border-radius: 12px;
 }
+
 .request-animal-info h3 {
     text-align: center;
     font-size: 16px;
     font-weight: 600;
 }
+
 .request-animal-info-content {
     display: flex;
     align-items: flex-start;
     flex-direction: column;
     gap: 12px;
 }
+
 .request-animal-info-content h4 {
     font-size: 18px;
     font-weight: 600;
 }
+
 .request-animal-info-content p {
     font-size: 12px;
     font-weight: 500;
@@ -613,12 +661,14 @@ body {
     overflow: hidden;
     white-space: nowrap;
 }
+
 .request-animal-actions {
     padding: 6px 8px;
     display: flex;
     align-items: center;
     gap: 8px;
 }
+
 .request-animal-actions button {
     width: 100%;
     padding: 6px 8px;
@@ -631,25 +681,30 @@ body {
     cursor: pointer;
     transition: background-color 0.2s;
 }
+
 .request-animal-actions button:hover {
     background-color: var(--primary-hover);
 }
-.request-animal-actions > button:nth-child(2) {
+
+.request-animal-actions>button:nth-child(2) {
     background-color: transparent;
     color: var(--error);
     border: solid 1px var(--error);
 }
-.request-animal-actions > button:nth-child(2):hover {
+
+.request-animal-actions>button:nth-child(2):hover {
     background-color: var(--error);
     color: #fff;
     transition: background-color 0.3s, color 0.3s;
 }
+
 /* Medias */
 @media (max-width: 1024px) {
     .stats-section {
         justify-content: center;
         gap: 20px;
     }
+
     .stats-card {
         flex: 1 1 240px;
     }
@@ -756,6 +811,7 @@ body {
     .nav-link i {
         font-size: 18px;
     }
+
     .stats-section {
         justify-content: center;
         gap: 16px;
@@ -790,10 +846,11 @@ body {
     }
 
     .animals-grid {
-        grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+        grid-template-columns: repeat(2, minmax(180px, 1fr));
         gap: 16px;
     }
 }
+
 @media (max-width: 480px) {
     .stats-section {
         gap: 12px;
@@ -820,7 +877,7 @@ body {
     }
 
     .animals-grid {
-        grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+        grid-template-columns: repeat(1, minmax(140px, 1fr));
         gap: 12px;
         margin-top: 16px;
     }
@@ -840,11 +897,11 @@ body {
     .animal-age span {
         font-size: 12px;
     }
-    
+
     .btn-toggle-requests {
         width: 100%;
     }
-    
+
     .animals-request-info h3 {
         font-size: 16px;
     }
