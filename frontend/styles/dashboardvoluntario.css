@@ -34,6 +34,10 @@ body {
     color: var(--primary);
 }
 
+.logo-link{
+    text-decoration: none;
+}
+
 .sidebar-brand p {
     font-size: 14px;
     font-weight: 600;
