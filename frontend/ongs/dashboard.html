@@ -136,174 +136,268 @@
                         <i class="bi bi-plus-lg"></i>
                         Cadastrar animal
                     </button>
+                    <button class="btn-toggle-requests" type="button" aria-label="Abrir solicitações">
+                        <i class="bi bi-chat-left-text"></i>
+                        <span>Solicitações</span>
+                    </button>
                 </div>
-                <div class="animals-grid">
-                    <div class="animal-card">
-                        <div class="animal-image-wrapper">
-                            <div class="animal-state-indicator">
-                                <span>Disponível</span>
+                <div class="animals-container">
+                    <div class="animals-requests-overlay"></div>
+                    <div class="animals-grid">
+                        <div class="animal-card">
+                            <div class="animal-image-wrapper">
+                                <div class="animal-state-indicator">
+                                    <span>Disponível</span>
+                                </div>
+                                <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuDWpM-fQqn8WfAEB9jbzrUyyF0T4jEU0_rw33S7s28-b6c9mUK-eoYe_YaVjiyhxiwPBvKUUlBsjl1m_KYb7ivUhTg_bOM5So1Xc99bIca9ad7brtJl7C6rOuFl5iE7fx2No8riNM4dtMyF2MT9p_99bLFI6HJuHR173rwj1GhjgEParBuJf9mDTxDtW6-84C4sxlYf9wQhEeNUyXTo4jee3Qpp7MypJ3dMg0TWq_g2pvnMWs8XHvMVQW1LtFDCWBu5Bpl132-Qh2XN"
+                                    alt="Foto do animal" />
                             </div>
-                            <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuDWpM-fQqn8WfAEB9jbzrUyyF0T4jEU0_rw33S7s28-b6c9mUK-eoYe_YaVjiyhxiwPBvKUUlBsjl1m_KYb7ivUhTg_bOM5So1Xc99bIca9ad7brtJl7C6rOuFl5iE7fx2No8riNM4dtMyF2MT9p_99bLFI6HJuHR173rwj1GhjgEParBuJf9mDTxDtW6-84C4sxlYf9wQhEeNUyXTo4jee3Qpp7MypJ3dMg0TWq_g2pvnMWs8XHvMVQW1LtFDCWBu5Bpl132-Qh2XN"
-                                alt="Foto do animal" />
-                        </div>
-                        <div class="animal-card-content">
-                            <div class="animals-info">
-                                <div class="animals-info-content">
-                                    <h3>Rex</h3>
-                                    <div class="animal-age">
-                                        <i class="bi bi-calendar-fill"></i>
-                                        <span>3 anos</span>
+                            <div class="animal-card-content">
+                                <div class="animals-info">
+                                    <div class="animals-info-content">
+                                        <h3>Rex</h3>
+                                        <div class="animal-age">
+                                            <i class="bi bi-calendar-fill"></i>
+                                            <span>3 anos</span>
+                                        </div>
+                                    </div>
+                                    <div class="animal-actions">
+                                        <button class="btn-edit" type="button" aria-label="Editar">
+                                            <i class="bi bi-pencil-fill"></i>
+                                        </button>
+                                        <button class="btn-delete" type="button" aria-label="Excluir">
+                                            <i class="bi bi-trash-fill"></i>
+                                        </button>
                                     </div>
                                 </div>
-                                <div class="animal-actions">
-                                    <button class="btn-edit" type="button" aria-label="Editar">
-                                        <i class="bi bi-pencil-fill"></i>
-                                    </button>
-                                    <button class="btn-delete" type="button" aria-label="Excluir">
-                                        <i class="bi bi-trash-fill"></i>
-                                    </button>
+                            </div>
+                        </div>
+                        <div class="animal-card">
+                            <div class="animal-image-wrapper">
+                                <div class="animal-state-indicator">
+                                    <span>Disponível</span>
+                                </div>
+                                <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuDWpM-fQqn8WfAEB9jbzrUyyF0T4jEU0_rw33S7s28-b6c9mUK-eoYe_YaVjiyhxiwPBvKUUlBsjl1m_KYb7ivUhTg_bOM5So1Xc99bIca9ad7brtJl7C6rOuFl5iE7fx2No8riNM4dtMyF2MT9p_99bLFI6HJuHR173rwj1GhjgEParBuJf9mDTxDtW6-84C4sxlYf9wQhEeNUyXTo4jee3Qpp7MypJ3dMg0TWq_g2pvnMWs8XHvMVQW1LtFDCWBu5Bpl132-Qh2XN"
+                                    alt="Foto do animal" />
+                            </div>
+                            <div class="animal-card-content">
+                                <div class="animals-info">
+                                    <div class="animals-info-content">
+                                        <h3>Rex</h3>
+                                        <div class="animal-age">
+                                            <i class="bi bi-calendar-fill"></i>
+                                            <span>3 anos</span>
+                                        </div>
+                                    </div>
+                                    <div class="animal-actions">
+                                        <button class="btn-edit" type="button" aria-label="Editar">
+                                            <i class="bi bi-pencil-fill"></i>
+                                        </button>
+                                        <button class="btn-delete" type="button" aria-label="Excluir">
+                                            <i class="bi bi-trash-fill"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="animal-card">
+                            <div class="animal-image-wrapper">
+                                <div class="animal-state-indicator">
+                                    <span>Disponível</span>
+                                </div>
+                                <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuDWpM-fQqn8WfAEB9jbzrUyyF0T4jEU0_rw33S7s28-b6c9mUK-eoYe_YaVjiyhxiwPBvKUUlBsjl1m_KYb7ivUhTg_bOM5So1Xc99bIca9ad7brtJl7C6rOuFl5iE7fx2No8riNM4dtMyF2MT9p_99bLFI6HJuHR173rwj1GhjgEParBuJf9mDTxDtW6-84C4sxlYf9wQhEeNUyXTo4jee3Qpp7MypJ3dMg0TWq_g2pvnMWs8XHvMVQW1LtFDCWBu5Bpl132-Qh2XN"
+                                    alt="Foto do animal" />
+                            </div>
+                            <div class="animal-card-content">
+                                <div class="animals-info">
+                                    <div class="animals-info-content">
+                                        <h3>Rex</h3>
+                                        <div class="animal-age">
+                                            <i class="bi bi-calendar-fill"></i>
+                                            <span>3 anos</span>
+                                        </div>
+                                    </div>
+                                    <div class="animal-actions">
+                                        <button class="btn-edit" type="button" aria-label="Editar">
+                                            <i class="bi bi-pencil-fill"></i>
+                                        </button>
+                                        <button class="btn-delete" type="button" aria-label="Excluir">
+                                            <i class="bi bi-trash-fill"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="animal-card">
+                            <div class="animal-image-wrapper">
+                                <div class="animal-state-indicator">
+                                    <span>Disponível</span>
+                                </div>
+                                <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuDWpM-fQqn8WfAEB9jbzrUyyF0T4jEU0_rw33S7s28-b6c9mUK-eoYe_YaVjiyhxiwPBvKUUlBsjl1m_KYb7ivUhTg_bOM5So1Xc99bIca9ad7brtJl7C6rOuFl5iE7fx2No8riNM4dtMyF2MT9p_99bLFI6HJuHR173rwj1GhjgEParBuJf9mDTxDtW6-84C4sxlYf9wQhEeNUyXTo4jee3Qpp7MypJ3dMg0TWq_g2pvnMWs8XHvMVQW1LtFDCWBu5Bpl132-Qh2XN"
+                                    alt="Foto do animal" />
+                            </div>
+                            <div class="animal-card-content">
+                                <div class="animals-info">
+                                    <div class="animals-info-content">
+                                        <h3>Rex</h3>
+                                        <div class="animal-age">
+                                            <i class="bi bi-calendar-fill"></i>
+                                            <span>3 anos</span>
+                                        </div>
+                                    </div>
+                                    <div class="animal-actions">
+                                        <button class="btn-edit" type="button" aria-label="Editar">
+                                            <i class="bi bi-pencil-fill"></i>
+                                        </button>
+                                        <button class="btn-delete" type="button" aria-label="Excluir">
+                                            <i class="bi bi-trash-fill"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="animal-card">
+                            <div class="animal-image-wrapper">
+                                <div class="animal-state-indicator">
+                                    <span>Disponível</span>
+                                </div>
+                                <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuDWpM-fQqn8WfAEB9jbzrUyyF0T4jEU0_rw33S7s28-b6c9mUK-eoYe_YaVjiyhxiwPBvKUUlBsjl1m_KYb7ivUhTg_bOM5So1Xc99bIca9ad7brtJl7C6rOuFl5iE7fx2No8riNM4dtMyF2MT9p_99bLFI6HJuHR173rwj1GhjgEParBuJf9mDTxDtW6-84C4sxlYf9wQhEeNUyXTo4jee3Qpp7MypJ3dMg0TWq_g2pvnMWs8XHvMVQW1LtFDCWBu5Bpl132-Qh2XN"
+                                    alt="Foto do animal" />
+                            </div>
+                            <div class="animal-card-content">
+                                <div class="animals-info">
+                                    <div class="animals-info-content">
+                                        <h3>Rex</h3>
+                                        <div class="animal-age">
+                                            <i class="bi bi-calendar-fill"></i>
+                                            <span>3 anos</span>
+                                        </div>
+                                    </div>
+                                    <div class="animal-actions">
+                                        <button class="btn-edit" type="button" aria-label="Editar">
+                                            <i class="bi bi-pencil-fill"></i>
+                                        </button>
+                                        <button class="btn-delete" type="button" aria-label="Excluir">
+                                            <i class="bi bi-trash-fill"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="animal-card">
+                            <div class="animal-image-wrapper">
+                                <div class="animal-state-indicator">
+                                    <span>Disponível</span>
+                                </div>
+                                <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuDWpM-fQqn8WfAEB9jbzrUyyF0T4jEU0_rw33S7s28-b6c9mUK-eoYe_YaVjiyhxiwPBvKUUlBsjl1m_KYb7ivUhTg_bOM5So1Xc99bIca9ad7brtJl7C6rOuFl5iE7fx2No8riNM4dtMyF2MT9p_99bLFI6HJuHR173rwj1GhjgEParBuJf9mDTxDtW6-84C4sxlYf9wQhEeNUyXTo4jee3Qpp7MypJ3dMg0TWq_g2pvnMWs8XHvMVQW1LtFDCWBu5Bpl132-Qh2XN"
+                                    alt="Foto do animal" />
+                            </div>
+                            <div class="animal-card-content">
+                                <div class="animals-info">
+                                    <div class="animals-info-content">
+                                        <h3>Rex</h3>
+                                        <div class="animal-age">
+                                            <i class="bi bi-calendar-fill"></i>
+                                            <span>3 anos</span>
+                                        </div>
+                                    </div>
+                                    <div class="animal-actions">
+                                        <button class="btn-edit" type="button" aria-label="Editar">
+                                            <i class="bi bi-pencil-fill"></i>
+                                        </button>
+                                        <button class="btn-delete" type="button" aria-label="Excluir">
+                                            <i class="bi bi-trash-fill"></i>
+                                        </button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="animal-card">
-                        <div class="animal-image-wrapper">
-                            <div class="animal-state-indicator">
-                                <span>Disponível</span>
-                            </div>
-                            <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuDWpM-fQqn8WfAEB9jbzrUyyF0T4jEU0_rw33S7s28-b6c9mUK-eoYe_YaVjiyhxiwPBvKUUlBsjl1m_KYb7ivUhTg_bOM5So1Xc99bIca9ad7brtJl7C6rOuFl5iE7fx2No8riNM4dtMyF2MT9p_99bLFI6HJuHR173rwj1GhjgEParBuJf9mDTxDtW6-84C4sxlYf9wQhEeNUyXTo4jee3Qpp7MypJ3dMg0TWq_g2pvnMWs8XHvMVQW1LtFDCWBu5Bpl132-Qh2XN"
-                                alt="Foto do animal" />
+                    <div class="animals-request-side-bar">
+                        <div class="animals-request-side-bar-header">
+                            <h3>Solicitações Pendentes</h3>
+                            <button class="btn-close-requests" type="button" aria-label="Fechar solicitações">
+                                <i class="bi bi-x-lg"></i>
+                            </button>
                         </div>
-                        <div class="animal-card-content">
-                            <div class="animals-info">
-                                <div class="animals-info-content">
-                                    <h3>Rex</h3>
-                                    <div class="animal-age">
-                                        <i class="bi bi-calendar-fill"></i>
-                                        <span>3 anos</span>
+                        <div class="animals-request-header">
+                            <button class="view-all-requests">
+                                Ver Todas
+                            </button>
+                        </div>
+                        <div class="animals-request-list">
+                                <div class="request-animal-card">
+                                    <div class="request-animal-info">
+                                        <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuDWpM-fQqn8WfAEB9jbzrUyyF0T4jEU0_rw33S7s28-b6c9mUK-eoYe_YaVjiyhxiwPBvKUUlBsjl1m_KYb7ivUhTg_bOM5So1Xc99bIca9ad7brtJl7C6rOuFl5iE7fx2No8riNM4dtMyF2MT9p_99bLFI6HJuHR173rwj1GhjgEParBuJf9mDTxDtW6-84C4sxlYf9wQhEeNUyXTo4jee3Qpp7MypJ3dMg0TWq_g2pvnMWs8XHvMVQW1LtFDCWBu5Bpl132-Qh2XN" alt="imagem do animal" class="request-aniaml-image">
+                                        <div class="request-animal-info-content">
+                                            <h4>Rex</h4>
+                                            <p>Candidato: João Silva</p>
+                                        </div>
+                                        <h3>2h atrás</h3>
+                                    </div>
+                                    <div class="request-animal-actions">
+                                        <button class="btn-approve" type="button" aria-label="Aprovar">
+                                            Aprovar
+                                        </button>
+                                        <button class="btn-reject" type="button" aria-label="Rejeitar">
+                                            Recusar
+                                        </button>
                                     </div>
                                 </div>
-                                <div class="animal-actions">
-                                    <button class="btn-edit" type="button" aria-label="Editar">
-                                        <i class="bi bi-pencil-fill"></i>
-                                    </button>
-                                    <button class="btn-delete" type="button" aria-label="Excluir">
-                                        <i class="bi bi-trash-fill"></i>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="animal-card">
-                        <div class="animal-image-wrapper">
-                            <div class="animal-state-indicator">
-                                <span>Disponível</span>
-                            </div>
-                            <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuDWpM-fQqn8WfAEB9jbzrUyyF0T4jEU0_rw33S7s28-b6c9mUK-eoYe_YaVjiyhxiwPBvKUUlBsjl1m_KYb7ivUhTg_bOM5So1Xc99bIca9ad7brtJl7C6rOuFl5iE7fx2No8riNM4dtMyF2MT9p_99bLFI6HJuHR173rwj1GhjgEParBuJf9mDTxDtW6-84C4sxlYf9wQhEeNUyXTo4jee3Qpp7MypJ3dMg0TWq_g2pvnMWs8XHvMVQW1LtFDCWBu5Bpl132-Qh2XN"
-                                alt="Foto do animal" />
-                        </div>
-                        <div class="animal-card-content">
-                            <div class="animals-info">
-                                <div class="animals-info-content">
-                                    <h3>Rex</h3>
-                                    <div class="animal-age">
-                                        <i class="bi bi-calendar-fill"></i>
-                                        <span>3 anos</span>
+                                <div class="request-animal-card">
+                                    <div class="request-animal-info">
+                                        <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuDWpM-fQqn8WfAEB9jbzrUyyF0T4jEU0_rw33S7s28-b6c9mUK-eoYe_YaVjiyhxiwPBvKUUlBsjl1m_KYb7ivUhTg_bOM5So1Xc99bIca9ad7brtJl7C6rOuFl5iE7fx2No8riNM4dtMyF2MT9p_99bLFI6HJuHR173rwj1GhjgEParBuJf9mDTxDtW6-84C4sxlYf9wQhEeNUyXTo4jee3Qpp7MypJ3dMg0TWq_g2pvnMWs8XHvMVQW1LtFDCWBu5Bpl132-Qh2XN" alt="imagem do animal" class="request-aniaml-image">
+                                        <div class="request-animal-info-content">
+                                            <h4>Rex</h4>
+                                            <p>Candidato: João Silva</p>
+                                        </div>
+                                        <h3>2h atrás</h3>
+                                    </div>
+                                    <div class="request-animal-actions">
+                                        <button class="btn-approve" type="button" aria-label="Aprovar">
+                                            Aprovar
+                                        </button>
+                                        <button class="btn-reject" type="button" aria-label="Rejeitar">
+                                            Recusar
+                                        </button>
                                     </div>
                                 </div>
-                                <div class="animal-actions">
-                                    <button class="btn-edit" type="button" aria-label="Editar">
-                                        <i class="bi bi-pencil-fill"></i>
-                                    </button>
-                                    <button class="btn-delete" type="button" aria-label="Excluir">
-                                        <i class="bi bi-trash-fill"></i>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="animal-card">
-                        <div class="animal-image-wrapper">
-                            <div class="animal-state-indicator">
-                                <span>Disponível</span>
-                            </div>
-                            <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuDWpM-fQqn8WfAEB9jbzrUyyF0T4jEU0_rw33S7s28-b6c9mUK-eoYe_YaVjiyhxiwPBvKUUlBsjl1m_KYb7ivUhTg_bOM5So1Xc99bIca9ad7brtJl7C6rOuFl5iE7fx2No8riNM4dtMyF2MT9p_99bLFI6HJuHR173rwj1GhjgEParBuJf9mDTxDtW6-84C4sxlYf9wQhEeNUyXTo4jee3Qpp7MypJ3dMg0TWq_g2pvnMWs8XHvMVQW1LtFDCWBu5Bpl132-Qh2XN"
-                                alt="Foto do animal" />
-                        </div>
-                        <div class="animal-card-content">
-                            <div class="animals-info">
-                                <div class="animals-info-content">
-                                    <h3>Rex</h3>
-                                    <div class="animal-age">
-                                        <i class="bi bi-calendar-fill"></i>
-                                        <span>3 anos</span>
+                                <div class="request-animal-card">
+                                    <div class="request-animal-info">
+                                        <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuDWpM-fQqn8WfAEB9jbzrUyyF0T4jEU0_rw33S7s28-b6c9mUK-eoYe_YaVjiyhxiwPBvKUUlBsjl1m_KYb7ivUhTg_bOM5So1Xc99bIca9ad7brtJl7C6rOuFl5iE7fx2No8riNM4dtMyF2MT9p_99bLFI6HJuHR173rwj1GhjgEParBuJf9mDTxDtW6-84C4sxlYf9wQhEeNUyXTo4jee3Qpp7MypJ3dMg0TWq_g2pvnMWs8XHvMVQW1LtFDCWBu5Bpl132-Qh2XN" alt="imagem do animal" class="request-aniaml-image">
+                                        <div class="request-animal-info-content">
+                                            <h4>Rex</h4>
+                                            <p>Candidato: João Silva</p>
+                                        </div>
+                                        <h3>2h atrás</h3>
+                                    </div>
+                                    <div class="request-animal-actions">
+                                        <button class="btn-approve" type="button" aria-label="Aprovar">
+                                            Aprovar
+                                        </button>
+                                        <button class="btn-reject" type="button" aria-label="Rejeitar">
+                                            Recusar
+                                        </button>
                                     </div>
                                 </div>
-                                <div class="animal-actions">
-                                    <button class="btn-edit" type="button" aria-label="Editar">
-                                        <i class="bi bi-pencil-fill"></i>
-                                    </button>
-                                    <button class="btn-delete" type="button" aria-label="Excluir">
-                                        <i class="bi bi-trash-fill"></i>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="animal-card">
-                        <div class="animal-image-wrapper">
-                            <div class="animal-state-indicator">
-                                <span>Disponível</span>
-                            </div>
-                            <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuDWpM-fQqn8WfAEB9jbzrUyyF0T4jEU0_rw33S7s28-b6c9mUK-eoYe_YaVjiyhxiwPBvKUUlBsjl1m_KYb7ivUhTg_bOM5So1Xc99bIca9ad7brtJl7C6rOuFl5iE7fx2No8riNM4dtMyF2MT9p_99bLFI6HJuHR173rwj1GhjgEParBuJf9mDTxDtW6-84C4sxlYf9wQhEeNUyXTo4jee3Qpp7MypJ3dMg0TWq_g2pvnMWs8XHvMVQW1LtFDCWBu5Bpl132-Qh2XN"
-                                alt="Foto do animal" />
-                        </div>
-                        <div class="animal-card-content">
-                            <div class="animals-info">
-                                <div class="animals-info-content">
-                                    <h3>Rex</h3>
-                                    <div class="animal-age">
-                                        <i class="bi bi-calendar-fill"></i>
-                                        <span>3 anos</span>
+                                <div class="request-animal-card">
+                                    <div class="request-animal-info">
+                                        <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuDWpM-fQqn8WfAEB9jbzrUyyF0T4jEU0_rw33S7s28-b6c9mUK-eoYe_YaVjiyhxiwPBvKUUlBsjl1m_KYb7ivUhTg_bOM5So1Xc99bIca9ad7brtJl7C6rOuFl5iE7fx2No8riNM4dtMyF2MT9p_99bLFI6HJuHR173rwj1GhjgEParBuJf9mDTxDtW6-84C4sxlYf9wQhEeNUyXTo4jee3Qpp7MypJ3dMg0TWq_g2pvnMWs8XHvMVQW1LtFDCWBu5Bpl132-Qh2XN" alt="imagem do animal" class="request-aniaml-image">
+                                        <div class="request-animal-info-content">
+                                            <h4>Rex</h4>
+                                            <p>Candidato: João Silva</p>
+                                        </div>
+                                        <h3>2h atrás</h3>
+                                    </div>
+                                    <div class="request-animal-actions">
+                                        <button class="btn-approve" type="button" aria-label="Aprovar">
+                                            Aprovar
+                                        </button>
+                                        <button class="btn-reject" type="button" aria-label="Rejeitar">
+                                            Recusar
+                                        </button>
                                     </div>
                                 </div>
-                                <div class="animal-actions">
-                                    <button class="btn-edit" type="button" aria-label="Editar">
-                                        <i class="bi bi-pencil-fill"></i>
-                                    </button>
-                                    <button class="btn-delete" type="button" aria-label="Excluir">
-                                        <i class="bi bi-trash-fill"></i>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="animal-card">
-                        <div class="animal-image-wrapper">
-                            <div class="animal-state-indicator">
-                                <span>Disponível</span>
-                            </div>
-                            <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuDWpM-fQqn8WfAEB9jbzrUyyF0T4jEU0_rw33S7s28-b6c9mUK-eoYe_YaVjiyhxiwPBvKUUlBsjl1m_KYb7ivUhTg_bOM5So1Xc99bIca9ad7brtJl7C6rOuFl5iE7fx2No8riNM4dtMyF2MT9p_99bLFI6HJuHR173rwj1GhjgEParBuJf9mDTxDtW6-84C4sxlYf9wQhEeNUyXTo4jee3Qpp7MypJ3dMg0TWq_g2pvnMWs8XHvMVQW1LtFDCWBu5Bpl132-Qh2XN"
-                                alt="Foto do animal" />
-                        </div>
-                        <div class="animal-card-content">
-                            <div class="animals-info">
-                                <div class="animals-info-content">
-                                    <h3>Rex</h3>
-                                    <div class="animal-age">
-                                        <i class="bi bi-calendar-fill"></i>
-                                        <span>3 anos</span>
-                                    </div>
-                                </div>
-                                <div class="animal-actions">
-                                    <button class="btn-edit" type="button" aria-label="Editar">
-                                        <i class="bi bi-pencil-fill"></i>
-                                    </button>
-                                    <button class="btn-delete" type="button" aria-label="Excluir">
-                                        <i class="bi bi-trash-fill"></i>
-                                    </button>
-                                </div>
-                            </div>
                         </div>
                     </div>
                 </div>
