@@ -61,14 +61,24 @@
         </div>
     </aside>
 
+    <div class="sidebar-overlay" id="sidebar-overlay" aria-hidden="true"></div>
+
     <!-- Nav -->
     <main class="dashboard-main">
         <header class="topbar">
-            <nav class="topbar-nav">
-                <a class="active" href="#">Início</a>
-                <a href="#">Sobre</a>
-                <a href="#">Ajuda</a>
-            </nav>
+            <div class="topbar-left">
+                <button class="btn-menu" type="button" aria-label="Abrir menu" aria-expanded="false">
+                    <i class="bi bi-list"></i>
+                </button>
+
+                <a class="topbar-logo" href="../index.html">Adote Lar</a>
+
+                <nav class="topbar-nav">
+                    <a class="active" href="#">Início</a>
+                    <a href="#">Sobre</a>
+                    <a href="#">Ajuda</a>
+                </nav>
+            </div>
 
             <div class="topbar-actions">
                 <div class="search-box">

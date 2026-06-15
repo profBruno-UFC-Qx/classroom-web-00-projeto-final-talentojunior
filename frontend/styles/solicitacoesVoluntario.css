@@ -125,21 +125,27 @@ body {
 
 .btn-nova-acolhida:hover {
     background-color: var(--primary-hover);
-    opacity: 0.9;
-}
-
-.btn-nova-acolhida:active {
-    transform: scale(0.95);
-}
-
-.btn-nova-acolhida:hover {
-    background-color: var(--primary-hover);
-    transform: translateY(-5px);
+    transform: translateY(-2px);
     box-shadow: 0 15px 25px color-mix(in srgb, var(--primary) 30%, transparent);
 }
 
 .nav-link.logout:hover {
     color: var(--error);
+}
+
+.sidebar-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 45;
+    background-color: rgba(0, 0, 0, 0.4);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.sidebar-overlay.visible {
+    display: block;
+    opacity: 1;
 }
 
 /* Menu de Solicitações */
@@ -157,9 +163,45 @@ body {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    gap: 16px;
     padding: 16px 48px;
     background-color: color-mix(in srgb, var(--surface) 80%, transparent);
     backdrop-filter: blur(12px);
+}
+
+.topbar-left {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    min-width: 0;
+}
+
+.btn-menu {
+    display: none;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border: none;
+    border-radius: 8px;
+    background: transparent;
+    color: var(--text-main);
+    font-size: 24px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.btn-menu:hover {
+    background-color: var(--background);
+}
+
+.topbar-logo {
+    display: none;
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--primary);
+    text-decoration: none;
+    white-space: nowrap;
 }
 
 .topbar-nav {
@@ -255,10 +297,18 @@ body {
     margin-bottom: 32px;
     overflow-x: auto;
     padding-bottom: 8px;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+}
+
+.filter-chips::-webkit-scrollbar {
+    display: none;
 }
 
 .filter-chip {
     flex-shrink: 0;
+    scroll-snap-align: start;
     padding: 8px 24px;
     border-radius: 999px;
     border: 1px solid color-mix(in srgb, var(--border-color) 20%, transparent);
@@ -292,9 +342,10 @@ body {
 }
 
 .request-card {
-    display: flex;
+    display: grid;
+    grid-template-columns: 128px minmax(0, 1.2fr) minmax(0, 1fr) minmax(0, 1fr) auto auto;
     align-items: center;
-    gap: 24px;
+    gap: 16px 20px;
     padding: 24px;
     border-radius: 16px;
     background-color: var(--surface);
@@ -307,26 +358,57 @@ body {
     box-shadow: 0 20px 40px color-mix(in srgb, var(--primary) 5%, transparent);
 }
 
+.request-card-header,
+.request-card-heading,
+.request-card-details {
+    display: contents;
+}
+
 .request-card-image {
-    flex-shrink: 0;
+    grid-column: 1;
     width: 128px;
     height: 128px;
     border-radius: 12px;
     overflow: hidden;
 }
 
+.request-animal {
+    grid-column: 2;
+    min-width: 0;
+}
+
+.request-card-details > div:first-child {
+    grid-column: 3;
+    min-width: 0;
+}
+
+.request-card-details > div:last-child {
+    grid-column: 4;
+    min-width: 0;
+}
+
+.request-status {
+    grid-column: 5;
+    display: flex;
+    justify-content: center;
+}
+
+.btn-card {
+    grid-column: 6;
+    flex-shrink: 0;
+    padding: 12px 24px;
+    border-radius: 999px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.2s ease-in-out;
+    border: none;
+}
+
 .request-card-image img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-}
-
-.request-card-info {
-    flex: 1;
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    align-items: center;
-    gap: 16px;
 }
 
 .request-animal h3 {
@@ -351,11 +433,6 @@ body {
     font-size: 16px;
     font-weight: 600;
     margin-top: 4px;
-}
-
-.request-status {
-    display: flex;
-    justify-content: center;
 }
 
 .status-badge {
@@ -408,17 +485,6 @@ body {
 
 .status-badge.rejected .status-dot {
     background-color: var(--error);
-}
-
-.btn-card {
-    flex-shrink: 0;
-    padding: 12px 24px;
-    border-radius: 999px;
-    font-size: 14px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: 0.2s ease-in-out;
-    border: none;
 }
 
 .btn-card.primary {
@@ -487,45 +553,230 @@ body {
 
 /* Medias */
 @media (max-width: 1200px) {
-    .request-card-info {
-        grid-template-columns: repeat(2, 1fr);
+    .request-card {
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 16px;
+    }
+
+    .request-card-header,
+    .request-card-heading,
+    .request-card-details {
+        display: flex;
+    }
+
+    .request-card-header {
+        align-items: center;
+        gap: 16px;
+    }
+
+    .request-card-heading {
+        flex: 1;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+        min-width: 0;
+    }
+
+    .request-card-details {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+    }
+
+    .request-card-image,
+    .request-animal,
+    .request-card-details > div,
+    .request-status,
+    .btn-card {
+        grid-column: unset;
+    }
+
+    .request-card-image {
+        width: 112px;
+        height: 112px;
+        flex-shrink: 0;
     }
 
     .request-status {
         justify-content: flex-start;
     }
+
+    .btn-card {
+        width: 100%;
+        text-align: center;
+    }
+}
+
+@media (max-width: 992px) {
+    .topbar,
+    .solicitacoes-content {
+        padding-left: 32px;
+        padding-right: 32px;
+    }
+
+    .page-header h2 {
+        font-size: 28px;
+    }
+
+    .page-header p {
+        font-size: 16px;
+    }
 }
 
 @media (max-width: 768px) {
-    .sidebar {
+    .btn-menu {
+        display: flex;
+    }
+
+    .topbar-logo {
+        display: block;
+    }
+
+    .topbar-nav {
         display: none;
+    }
+
+    .sidebar {
+        transform: translateX(-100%);
+        transition: transform 0.3s ease;
+    }
+
+    body.sidebar-open .sidebar {
+        transform: translateX(0);
+    }
+
+    body.sidebar-open {
+        overflow: hidden;
     }
 
     .solicitacoes-main {
         margin-left: 0;
     }
 
-    .topbar,
+    .topbar {
+        padding: 12px 20px;
+    }
+
     .solicitacoes-content {
-        padding-left: 20px;
-        padding-right: 20px;
+        padding: 24px 20px 0;
+    }
+
+    .page-header {
+        margin-bottom: 24px;
+    }
+
+    .page-header h2 {
+        font-size: 24px;
+    }
+
+    .page-header p {
+        font-size: 15px;
+    }
+
+    .filter-chips {
+        margin-bottom: 24px;
+        margin-left: -4px;
+        margin-right: -4px;
+        padding-left: 4px;
+        padding-right: 4px;
+    }
+
+    .filter-chip {
+        padding: 8px 18px;
+        font-size: 13px;
+    }
+
+    .user-section span {
+        display: none;
+    }
+
+    .user-section {
+        padding-left: 0;
+        border-left: none;
     }
 
     .request-card {
-        flex-direction: column;
-        align-items: stretch;
+        padding: 16px;
     }
 
     .request-card-image {
-        width: 100%;
-        height: 200px;
+        width: 88px;
+        height: 88px;
     }
 
-    .request-card-info {
-        grid-template-columns: 1fr;
+    .request-animal h3 {
+        font-size: 20px;
+    }
+
+    .request-animal p {
+        font-size: 14px;
+    }
+
+    .request-status {
+        justify-content: flex-start;
     }
 
     .btn-card {
         width: 100%;
+        padding: 12px 16px;
+    }
+
+    .request-field-label {
+        font-size: 11px;
+    }
+
+    .request-field-value {
+        font-size: 14px;
+    }
+
+    .empty-state {
+        padding: 48px 20px;
+    }
+
+    .empty-state i {
+        font-size: 48px;
+    }
+
+    .empty-state h3 {
+        font-size: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .topbar-actions {
+        gap: 8px;
+    }
+
+    .user-avatar {
+        width: 36px;
+        height: 36px;
+    }
+
+    .request-card-header {
+        gap: 12px;
+    }
+
+    .request-card-image {
+        width: 72px;
+        height: 72px;
+    }
+
+    .request-card-details {
+        grid-template-columns: 1fr;
+    }
+
+    .request-animal h3 {
+        font-size: 18px;
+    }
+
+    .status-badge {
+        font-size: 12px;
+        padding: 4px 12px;
+    }
+
+    .btn-card {
+        font-size: 13px;
     }
 }
