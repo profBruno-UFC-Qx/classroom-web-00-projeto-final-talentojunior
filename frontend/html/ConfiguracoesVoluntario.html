@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Configurações - Adote Lar</title>
+
+    <!-- Links css -->
+    <link rel="stylesheet" href="../styles/global.css" />
+    <link rel="stylesheet" href="../styles/configuracoesVoluntario.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css" />
+</head>
+
+<body class="configuracoes-voluntario">
+
+    <!-- Menu Lateral -->
+    <aside class="sidebar">
+        <div class="sidebar-brand">
+            <a class="logo-link" href="../index.html">
+                <h1>Adote Lar</h1>
+            </a>
+            <p>Portal do Voluntário</p>
+        </div>
+
+        <nav class="sidebar-nav">
+            <a class="nav-link" href="DashboardVoluntario.html">
+                <i class="bi bi-speedometer2"></i>
+                <span>Dashboard</span>
+            </a>
+            <a class="nav-link" href="SolicitacoesVoluntario.html">
+                <i class="bi bi-heart-pulse"></i>
+                <span>Meus Acolhidos</span>
+            </a>
+            <a class="nav-link" href="#">
+                <i class="bi bi-hand-thumbs-up"></i>
+                <span>Oportunidades</span>
+            </a>
+            <a class="nav-link" href="#">
+                <i class="bi bi-chat-dots"></i>
+                <span>Mensagens</span>
+            </a>
+            <a class="nav-link active" href="ConfiguracoesVoluntario.html">
+                <i class="bi bi-gear"></i>
+                <span>Configurações</span>
+            </a>
+        </nav>
+
+        <div class="sidebar-footer">
+            <button class="btn-nova-acolhida" type="button">
+                <i class="bi bi-plus-lg"></i>
+                Nova Acolhida
+            </button>
+
+            <a class="nav-link logout" href="#">
+                <i class="bi bi-box-arrow-right"></i>
+                <span>Sair</span>
+            </a>
+        </div>
+    </aside>
+
+    <div class="sidebar-overlay" id="sidebar-overlay" aria-hidden="true"></div>
+
+    <main class="configuracoes-main">
+        <header class="topbar">
+            <div class="topbar-left">
+                <button class="btn-menu" type="button" aria-label="Abrir menu" aria-expanded="false">
+                    <i class="bi bi-list"></i>
+                </button>
+
+                <a class="topbar-logo" href="../index.html">Adote Lar</a>
+
+                <nav class="topbar-nav">
+                    <a href="#">Início</a>
+                    <a href="#">Sobre</a>
+                    <a href="#">Ajuda</a>
+                </nav>
+            </div>
+
+            <div class="topbar-actions">
+                <button class="btn-notification" type="button" aria-label="Notificações">
+                    <i class="bi bi-bell"></i>
+                </button>
+
+                <div class="user-section">
+                    <span>Mariana Silva</span>
+                    <img class="user-avatar"
+                        src="../assets/usuario_perfil.png"
+                        alt="Foto de perfil do voluntário" />
+                </div>
+            </div>
+        </header>
+
+        <div class="configuracoes-content">
+            <header class="page-header">
+                <h2>Configurações da Conta</h2>
+                <p>Gerencie suas informações pessoais e preferências de acolhimento.</p>
+            </header>
+
+            <form class="settings-form">
+                <!-- Formulário de perfil -->
+                <section class="settings-section">
+                    <div class="section-title">
+                        <i class="bi bi-person-circle"></i>
+                        <h3>Perfil Público</h3>
+                    </div>
+
+                    <div class="profile-grid">
+                        <div class="avatar-upload">
+                            <div class="avatar-wrapper">
+                                <img src="../assets/foto_perfil_configuracoes.png"
+                                    alt="Avatar do usuário" />
+                                <button class="btn-avatar-edit" type="button" aria-label="Alterar foto">
+                                    <i class="bi bi-camera"></i>
+                                </button>
+                            </div>
+                            <span class="avatar-hint">JPG ou PNG, máx. 2MB</span>
+                        </div>
+
+                        <div class="form-fields">
+                            <div class="form-group">
+                                <label for="nome">Nome Completo</label>
+                                <input class="form-input" id="nome" type="text" value="Mariana Silva de Souza" />
+                            </div>
+
+                            <div class="form-group">
+                                <label for="cidade">Cidade</label>
+                                <input class="form-input" id="cidade" type="text" value="São Paulo, SP" />
+                            </div>
+
+                            <div class="form-group">
+                                <label for="bio">Bio</label>
+                                <textarea class="form-textarea" id="bio" rows="3">Apaixonada por animais e dedicada a oferecer um lar temporário seguro e amoroso enquanto eles esperam por suas famílias definitivas.</textarea>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Preferências -->
+                <section class="settings-section">
+                    <div class="section-title">
+                        <i class="bi bi-heart"></i>
+                        <h3>Preferências de Acolhimento</h3>
+                    </div>
+
+                    <div class="preferences-grid">
+                        <div class="form-group">
+                            <label>Espécies preferidas</label>
+                            <div class="species-options">
+                                <label class="species-card active">
+                                    <input type="checkbox" checked />
+                                    <i class="bi bi-emoji-smile"></i>
+                                    <span>Cães</span>
+                                </label>
+                                <label class="species-card">
+                                    <input type="checkbox" />
+                                    <i class="bi bi-emoji-heart-eyes"></i>
+                                    <span>Gatos</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="porte">Porte máximo</label>
+                            <select class="form-select" id="porte">
+                                <option>Pequeno (até 10kg)</option>
+                                <option selected>Médio (até 20kg)</option>
+                                <option>Grande (até 40kg)</option>
+                                <option>Gigante (acima de 40kg)</option>
+                            </select>
+                        </div>
+
+                        <label class="toggle-label">
+                            <span class="toggle-switch">
+                                <input type="checkbox" checked />
+                                <span class="toggle-slider"></span>
+                            </span>
+                            <span class="toggle-text">Possuo outros animais em casa</span>
+                        </label>
+                    </div>
+                </section>
+
+                <section class="settings-section">
+                    <div class="section-title">
+                        <i class="bi bi-bell-fill"></i>
+                        <h3>Notificações</h3>
+                    </div>
+
+                    <div class="notification-list">
+                        <div class="notification-item">
+                            <div class="notification-info">
+                                <i class="bi bi-envelope"></i>
+                                <div>
+                                    <h4>E-mail</h4>
+                                    <p>Novas oportunidades e mensagens</p>
+                                </div>
+                            </div>
+                            <input class="form-checkbox" type="checkbox" checked />
+                        </div>
+
+                        <div class="notification-item">
+                            <div class="notification-info">
+                                <i class="bi bi-bell"></i>
+                                <div>
+                                    <h4>Notificações Push</h4>
+                                    <p>Alertas em tempo real no navegador</p>
+                                </div>
+                            </div>
+                            <input class="form-checkbox" type="checkbox" checked />
+                        </div>
+
+                        <div class="notification-item">
+                            <div class="notification-info">
+                                <i class="bi bi-whatsapp"></i>
+                                <div>
+                                    <h4>WhatsApp</h4>
+                                    <p>Apenas avisos urgentes de acolhida</p>
+                                </div>
+                            </div>
+                            <input class="form-checkbox" type="checkbox" />
+                        </div>
+                    </div>
+                </section>
+                
+                <section class="settings-section">
+                    <div class="section-title">
+                        <i class="bi bi-shield-check"></i>
+                        <h3>Segurança</h3>
+                    </div>
+
+                    <div class="security-grid">
+                        <button class="security-btn" type="button">
+                            <div class="security-btn-content">
+                                <i class="bi bi-lock"></i>
+                                <span>Alterar Senha</span>
+                            </div>
+                            <i class="bi bi-chevron-right security-chevron"></i>
+                        </button>
+
+                        <button class="security-btn" type="button">
+                            <div class="security-btn-content">
+                                <i class="bi bi-laptop"></i>
+                                <span>Gerenciar Sessões</span>
+                            </div>
+                            <i class="bi bi-chevron-right security-chevron"></i>
+                        </button>
+                    </div>
+                </section>
+
+                <div class="form-actions">
+                    <button class="btn-discard" type="button">Descartar</button>
+                    <button class="btn-submit" type="submit">Salvar Alterações</button>
+                </div>
+            </form>
+        </div>
+    </main>
+
+    <script src="../dist/scripts/configuracoesVoluntario.js"></script>
+</body>
+
+</html>
