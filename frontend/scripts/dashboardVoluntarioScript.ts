@@ -1,7 +1,43 @@
 document.addEventListener("DOMContentLoaded", () => {
   const metricCards = document.querySelectorAll<HTMLElement>(".metric-card");
+  const menuButton = document.querySelector<HTMLButtonElement>(".btn-menu");
+  const sidebarOverlay = document.getElementById("sidebar-overlay");
+  const sidebarLinks = document.querySelectorAll<HTMLAnchorElement>(".sidebar .nav-link");
 
-  // Gambiarra
+  function openSidebar() {
+    document.body.classList.add("sidebar-open");
+    sidebarOverlay?.classList.add("visible");
+    sidebarOverlay?.setAttribute("aria-hidden", "false");
+    menuButton?.setAttribute("aria-expanded", "true");
+  }
+
+  function closeSidebar() {
+    document.body.classList.remove("sidebar-open");
+    sidebarOverlay?.classList.remove("visible");
+    sidebarOverlay?.setAttribute("aria-hidden", "true");
+    menuButton?.setAttribute("aria-expanded", "false");
+  }
+
+  menuButton?.addEventListener("click", () => {
+    if (document.body.classList.contains("sidebar-open")) {
+      closeSidebar();
+    } else {
+      openSidebar();
+    }
+  });
+
+  sidebarOverlay?.addEventListener("click", closeSidebar);
+
+  sidebarLinks.forEach((link) => {
+    link.addEventListener("click", closeSidebar);
+  });
+
+  window.addEventListener("resize", () => {
+    if (window.innerWidth > 768) {
+      closeSidebar();
+    }
+  });
+
   metricCards.forEach((card) => {
     card.addEventListener("mousemove", (event: MouseEvent) => {
       const rect = card.getBoundingClientRect();
