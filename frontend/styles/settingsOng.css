@@ -421,6 +421,54 @@ body {
     border-color: var(--primary);
     outline: none;
 }
+/* Reception Form */
+
+.reception-form-group {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 16px;
+}
+.checkbox-animals-container {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 18px;
+}
+.checkbox-animals-item {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+.checkbox-animals-item input[type="checkbox"] {
+    accent-color: var(--primary);
+    width: 16px;
+    height: 16px;
+    border: 2px solid var(--background); 
+    background-color: #fff; 
+    cursor: pointer;
+    transition: background-color 0.2s, border-color 0.2s;
+}
+.reception-form-group label {
+    font-size: 14px;
+    font-weight: 600;
+}
+.reception-form-group input,
+.reception-form-group textarea {
+    background-color: var(--background);
+    color: var(--text-main);
+    padding: 12px;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    font-size: 14px;
+    transition: border-color 0.2s;
+}
+.reception-form-group input:focus,
+.reception-form-group textarea:focus {
+    border-color: var(--primary);
+    outline: none;
+}
 /* Medias */
 @media (max-width: 1024px) {
     
