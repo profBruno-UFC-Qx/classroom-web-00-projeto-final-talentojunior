@@ -530,6 +530,7 @@ body {
     display: flex;
     gap: 12px;
     justify-content: flex-end;
+    flex-wrap: wrap;
 }
 .buttons-form-actions {
     padding: 8px 28px;
@@ -543,6 +544,7 @@ body {
     border: 2px solid var(--secondary);
     border-radius: 18px;
     font-weight: bold;
+    min-width: 180px;
 }
 .buttons-form-actions:hover {
     background-color: var(--secondary-container);
@@ -658,6 +660,9 @@ body {
         font-weight: 700;
         color: var(--text-muted);
         content: attr(data-label);
+    }
+    .page-buttons button {
+        width: 100%;
     }
 }
 
