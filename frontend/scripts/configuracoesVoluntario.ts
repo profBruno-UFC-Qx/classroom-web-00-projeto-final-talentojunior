@@ -41,6 +41,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
+  // Checkbox
   speciesCards.forEach((card) => {
     const checkbox = card.querySelector<HTMLInputElement>("input[type='checkbox']");
 
