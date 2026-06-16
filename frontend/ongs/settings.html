@@ -95,16 +95,16 @@
                 <p>Gerencie as informações da sua organização e preferências de atendimento.</p>
             </section>
             <section class="settings-section">
-                <div class="settigns-section-header">
+                <div class="settings-section-header">
                     <i class="bi bi-shop"></i>
                     <h3>Perfil da organização</h3>
                 </div>
                 <div class="ong-info">
                     <div class="org-image-container">
                         <img src="https://static.vecteezy.com/system/resources/previews/008/249/343/non_2x/veterinary-logo-cat-and-dog-logo-design-pet-care-vet-clinic-logo-pet-clinic-vector.jpg" alt="Logo da ONG" class="ong-logo">
-                        <!-- <button class="btn-change-image" type="button">
+                        <button class="btn-change-image" type="button">
                             <i class="bi bi-pencil"></i>
-                        </button> -->
+                        </button>
                     </div>
                     <div class="org-image-details">
                         <h4>Logo da ONG</h4>
@@ -150,13 +150,13 @@
                 </div>
                 <hr class="spacer-line">
                 <div class="org-reception-settings">
-                    <div class="settigns-section-header">
+                    <div class="settings-section-header">
                         <i class="bi bi-bookmark-heart"></i>
                         <h3>Configurações de acolhimento</h3>
                     </div>
                     <form class="org-reception-settings-form">
                         <div class="reception-form-group">
-                            <label for="animals-to-work">Espécies que trabalhamos</label>
+                            <label>Espécies que trabalhamos</label>
                             <div class="checkbox-animals-container">
                                 <div class="checkbox-animals-item">
                                     <input type="checkbox" id="dog" name="animals-to-work" value="dog" checked>
@@ -180,7 +180,7 @@
                 </div>
                 <hr class="spacer-line">
                 <div class="org-notification-settings">
-                    <div class="settigns-section-header">
+                    <div class="settings-section-header">
                         <i class="bi bi-bell"></i>
                         <h3>Notificações</h3>
                     </div>
@@ -204,7 +204,7 @@
                                         <input type="checkbox" id="notify-request-push" name="notify-request-push" checked>
                                     </td>
                                     <td class="notification-check" data-label="Whatsapp">
-                                        <input type="checkbox" id="notify-request-whatsapp" name="notify-request-whatsapp" checked>
+                                        <input type="checkbox" id="notify-request-whatsapp" name="notify-request-whatsapp" >
                                     </td>
                                 </tr>
                                 <tr>
@@ -213,10 +213,10 @@
                                         <input type="checkbox" id="notify-status-email" name="notify-status-email" checked>
                                     </td>
                                     <td class="notification-check" data-label="Push">
-                                        <input type="checkbox" id="notify-status-push" name="notify-status-push" checked>
+                                        <input type="checkbox" id="notify-status-push" name="notify-status-push" >
                                     </td>
                                     <td class="notification-check" data-label="Whatsapp">
-                                        <input type="checkbox" id="notify-status-whatsapp" name="notify-status-whatsapp" checked>
+                                        <input type="checkbox" id="notify-status-whatsapp" name="notify-status-whatsapp" >
                                     </td>
                                 </tr>
                                 <tr>
@@ -234,6 +234,17 @@
                             </tbody>
                         </table>
                     </form>
+                </div>
+                <hr class="spacer-line">
+                <div class="org-password-settings">
+                    <div class="settings-section-header">
+                        <i class="bi bi-shield-check"></i>
+                        <h3>Segurança</h3>
+                    </div>
+                    <button class="alter-password-button">
+                        <i class="bi bi-key"></i>
+                        Alterar senha
+                    </button>
                 </div>
             </section>
         </div>

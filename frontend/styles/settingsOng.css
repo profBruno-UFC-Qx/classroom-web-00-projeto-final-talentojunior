@@ -317,17 +317,17 @@ body {
     border-radius: 12px;
     padding: 24px;
 }
-.settigns-section-header {
+.settings-section-header {
     display: flex;
     align-items: center;
     gap: 16px;
     margin-bottom: 16px;
 }
-.settigns-section-header h3 {
+.settings-section-header h3 {
     font-size: 22px;
     font-weight: 600;
 }
-.settigns-section-header i {
+.settings-section-header i {
     font-size: 22px;
     color: var(--on-primary-container);
 }
@@ -501,6 +501,28 @@ body {
     width: 18px;
     height: 18px;
     cursor: pointer;
+}
+/* Password settings  */
+.alter-password-button {
+    padding: 8px 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    font-size: 16px;
+    color: var(--secondary);
+    background-color: #fff;
+    border: 2px solid var(--secondary);
+    border-radius: 18px;
+    font-weight: bold;
+}
+.alter-password-button:hover {
+    background-color: var(--secondary-container);
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+}
+.alter-password-button i {
+    font-size: 22px;
 }
 /* Medias */
 @media (max-width: 1024px) {
