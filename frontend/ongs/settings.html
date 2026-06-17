@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Configurações - ONG</title>
+
+    <!-- Links css -->
+    <link rel="stylesheet" href="../styles/global.css" />
+    <link rel="stylesheet" href="../styles/settingsOng.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<body>
+
+    <div class="sidebar-overlay"></div>
+
+    <!-- Menu Lateral -->
+    <aside class="sidebar">
+        <div class="sidebar-brand">
+            <h1>Adote Lar</h1>
+            <p>Portal de ONGS</p>
+        </div>
+
+        <nav class="sidebar-nav">
+            <a class="nav-link" href="./dashboard.html">
+                <i class="bi bi-speedometer2"></i>
+                <span>Dashboard</span>
+            </a>
+            <a class="nav-link" href="./animalRegistry.html">
+                <i class="fa fa-paw"></i>
+                <span>Registro de animais</span>
+            </a>
+            <a class="nav-link" href="./voluntarRequest.html">
+                <i class="bi bi-person-plus"></i>
+                <span>Solicitações de volutários</span>
+            </a>
+            <a class="nav-link active" href="./settings.html">
+                <i class="bi bi-gear"></i>
+                <span>Configurações</span>
+            </a>
+        </nav>
+
+        <div class="sidebar-footer">
+            <button class="btn-new-animal" type="button">
+                <i class="bi bi-plus-lg"></i>
+                Registrar novo animal
+            </button>
+
+            <div class="sidebar-logout">
+                <a class="nav-link logout" href="#">
+                    <i class="bi bi-box-arrow-right"></i>
+                    <span>Sair</span>
+                </a>
+            </div>
+        </div>
+    </aside>
+
+    <!-- Nav -->
+    <main class="settings-main">
+        <header class="topbar">
+            <button class="btn-toggle-sidebar" type="button" aria-label="Menu">
+                <i class="bi bi-list"></i>
+            </button>
+
+            <nav class="topbar-nav">
+                <a href="#" class="active">Configurações</a>
+                <a href="#">Relatórios</a>
+            </nav>
+
+            <div class="topbar-actions">
+
+                <div class="user-section">
+                    <button class="btn-notification" type="button" aria-label="Notificações">
+                        <i class="bi bi-bell"></i>
+                        <span class="notification-dot"></span>
+                    </button>
+
+                    <div class="user-info">
+                        <p>Ong Vida Animal</p>
+                    </div>
+
+                    <img class="user-avatar"
+                        src="https://static.vecteezy.com/system/resources/previews/008/249/343/non_2x/veterinary-logo-cat-and-dog-logo-design-pet-care-vet-clinic-logo-pet-clinic-vector.jpg"
+                        alt="Foto de perfil do voluntário" />
+                </div>
+            </div>
+        </header>
+        <div class="settings-content">
+            <section class="welcome-section">
+                <h2>Configurações da Organização</h2>
+                <p>Gerencie as informações da sua organização e preferências de atendimento.</p>
+            </section>
+            <section class="settings-section">
+                <div class="settings-section-header">
+                    <i class="bi bi-shop"></i>
+                    <h3>Perfil da organização</h3>
+                </div>
+                <div class="ong-info">
+                    <div class="org-image-container">
+                        <img src="https://static.vecteezy.com/system/resources/previews/008/249/343/non_2x/veterinary-logo-cat-and-dog-logo-design-pet-care-vet-clinic-logo-pet-clinic-vector.jpg" alt="Logo da ONG" class="ong-logo">
+                        <button class="btn-change-image" type="button">
+                            <i class="bi bi-pencil"></i>
+                        </button>
+                    </div>
+                    <div class="org-image-details">
+                        <h4>Logo da ONG</h4>
+                        <p>PNH ou JPG até 5MB</p>
+                    </div>
+                </div>
+                <hr class="spacer-line">
+                <div class="org-form">
+                    <form class="org-info-form">
+                        <div class="form-group">
+                            <div class="form-group-item">
+                                <label for="ong-name">Nome da ONG</label>
+                                <input type="text" id="ong-name" name="ong-name" placeholder="Digite o nome da ONG" value="Ong Vida Animal">
+                            </div>
+                            <div class="form-group-item">
+                                <label for="ong-cnpj">CNPJ</label>
+                                <input type="text" id="ong-cnpj" name="ong-cnpj" placeholder="Digite o CNPJ da ONG" value="00.000.000/0001-00">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="form-group-item">
+                                <label for="ong-response-name">Nome do responsável</label>
+                                <input type="tel" id="ong-response-name" name="ong-response-name" placeholder="Nome Completo" value="Mário Senna">
+                            </div>
+                            <div class="form-group-item">
+                                <label for="ong-tell">Telefone / WhatsApp</label>
+                                <input type="tel" id="ong-tell" name="ong-tell" placeholder="Digite o telefone / WhatsApp" value="(11) 99999-9999">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="form-group-item">
+                                <label for="ong-address">Endereço</label>
+                                <input type="text" id="ong-address" name="ong-address" placeholder="Digite o endereço da ONG" value="Av. Paulista, 1000 - São Paulo/SP">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="form-group-item">
+                                <label for="ong-bio">Bio / Missão</label>
+                                <textarea id="ong-bio" name="ong-bio" placeholder="Digite a bio ou missão da ONG" value="Somos uma organização dedicada a cuidar dos animais de estimação e proteger os animais selvagens."></textarea>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <hr class="spacer-line">
+                <div class="org-reception-settings">
+                    <div class="settings-section-header">
+                        <i class="bi bi-bookmark-heart"></i>
+                        <h3>Configurações de acolhimento</h3>
+                    </div>
+                    <form class="org-reception-settings-form">
+                        <div class="reception-form-group">
+                            <label>Espécies que trabalhamos</label>
+                            <div class="checkbox-animals-container">
+                                <div class="checkbox-animals-item">
+                                    <input type="checkbox" id="dog" name="animals-to-work" value="dog" checked>
+                                    <label for="dog">Cães</label>
+                                </div>
+                                <div class="checkbox-animals-item">
+                                    <input type="checkbox" id="cat" name="animals-to-work" value="cat" checked>
+                                    <label for="cat">Gatos</label>
+                                </div>
+                                <div class="checkbox-animals-item">
+                                    <input type="checkbox" id="other" name="animals-to-work" value="other">
+                                    <label for="other">Outros</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="reception-form-group">
+                            <label for="minimal-request-voluntar">Requisitos mínimos para voluntariado</label>
+                            <input type="text" id="minimal-request-voluntar" name="minimal-request-voluntar" placeholder="Ex: Espaço cercado, experiência com animais, etc.">
+                        </div>
+                    </form>
+                </div>
+                <hr class="spacer-line">
+                <div class="org-notification-settings">
+                    <div class="settings-section-header">
+                        <i class="bi bi-bell"></i>
+                        <h3>Notificações</h3>
+                    </div>
+                    <form class="org-notification-form">
+                        <table class="notification-table">
+                            <thead>
+                                <tr>
+                                    <th>Evento</th>
+                                    <th>E-mail</th>
+                                    <th>Push</th>
+                                    <th>Whatsapp</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td data-label="Evento">Nova solicitação de acolhimento</td>
+                                    <td class="notification-check" data-label="E-mail">
+                                        <input type="checkbox" id="notify-request-email" name="notify-request-request-email" checked>
+                                    </td>
+                                    <td class="notification-check" data-label="Push">
+                                        <input type="checkbox" id="notify-request-push" name="notify-request-push" checked>
+                                    </td>
+                                    <td class="notification-check" data-label="Whatsapp">
+                                        <input type="checkbox" id="notify-request-whatsapp" name="notify-request-whatsapp" >
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td data-label="Evento">Atualização de status do pet</td>
+                                    <td class="notification-check" data-label="E-mail">
+                                        <input type="checkbox" id="notify-status-email" name="notify-status-email" checked>
+                                    </td>
+                                    <td class="notification-check" data-label="Push">
+                                        <input type="checkbox" id="notify-status-push" name="notify-status-push" >
+                                    </td>
+                                    <td class="notification-check" data-label="Whatsapp">
+                                        <input type="checkbox" id="notify-status-whatsapp" name="notify-status-whatsapp" >
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td data-label="Evento">Mensagens de voluntário</td>
+                                    <td class="notification-check" data-label="E-mail">
+                                        <input type="checkbox" id="notify-message-email" name="notify-message-email" checked>
+                                    </td>
+                                    <td class="notification-check" data-label="Push">
+                                        <input type="checkbox" id="notify-message-push" name="notify-message-push" checked>
+                                    </td>
+                                    <td class="notification-check" data-label="Whatsapp">
+                                        <input type="checkbox" id="notify-message-whatsapp" name="notify-message-whatsapp" checked>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </form>
+                </div>
+                <hr class="spacer-line">
+                <div class="org-password-settings">
+                    <div class="settings-section-header">
+                        <i class="bi bi-shield-check"></i>
+                        <h3>Segurança</h3>
+                    </div>
+                    <button class="alter-password-button">
+                        <i class="bi bi-key"></i>
+                        Alterar senha
+                    </button>
+                </div>
+            </section>
+        </div>
+        <div class="page-buttons">
+            <button class="buttons-form-actions">
+                <i class="bi bi-trash"></i>
+                Descatar alterações
+            </button>
+            <button class="buttons-form-actions">
+                <i class="bi bi-floppy"></i>
+                Salvar alterações
+            </button>
+        </div>
+    </main>
+
+    <script src="../dist/scripts/sideBarScript.js"></script>
+    <script src="../dist/scripts/settingsOngScript.js"></script>
+</body>
+
+</html>

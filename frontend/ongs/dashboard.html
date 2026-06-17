@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Dashboard - ONG</title>
+
+    <!-- Links css -->
+    <link rel="stylesheet" href="../styles/global.css" />
+    <link rel="stylesheet" href="../styles/ongDashboard.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<body class="dashboard-ongs">
+
+    <div class="sidebar-overlay"></div>
+
+    <!-- Menu Lateral -->
+    <aside class="sidebar">
+        <div class="sidebar-brand">
+            <h1>Adote Lar</h1>
+            <p>Portal de ONGS</p>
+        </div>
+
+        <nav class="sidebar-nav">
+            <a class="nav-link active" href="./dashboard.html">
+                <i class="bi bi-speedometer2"></i>
+                <span>Dashboard</span>
+            </a>
+            <a class="nav-link" href="./animalRegistry.html">
+                <i class="fa fa-paw"></i>
+                <span>Registro de animais</span>
+            </a>
+            <a class="nav-link" href="./voluntarRequest.html">
+                <i class="bi bi-person-plus"></i>
+                <span>Solicitações de volutários</span>
+            </a>
+            <a class="nav-link" href="./settings.html">
+                <i class="bi bi-gear"></i>
+                <span>Configurações</span>
+            </a>
+        </nav>
+
+        <div class="sidebar-footer">
+            <button class="btn-new-animal" type="button">
+                <i class="bi bi-plus-lg"></i>
+                Registrar novo animal
+            </button>
+
+            <div class="sidebar-logout">
+                <a class="nav-link logout" href="#">
+                    <i class="bi bi-box-arrow-right"></i>
+                    <span>Sair</span>
+                </a>
+            </div>
+        </div>
+    </aside>
+
+    <!-- Nav -->
+    <main class="dashboard-main">
+        <header class="topbar">
+            <button class="btn-toggle-sidebar" type="button" aria-label="Menu">
+                <i class="bi bi-list"></i>
+            </button>
+
+            <nav class="topbar-nav">
+                <a href="#" class="active">Dashboard</a>
+                <a href="#">Relatórios</a>
+            </nav>
+
+            <div class="topbar-actions">
+
+                <div class="user-section">
+                    <button class="btn-notification" type="button" aria-label="Notificações">
+                        <i class="bi bi-bell"></i>
+                        <span class="notification-dot"></span>
+                    </button>
+
+                    <div class="user-info">
+                        <p>Ong Vida Animal</p>
+                    </div>
+
+                    <img class="user-avatar"
+                        src="https://static.vecteezy.com/system/resources/previews/008/249/343/non_2x/veterinary-logo-cat-and-dog-logo-design-pet-care-vet-clinic-logo-pet-clinic-vector.jpg"
+                        alt="Foto de perfil do voluntário" />
+                </div>
+            </div>
+        </header>
+
+        <!-- Dashboard  -->
+        <div class="dashboard-content">
+            <section class="welcome-section">
+                <h2>Olá, ONG Vida Animal 👋</h2>
+                <p>Gerencie seus animais e acompanhe as solicitações recebidas.</p>
+            </section>
+            <section class="stats-section">
+                <div class="stats-card">
+                    <div class="stats-icon">
+                        <i class="i bi-suit-heart-fill"></i>
+                    </div>
+                    <h3>Total de Animais</h3>
+                    <p class="stats-value">25</p>
+                </div>
+                <div class="stats-card">
+                    <div class="stats-icon" style="background-color: #d3e3ff; color: #436086;">
+                        <i class="bi bi-check-circle-fill"></i>
+                    </div>
+                    <h3>Disponíveis</h3>
+                    <p class="stats-value" style="color: #436086;">8</p>
+                </div>
+                <div class="stats-card">
+                    <div class="stats-icon" style="background-color: #ffecb3; color: #ff8f00;">
+                        <i class="bi bi-clock-fill"></i>
+                    </div>
+                    <h3>Solicitações Pendentes</h3>
+                    <p class="stats-value" style="color: #ff8f00;">3</p>
+                </div>
+                <div class="stats-card">
+                    <div class="stats-icon" style="background-color: #e6e3d0; color: #605f50;">
+                        <i class="bi bi-house-door-fill"></i>
+                    </div>
+                    <h3>Em Lar Temporário</h3>
+                    <p class="stats-value" style="color: #605f50;">4</p>
+                </div>
+            </section>
+            <section class="my-animals">
+                <div class="section-header">
+                    <div class="section-header-content">
+                        <h2>Seus Animais</h2>
+                        <p>Gerencie o catálogo de pets da sua organização.</p>
+                    </div>
+                    <button class="btn-new-animal" type="button">
+                        <i class="bi bi-plus-lg"></i>
+                        Cadastrar animal
+                    </button>
+                    <button class="btn-toggle-requests" type="button" aria-label="Abrir solicitações">
+                        <i class="bi bi-chat-left-text"></i>
+                        <span>Solicitações</span>
+                    </button>
+                </div>
+                <div class="animals-container">
+                    <div class="animals-requests-overlay"></div>
+                    <div class="animals-grid">
+                        <div class="animal-card">
+                            <div class="animal-image-wrapper">
+                                <div class="animal-state-indicator">
+                                    <span>Disponível</span>
+                                </div>
+                                <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuDWpM-fQqn8WfAEB9jbzrUyyF0T4jEU0_rw33S7s28-b6c9mUK-eoYe_YaVjiyhxiwPBvKUUlBsjl1m_KYb7ivUhTg_bOM5So1Xc99bIca9ad7brtJl7C6rOuFl5iE7fx2No8riNM4dtMyF2MT9p_99bLFI6HJuHR173rwj1GhjgEParBuJf9mDTxDtW6-84C4sxlYf9wQhEeNUyXTo4jee3Qpp7MypJ3dMg0TWq_g2pvnMWs8XHvMVQW1LtFDCWBu5Bpl132-Qh2XN"
+                                    alt="Foto do animal" />
+                            </div>
+                            <div class="animal-card-content">
+                                <div class="animals-info">
+                                    <div class="animals-info-content">
+                                        <h3>Rex</h3>
+                                        <div class="animal-age">
+                                            <i class="bi bi-calendar-fill"></i>
+                                            <span>3 anos</span>
+                                        </div>
+                                    </div>
+                                    <div class="animal-actions">
+                                        <button class="btn-edit" type="button" aria-label="Editar">
+                                            <i class="bi bi-pencil-fill"></i>
+                                        </button>
+                                        <button class="btn-delete" type="button" aria-label="Excluir">
+                                            <i class="bi bi-trash-fill"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="animal-card">
+                            <div class="animal-image-wrapper">
+                                <div class="animal-state-indicator">
+                                    <span>Disponível</span>
+                                </div>
+                                <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuDWpM-fQqn8WfAEB9jbzrUyyF0T4jEU0_rw33S7s28-b6c9mUK-eoYe_YaVjiyhxiwPBvKUUlBsjl1m_KYb7ivUhTg_bOM5So1Xc99bIca9ad7brtJl7C6rOuFl5iE7fx2No8riNM4dtMyF2MT9p_99bLFI6HJuHR173rwj1GhjgEParBuJf9mDTxDtW6-84C4sxlYf9wQhEeNUyXTo4jee3Qpp7MypJ3dMg0TWq_g2pvnMWs8XHvMVQW1LtFDCWBu5Bpl132-Qh2XN"
+                                    alt="Foto do animal" />
+                            </div>
+                            <div class="animal-card-content">
+                                <div class="animals-info">
+                                    <div class="animals-info-content">
+                                        <h3>Rex</h3>
+                                        <div class="animal-age">
+                                            <i class="bi bi-calendar-fill"></i>
+                                            <span>3 anos</span>
+                                        </div>
+                                    </div>
+                                    <div class="animal-actions">
+                                        <button class="btn-edit" type="button" aria-label="Editar">
+                                            <i class="bi bi-pencil-fill"></i>
+                                        </button>
+                                        <button class="btn-delete" type="button" aria-label="Excluir">
+                                            <i class="bi bi-trash-fill"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="animal-card">
+                            <div class="animal-image-wrapper">
+                                <div class="animal-state-indicator">
+                                    <span>Disponível</span>
+                                </div>
+                                <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuDWpM-fQqn8WfAEB9jbzrUyyF0T4jEU0_rw33S7s28-b6c9mUK-eoYe_YaVjiyhxiwPBvKUUlBsjl1m_KYb7ivUhTg_bOM5So1Xc99bIca9ad7brtJl7C6rOuFl5iE7fx2No8riNM4dtMyF2MT9p_99bLFI6HJuHR173rwj1GhjgEParBuJf9mDTxDtW6-84C4sxlYf9wQhEeNUyXTo4jee3Qpp7MypJ3dMg0TWq_g2pvnMWs8XHvMVQW1LtFDCWBu5Bpl132-Qh2XN"
+                                    alt="Foto do animal" />
+                            </div>
+                            <div class="animal-card-content">
+                                <div class="animals-info">
+                                    <div class="animals-info-content">
+                                        <h3>Rex</h3>
+                                        <div class="animal-age">
+                                            <i class="bi bi-calendar-fill"></i>
+                                            <span>3 anos</span>
+                                        </div>
+                                    </div>
+                                    <div class="animal-actions">
+                                        <button class="btn-edit" type="button" aria-label="Editar">
+                                            <i class="bi bi-pencil-fill"></i>
+                                        </button>
+                                        <button class="btn-delete" type="button" aria-label="Excluir">
+                                            <i class="bi bi-trash-fill"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="animal-card">
+                            <div class="animal-image-wrapper">
+                                <div class="animal-state-indicator">
+                                    <span>Disponível</span>
+                                </div>
+                                <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuDWpM-fQqn8WfAEB9jbzrUyyF0T4jEU0_rw33S7s28-b6c9mUK-eoYe_YaVjiyhxiwPBvKUUlBsjl1m_KYb7ivUhTg_bOM5So1Xc99bIca9ad7brtJl7C6rOuFl5iE7fx2No8riNM4dtMyF2MT9p_99bLFI6HJuHR173rwj1GhjgEParBuJf9mDTxDtW6-84C4sxlYf9wQhEeNUyXTo4jee3Qpp7MypJ3dMg0TWq_g2pvnMWs8XHvMVQW1LtFDCWBu5Bpl132-Qh2XN"
+                                    alt="Foto do animal" />
+                            </div>
+                            <div class="animal-card-content">
+                                <div class="animals-info">
+                                    <div class="animals-info-content">
+                                        <h3>Rex</h3>
+                                        <div class="animal-age">
+                                            <i class="bi bi-calendar-fill"></i>
+                                            <span>3 anos</span>
+                                        </div>
+                                    </div>
+                                    <div class="animal-actions">
+                                        <button class="btn-edit" type="button" aria-label="Editar">
+                                            <i class="bi bi-pencil-fill"></i>
+                                        </button>
+                                        <button class="btn-delete" type="button" aria-label="Excluir">
+                                            <i class="bi bi-trash-fill"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="animal-card">
+                            <div class="animal-image-wrapper">
+                                <div class="animal-state-indicator">
+                                    <span>Disponível</span>
+                                </div>
+                                <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuDWpM-fQqn8WfAEB9jbzrUyyF0T4jEU0_rw33S7s28-b6c9mUK-eoYe_YaVjiyhxiwPBvKUUlBsjl1m_KYb7ivUhTg_bOM5So1Xc99bIca9ad7brtJl7C6rOuFl5iE7fx2No8riNM4dtMyF2MT9p_99bLFI6HJuHR173rwj1GhjgEParBuJf9mDTxDtW6-84C4sxlYf9wQhEeNUyXTo4jee3Qpp7MypJ3dMg0TWq_g2pvnMWs8XHvMVQW1LtFDCWBu5Bpl132-Qh2XN"
+                                    alt="Foto do animal" />
+                            </div>
+                            <div class="animal-card-content">
+                                <div class="animals-info">
+                                    <div class="animals-info-content">
+                                        <h3>Rex</h3>
+                                        <div class="animal-age">
+                                            <i class="bi bi-calendar-fill"></i>
+                                            <span>3 anos</span>
+                                        </div>
+                                    </div>
+                                    <div class="animal-actions">
+                                        <button class="btn-edit" type="button" aria-label="Editar">
+                                            <i class="bi bi-pencil-fill"></i>
+                                        </button>
+                                        <button class="btn-delete" type="button" aria-label="Excluir">
+                                            <i class="bi bi-trash-fill"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="animal-card">
+                            <div class="animal-image-wrapper">
+                                <div class="animal-state-indicator">
+                                    <span>Disponível</span>
+                                </div>
+                                <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuDWpM-fQqn8WfAEB9jbzrUyyF0T4jEU0_rw33S7s28-b6c9mUK-eoYe_YaVjiyhxiwPBvKUUlBsjl1m_KYb7ivUhTg_bOM5So1Xc99bIca9ad7brtJl7C6rOuFl5iE7fx2No8riNM4dtMyF2MT9p_99bLFI6HJuHR173rwj1GhjgEParBuJf9mDTxDtW6-84C4sxlYf9wQhEeNUyXTo4jee3Qpp7MypJ3dMg0TWq_g2pvnMWs8XHvMVQW1LtFDCWBu5Bpl132-Qh2XN"
+                                    alt="Foto do animal" />
+                            </div>
+                            <div class="animal-card-content">
+                                <div class="animals-info">
+                                    <div class="animals-info-content">
+                                        <h3>Rex</h3>
+                                        <div class="animal-age">
+                                            <i class="bi bi-calendar-fill"></i>
+                                            <span>3 anos</span>
+                                        </div>
+                                    </div>
+                                    <div class="animal-actions">
+                                        <button class="btn-edit" type="button" aria-label="Editar">
+                                            <i class="bi bi-pencil-fill"></i>
+                                        </button>
+                                        <button class="btn-delete" type="button" aria-label="Excluir">
+                                            <i class="bi bi-trash-fill"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="animals-request-side-bar">
+                        <div class="animals-request-side-bar-header">
+                            <h3>Solicitações Pendentes</h3>
+                            <button class="btn-close-requests" type="button" aria-label="Fechar solicitações">
+                                <i class="bi bi-x-lg"></i>
+                            </button>
+                        </div>
+                        <div class="animals-request-header">
+                            <button class="view-all-requests">
+                                Ver Todas
+                            </button>
+                        </div>
+                        <div class="animals-request-list">
+                                <div class="request-animal-card">
+                                    <div class="request-animal-info">
+                                        <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuDWpM-fQqn8WfAEB9jbzrUyyF0T4jEU0_rw33S7s28-b6c9mUK-eoYe_YaVjiyhxiwPBvKUUlBsjl1m_KYb7ivUhTg_bOM5So1Xc99bIca9ad7brtJl7C6rOuFl5iE7fx2No8riNM4dtMyF2MT9p_99bLFI6HJuHR173rwj1GhjgEParBuJf9mDTxDtW6-84C4sxlYf9wQhEeNUyXTo4jee3Qpp7MypJ3dMg0TWq_g2pvnMWs8XHvMVQW1LtFDCWBu5Bpl132-Qh2XN" alt="imagem do animal" class="request-aniaml-image">
+                                        <div class="request-animal-info-content">
+                                            <h4>Rex</h4>
+                                            <p>Candidato: João Silva</p>
+                                        </div>
+                                        <h3>2h atrás</h3>
+                                    </div>
+                                    <div class="request-animal-actions">
+                                        <button class="btn-approve" type="button" aria-label="Aprovar">
+                                            Aprovar
+                                        </button>
+                                        <button class="btn-reject" type="button" aria-label="Rejeitar">
+                                            Recusar
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="request-animal-card">
+                                    <div class="request-animal-info">
+                                        <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuDWpM-fQqn8WfAEB9jbzrUyyF0T4jEU0_rw33S7s28-b6c9mUK-eoYe_YaVjiyhxiwPBvKUUlBsjl1m_KYb7ivUhTg_bOM5So1Xc99bIca9ad7brtJl7C6rOuFl5iE7fx2No8riNM4dtMyF2MT9p_99bLFI6HJuHR173rwj1GhjgEParBuJf9mDTxDtW6-84C4sxlYf9wQhEeNUyXTo4jee3Qpp7MypJ3dMg0TWq_g2pvnMWs8XHvMVQW1LtFDCWBu5Bpl132-Qh2XN" alt="imagem do animal" class="request-aniaml-image">
+                                        <div class="request-animal-info-content">
+                                            <h4>Rex</h4>
+                                            <p>Candidato: João Silva</p>
+                                        </div>
+                                        <h3>2h atrás</h3>
+                                    </div>
+                                    <div class="request-animal-actions">
+                                        <button class="btn-approve" type="button" aria-label="Aprovar">
+                                            Aprovar
+                                        </button>
+                                        <button class="btn-reject" type="button" aria-label="Rejeitar">
+                                            Recusar
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="request-animal-card">
+                                    <div class="request-animal-info">
+                                        <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuDWpM-fQqn8WfAEB9jbzrUyyF0T4jEU0_rw33S7s28-b6c9mUK-eoYe_YaVjiyhxiwPBvKUUlBsjl1m_KYb7ivUhTg_bOM5So1Xc99bIca9ad7brtJl7C6rOuFl5iE7fx2No8riNM4dtMyF2MT9p_99bLFI6HJuHR173rwj1GhjgEParBuJf9mDTxDtW6-84C4sxlYf9wQhEeNUyXTo4jee3Qpp7MypJ3dMg0TWq_g2pvnMWs8XHvMVQW1LtFDCWBu5Bpl132-Qh2XN" alt="imagem do animal" class="request-aniaml-image">
+                                        <div class="request-animal-info-content">
+                                            <h4>Rex</h4>
+                                            <p>Candidato: João Silva</p>
+                                        </div>
+                                        <h3>2h atrás</h3>
+                                    </div>
+                                    <div class="request-animal-actions">
+                                        <button class="btn-approve" type="button" aria-label="Aprovar">
+                                            Aprovar
+                                        </button>
+                                        <button class="btn-reject" type="button" aria-label="Rejeitar">
+                                            Recusar
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="request-animal-card">
+                                    <div class="request-animal-info">
+                                        <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuDWpM-fQqn8WfAEB9jbzrUyyF0T4jEU0_rw33S7s28-b6c9mUK-eoYe_YaVjiyhxiwPBvKUUlBsjl1m_KYb7ivUhTg_bOM5So1Xc99bIca9ad7brtJl7C6rOuFl5iE7fx2No8riNM4dtMyF2MT9p_99bLFI6HJuHR173rwj1GhjgEParBuJf9mDTxDtW6-84C4sxlYf9wQhEeNUyXTo4jee3Qpp7MypJ3dMg0TWq_g2pvnMWs8XHvMVQW1LtFDCWBu5Bpl132-Qh2XN" alt="imagem do animal" class="request-aniaml-image">
+                                        <div class="request-animal-info-content">
+                                            <h4>Rex</h4>
+                                            <p>Candidato: João Silva</p>
+                                        </div>
+                                        <h3>2h atrás</h3>
+                                    </div>
+                                    <div class="request-animal-actions">
+                                        <button class="btn-approve" type="button" aria-label="Aprovar">
+                                            Aprovar
+                                        </button>
+                                        <button class="btn-reject" type="button" aria-label="Rejeitar">
+                                            Recusar
+                                        </button>
+                                    </div>
+                                </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <script src="../dist/scripts/sideBarScript.js"></script>
+    <script src="../dist/scripts/ongsDashboard.js"></script>
+</body>
+
+</html>
