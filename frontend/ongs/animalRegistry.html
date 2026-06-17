@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Registro de Animals - ONG</title>
+
+    <!-- Links css -->
+    <link rel="stylesheet" href="../styles/global.css" />
+    <link rel="stylesheet" href="../styles/animalRegistryOng.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<body class="dashboard-ongs">
+
+    <div class="sidebar-overlay"></div>
+
+    <!-- Menu Lateral -->
+    <aside class="sidebar">
+        <div class="sidebar-brand">
+            <h1>Adote Lar</h1>
+            <p>Portal de ONGS</p>
+        </div>
+
+        <nav class="sidebar-nav">
+            <a class="nav-link" href="./dashboard.html">
+                <i class="bi bi-speedometer2"></i>
+                <span>Dashboard</span>
+            </a>
+            <a class="nav-link active" href="./animalRegistry.html">
+                <i class="fa fa-paw"></i>
+                <span>Registro de animais</span>
+            </a>
+            <a class="nav-link" href="#">
+                <i class="bi bi-person-plus"></i>
+                <span>Solicitações de volutários</span>
+            </a>
+            <a class="nav-link" href="./settings.html">
+                <i class="bi bi-gear"></i>
+                <span>Configurações</span>
+            </a>
+        </nav>
+
+        <div class="sidebar-footer">
+            <button class="btn-new-animal" type="button">
+                <i class="bi bi-plus-lg"></i>
+                Registrar novo animal
+            </button>
+
+            <div class="sidebar-logout">
+                <a class="nav-link logout" href="#">
+                    <i class="bi bi-box-arrow-right"></i>
+                    <span>Sair</span>
+                </a>
+            </div>
+        </div>
+    </aside>
+
+    <!-- Nav -->
+    <main class="animal-registry-main">
+        <header class="topbar">
+            <button class="btn-toggle-sidebar" type="button" aria-label="Menu">
+                <i class="bi bi-list"></i>
+            </button>
+
+            <nav class="topbar-nav">
+                <a href="#" class="active">Registro de animais</a>
+                <a href="#">Relatórios</a>
+            </nav>
+
+            <div class="topbar-actions">
+
+                <div class="user-section">
+                    <button class="btn-notification" type="button" aria-label="Notificações">
+                        <i class="bi bi-bell"></i>
+                        <span class="notification-dot"></span>
+                    </button>
+
+                    <div class="user-info">
+                        <p>Ong Vida Animal</p>
+                    </div>
+
+                    <img class="user-avatar"
+                        src="https://static.vecteezy.com/system/resources/previews/008/249/343/non_2x/veterinary-logo-cat-and-dog-logo-design-pet-care-vet-clinic-logo-pet-clinic-vector.jpg"
+                        alt="Foto de perfil do voluntário" />
+                </div>
+            </div>
+        </header>
+
+        <!-- Dashboard  -->
+        <div class="animal-registry-content">
+            <section class="welcome-section">
+                <h2>Meus animais</h2>
+                <p>Cadastre, edite e gerencie todos os animais da sua organização.</p>
+            </section>
+            <section class="filter-section">
+                <div class="search-container">
+                    <i class="bi bi-search"></i>
+                    <input type="text" placeholder="Pesquisar animal" class="search-input" >
+                </div>
+                <div class="filter-buttons-container">
+                    <button class="btn-filter active" type="button">
+                       Todos
+                    </button>
+                    <button class="btn-filter" type="button">
+                        Cães
+                     </button>
+                     <button class="btn-filter" type="button">
+                       Gatos
+                    </button>
+                </div>
+                <div class="filter-status-container">
+                    <select name="status" id="status">
+                        <option value="all">Todos</option>
+                        <option value="available">Disponível</option>
+                        <option value="urgent">Em lar temporário</option>
+                        <option value="adopted">Adotado</option>
+                    </select>
+                </div>
+            </section>
+            <section class="animals-section">
+                <div class="animals-table-wrapper">
+                    <table class="animals-table">
+                        <thead>
+                            <tr>
+                                <th>Foto + Nome</th>
+                                <th>Espécie</th>
+                                <th>Idade</th>
+                                <th>Porte</th>
+                                <th>Status</th>
+                                <th>Solicitações</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td data-label="Foto + Nome">
+                                    <div class="animal-apresentation">
+                                        <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuDWpM-fQqn8WfAEB9jbzrUyyF0T4jEU0_rw33S7s28-b6c9mUK-eoYe_YaVjiyhxiwPBvKUUlBsjl1m_KYb7ivUhTg_bOM5So1Xc99bIca9ad7brtJl7C6rOuFl5iE7fx2No8riNM4dtMyF2MT9p_99bLFI6HJuHR173rwj1GhjgEParBuJf9mDTxDtW6-84C4sxlYf9wQhEeNUyXTo4jee3Qpp7MypJ3dMg0TWq_g2pvnMWs8XHvMVQW1LtFDCWBu5Bpl132-Qh2XN"
+                                            alt="imagem do animal">
+                                        <h3>Thor</h3>
+                                    </div>
+                                </td>
+                                <td data-label="Espécie">Cão</td>
+                                <td data-label="Idade">2 anos</td>
+                                <td data-label="Porte">Grande</td>
+                                <td data-label="Status">
+                                    <span class="animal-state animal-state-available">Disponível</span>
+                                </td>
+                                <td data-label="Solicitações">
+                                    <span class="solicitations solicitations-active">2</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td data-label="Foto + Nome">
+                                    <div class="animal-apresentation">
+                                        <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuDWpM-fQqn8WfAEB9jbzrUyyF0T4jEU0_rw33S7s28-b6c9mUK-eoYe_YaVjiyhxiwPBvKUUlBsjl1m_KYb7ivUhTg_bOM5So1Xc99bIca9ad7brtJl7C6rOuFl5iE7fx2No8riNM4dtMyF2MT9p_99bLFI6HJuHR173rwj1GhjgEParBuJf9mDTxDtW6-84C4sxlYf9wQhEeNUyXTo4jee3Qpp7MypJ3dMg0TWq_g2pvnMWs8XHvMVQW1LtFDCWBu5Bpl132-Qh2XN"
+                                            alt="imagem do animal">
+                                        <h3>Thor</h3>
+                                    </div>
+                                </td>
+                                <td data-label="Espécie">Cão</td>
+                                <td data-label="Idade">2 anos</td>
+                                <td data-label="Porte">Grande</td>
+                                <td data-label="Status">
+                                    <span class="animal-state animal-state-in-home">Em lar temporário</span>
+                                </td>
+                                <td data-label="Solicitações">
+                                    <span class="solicitations">0</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td data-label="Foto + Nome">
+                                    <div class="animal-apresentation">
+                                        <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuDWpM-fQqn8WfAEB9jbzrUyyF0T4jEU0_rw33S7s28-b6c9mUK-eoYe_YaVjiyhxiwPBvKUUlBsjl1m_KYb7ivUhTg_bOM5So1Xc99bIca9ad7brtJl7C6rOuFl5iE7fx2No8riNM4dtMyF2MT9p_99bLFI6HJuHR173rwj1GhjgEParBuJf9mDTxDtW6-84C4sxlYf9wQhEeNUyXTo4jee3Qpp7MypJ3dMg0TWq_g2pvnMWs8XHvMVQW1LtFDCWBu5Bpl132-Qh2XN"
+                                            alt="imagem do animal">
+                                        <h3>Thor</h3>
+                                    </div>
+                                </td>
+                                <td data-label="Espécie">Cão</td>
+                                <td data-label="Idade">2 anos</td>
+                                <td data-label="Porte">Grande</td>
+                                <td data-label="Status">
+                                    <span class="animal-state animal-state-adopted">Adotado</span>
+                                </td>
+                                <td data-label="Solicitações">
+                                    <span class="solicitations">0</span>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <script src="../dist/scripts/sideBarScript.js"></script>
+    <script src="../dist/scripts/animalRegistryScript.js"></script>
+</body>
+
+</html>
