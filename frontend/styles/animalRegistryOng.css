@@ -434,7 +434,94 @@ body {
 .filter-status-container select option:focus-visible {
     outline: none;
 }
+/* Animals table */
+.animals-section {
+    width: 100%;
+}
 
+.animals-table-wrapper {
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+.animals-table {
+    width: 100%;
+    min-width: 720px;
+    border-collapse: collapse;
+    background-color: #fff;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.animal-apresentation {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.animal-apresentation img {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    border-radius: 12px;
+    flex-shrink: 0;
+}
+
+.animal-apresentation h3 {
+    font-size: 15px;
+    font-weight: 700;
+    text-align: left;
+}
+
+.animals-table th,
+.animals-table td {
+    padding: 14px 16px;
+    border: 1px solid var(--border-color);
+    font-size: 14px;
+}
+
+.animals-table th {
+    background-color: var(--background);
+    color: var(--text-main);
+    font-weight: 700;
+    text-align: center;
+    white-space: nowrap;
+}
+
+.animals-table td {
+    text-align: center;
+    vertical-align: middle;
+}
+.animal-state {
+    padding: 8px 22px;
+    border-radius: 50px;
+    color: var(--on-secondary-container);
+}
+.animal-state-available {
+    background-color: var(--secondary-container);
+    color: var(--on-secondary-container);
+}
+.animal-state-in-home{
+    background-color: var(--primary-container);
+    color: var(--on-primary-container);
+}
+.animal-state-adopted{
+    background-color: var(--text-muted);
+    color: #fff;
+}
+.solicitations {
+    background-color: var(--border-color);
+    padding: 8px 22px;
+    border-radius: 50px;
+    color: var(--text-main);
+}
+.solicitations-active{
+    background-color: var(--primary-container);
+    padding: 8px 22px;
+    border-radius: 50px;
+    color: var(--on-primary-container);
+}
 @media (max-width: 1024px) {
     .animal-registry-content {
         padding: 32px 24px;
@@ -442,6 +529,23 @@ body {
 
     .search-input {
         max-width: none;
+    }
+
+    .animals-table th,
+    .animals-table td {
+        padding: 12px 10px;
+        font-size: 13px;
+    }
+
+    .animal-apresentation img {
+        width: 48px;
+        height: 48px;
+    }
+
+    .animal-state,
+    .solicitations {
+        padding: 6px 14px;
+        font-size: 12px;
     }
 }
 
@@ -523,6 +627,73 @@ body {
         width: 100%;
         min-width: 0;
     }
+
+    .animals-table-wrapper {
+        overflow-x: visible;
+    }
+
+    .animals-table {
+        min-width: 0;
+    }
+
+    .animals-table,
+    .animals-table thead,
+    .animals-table tbody,
+    .animals-table th,
+    .animals-table td,
+    .animals-table tr {
+        display: block;
+    }
+
+    .animals-table thead tr {
+        display: none;
+    }
+
+    .animals-table tbody tr {
+        border: 1px solid var(--border-color);
+        border-radius: 12px;
+        margin-bottom: 16px;
+        padding: 16px;
+        background-color: #fff;
+    }
+
+    .animals-table tbody tr:last-child {
+        margin-bottom: 0;
+    }
+
+    .animals-table td {
+        border: none;
+        padding: 10px 0;
+        position: relative;
+        padding-left: 50%;
+        text-align: left;
+    }
+
+    .animals-table td::before {
+        position: absolute;
+        top: 50%;
+        left: 0;
+        width: 45%;
+        transform: translateY(-50%);
+        white-space: nowrap;
+        font-weight: 700;
+        color: var(--text-muted);
+        content: attr(data-label);
+    }
+
+    .animals-table td:first-child {
+        padding: 0 0 12px;
+        margin-bottom: 4px;
+        border-bottom: 1px solid var(--border-color);
+    }
+
+    .animals-table td:first-child::before {
+        display: none;
+    }
+
+    .animal-apresentation h3 {
+        font-size: 16px;
+    }
 }
 
 @media (max-width: 540px) {
@@ -541,6 +712,32 @@ body {
         padding: 8px 12px;
         font-size: 13px;
         text-align: center;
+    }
+
+    .animals-table tbody tr {
+        padding: 14px 12px;
+    }
+
+    .animals-table td {
+        padding-left: 48%;
+        font-size: 13px;
+    }
+
+    .animals-table td::before {
+        width: 42%;
+        font-size: 12px;
+    }
+
+    .animal-apresentation img {
+        width: 52px;
+        height: 52px;
+    }
+
+    .animal-state,
+    .solicitations {
+        display: inline-block;
+        padding: 6px 12px;
+        font-size: 12px;
     }
 }
 
