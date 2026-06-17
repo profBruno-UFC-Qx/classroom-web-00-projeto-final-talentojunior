@@ -77,4 +77,56 @@ document.addEventListener("DOMContentLoaded", () => {
       card.style.transform = "translateY(0)";
     });
   });
+
+  // Modal status
+  const modal = document.getElementById("statusModal");
+  const openBtn = document.getElementById("openStatusModal");
+
+  const closeBtn = document.getElementById("closeModal");
+  const cancelBtn = document.getElementById("cancelModal");
+
+  openBtn?.addEventListener("click", () => {
+    modal?.classList.add("active");
+  });
+
+  closeBtn?.addEventListener("click", () => {
+    modal?.classList.remove("active");
+  });
+
+  cancelBtn?.addEventListener("click", () => {
+    modal?.classList.remove("active");
+  });
+
+  modal?.addEventListener("click", (e) => {
+    if (e.target === modal) {
+      modal.classList.remove("active");
+    }
+  });
+
+  const radios = document.querySelectorAll(
+    'input[name="symptoms"]'
+  );
+
+  const symptomsContainer =
+    document.getElementById(
+      "symptomsDescriptionContainer"
+    );
+
+  radios.forEach((radio) => {
+    radio.addEventListener("change", () => {
+      const selected =
+        document.querySelector(
+          'input[name="symptoms"]:checked'
+        ) as HTMLInputElement;
+
+      if (
+        selected.value === "mild" ||
+        selected.value === "severe"
+      ) {
+        symptomsContainer?.classList.remove("hidden");
+      } else {
+        symptomsContainer?.classList.add("hidden");
+      }
+    });
+  });
 });

@@ -13,7 +13,148 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css" />
 </head>
 
+
 <body class="solicitacoes-voluntario">
+
+    <!-- Modal Atualizar Status -->
+<div class="modal-overlay" id="statusModal">
+    <div class="modal-container">
+
+        <button class="modal-close" id="closeModal">
+            <i class="bi bi-x-lg"></i>
+        </button>
+
+        <div class="modal-header">
+            <img
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuDWiFVzH5vY23H0PZoiVl4JtIkT-4Jb5emVd7sQ9RM9zrHfZ_0dRhj2OWtnclTzvo1zTPVntj6jQ9mWkVDQD-B3XobQt1o01XnEfngtZY8It0aMsDc_5Z4ZPKicXm6rIalkba3MzJIw1-d6Mg5CBMPI-TFu6MGRR34d2Ui1dP2Mv4f9eTT5nwzxhtvlA_86CLvTPGxp0b0AbDparBStyyS7bJzAd6_WbCt7MEo3Ia3oFGZvqPQXFr8DZP-DRJdZ0oXGkUGdSM3Z_xXZ"
+                alt="Pipoca">
+
+            <div class="flex-1">
+                <div class="flex items-center justify-between mb-1">
+                    <h3>Pipoca</h3>
+
+                    <span class="status-badge approved">
+                        <span class="status-dot"></span>
+                        Sob Cuidado
+                    </span>
+                </div>
+
+                <div class="animal-info">
+                    <p>
+                        <i class="bi bi-heart"></i>
+                        Vira-lata
+                    </p>
+
+                    <p>
+                        <i class="bi bi-house"></i>
+                        ONG Vida Animal
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <form id="statusUpdateForm">
+
+            <div class="form-group">
+                <label for="currentStatus">Status atual</label>
+
+                <select id="currentStatus">
+                    <option selected disabled>
+                        Selecione o estado do animal
+                    </option>
+                    <option value="adaptado">
+                        Está ótimo e adaptado
+                    </option>
+                    <option value="em-adaptacao">
+                        Em fase de adaptação
+                    </option>
+                    <option value="estressado">
+                        Apresenta sinais de estresse
+                    </option>
+                    <option value="recuperacao">
+                        Em recuperação médica
+                    </option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="description">
+                    Conte como o animal está
+                </label>
+
+                <textarea
+                    id="description"
+                    rows="4"
+                    placeholder="Ex: O Pipoca está se adaptando muito bem..."
+                ></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="weight">
+                    Peso atual (kg)
+                </label>
+
+                <input
+                    type="number"
+                    step="0.1"
+                    id="weight"
+                    placeholder="0.0"
+                >
+            </div>
+
+            <div class="form-group">
+                <label>O animal apresentou algum sintoma?</label>
+
+                <div class="radio-group">
+                    <label>
+                        <input type="radio" name="symptoms" value="none">
+                        Não
+                    </label>
+
+                    <label>
+                        <input type="radio" name="symptoms" value="mild">
+                        Sintomas leves
+                    </label>
+
+                    <label>
+                        <input type="radio" name="symptoms" value="severe">
+                        Sintomas graves
+                    </label>
+                </div>
+            </div>
+
+            <div
+                class="form-group hidden"
+                id="symptomsDescriptionContainer"
+            >
+                <label for="symptomsDetail">
+                    Descreva os sintomas
+                </label>
+
+                <textarea
+                    id="symptomsDetail"
+                    rows="3"
+                ></textarea>
+            </div>
+
+            <div class="modal-actions">
+                <button class="btn-card primary" type="submit">
+                    Salvar Atualização
+                </button>
+
+                <button
+                    class="btn-card outline"
+                    type="button"
+                    id="cancelModal"
+                >
+                    Cancelar
+                </button>
+            </div>
+
+        </form>
+
+    </div>
+</div>
 
     <!-- Menu Lateral -->
     <aside class="sidebar">
@@ -134,7 +275,7 @@
                         </div>
                     </div>
 
-                    <button class="btn-card primary" type="button">Atualizar Status</button>
+                    <button class="btn-card primary" id="openStatusModal" type="button">Atualizar Status</button>
                 </article>
 
                 <article class="request-card" data-status="pendentes">
