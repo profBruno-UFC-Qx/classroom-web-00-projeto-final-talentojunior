@@ -66,6 +66,18 @@
     },
     "data_solicitacao": {
       "type": "datetime"
+    },
+    "ong": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::ong.ong",
+      "inversedBy": "animals"
+    },
+    "solicitacao": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::solicitacao.solicitacao",
+      "mappedBy": "animal"
     }
   }
 }

@@ -1,0 +1,75 @@
+{
+  "kind": "collectionType",
+  "collectionName": "ongs",
+  "info": {
+    "singularName": "ong",
+    "pluralName": "ongs",
+    "displayName": "Ong"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "nome": {
+      "type": "string"
+    },
+    "cnpj": {
+      "type": "string"
+    },
+    "nome_responsavel": {
+      "type": "string"
+    },
+    "telefone": {
+      "type": "string"
+    },
+    "endereco": {
+      "type": "text"
+    },
+    "bio": {
+      "type": "text"
+    },
+    "animais_que_trabalha": {
+      "type": "json",
+      "required": false
+    },
+    "requesitos_minimos": {
+      "type": "text"
+    },
+    "preferencias_notificacoes": {
+      "type": "json"
+    },
+    "senha": {
+      "type": "string"
+    },
+    "email": {
+      "type": "string"
+    },
+    "imagem_perfil": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "animals": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::animal.animal",
+      "mappedBy": "ong"
+    },
+    "solicitacoes": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::voluntario.voluntario",
+      "inversedBy": "solicitacoes_voluntario"
+    },
+    "id_ong": {
+      "type": "uid",
+      "targetField": "cnpj"
+    }
+  }
+}

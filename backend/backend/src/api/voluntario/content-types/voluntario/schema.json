@@ -22,6 +22,12 @@
     "cidade": {
       "type": "string",
       "required": true
+    },
+    "solicitacoes_voluntario": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::ong.ong",
+      "mappedBy": "solicitacoes"
     }
   }
 }

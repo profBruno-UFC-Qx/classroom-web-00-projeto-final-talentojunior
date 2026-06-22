@@ -505,9 +505,14 @@ export interface ApiAnimalAnimal extends Struct.CollectionTypeSchema {
       Schema.Attribute.Private;
     necessidades_especiais: Schema.Attribute.JSON;
     nome: Schema.Attribute.String;
+    ong: Schema.Attribute.Relation<'manyToOne', 'api::ong.ong'>;
     porte: Schema.Attribute.String;
     publishedAt: Schema.Attribute.DateTime;
     sobre: Schema.Attribute.Text;
+    solicitacao: Schema.Attribute.Relation<
+      'oneToOne',
+      'api::solicitacao.solicitacao'
+    >;
     status_do_animal: Schema.Attribute.String;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
@@ -651,6 +656,81 @@ export interface ApiGlobalGlobal extends Struct.SingleTypeSchema {
   };
 }
 
+export interface ApiOngOng extends Struct.CollectionTypeSchema {
+  collectionName: 'ongs';
+  info: {
+    displayName: 'Ong';
+    pluralName: 'ongs';
+    singularName: 'ong';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    animais_que_trabalha: Schema.Attribute.JSON;
+    animals: Schema.Attribute.Relation<'oneToMany', 'api::animal.animal'>;
+    bio: Schema.Attribute.Text;
+    cnpj: Schema.Attribute.String;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    email: Schema.Attribute.String;
+    endereco: Schema.Attribute.Text;
+    id_ong: Schema.Attribute.UID<'cnpj'>;
+    imagem_perfil: Schema.Attribute.Media<
+      'images' | 'files' | 'videos' | 'audios'
+    >;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<'oneToMany', 'api::ong.ong'> &
+      Schema.Attribute.Private;
+    nome: Schema.Attribute.String;
+    nome_responsavel: Schema.Attribute.String;
+    preferencias_notificacoes: Schema.Attribute.JSON;
+    publishedAt: Schema.Attribute.DateTime;
+    requesitos_minimos: Schema.Attribute.Text;
+    senha: Schema.Attribute.String;
+    solicitacoes: Schema.Attribute.Relation<
+      'manyToMany',
+      'api::voluntario.voluntario'
+    >;
+    telefone: Schema.Attribute.String;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiSolicitacaoSolicitacao extends Struct.CollectionTypeSchema {
+  collectionName: 'solicitacaos';
+  info: {
+    displayName: 'solicitacao';
+    pluralName: 'solicitacaos';
+    singularName: 'solicitacao';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    animal: Schema.Attribute.Relation<'oneToOne', 'api::animal.animal'>;
+    aprovada: Schema.Attribute.Boolean;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    finalizada: Schema.Attribute.Boolean;
+    id_solicitacao: Schema.Attribute.UID;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::solicitacao.solicitacao'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiVoluntarioVoluntario extends Struct.CollectionTypeSchema {
   collectionName: 'voluntarios';
   info: {
@@ -675,6 +755,10 @@ export interface ApiVoluntarioVoluntario extends Struct.CollectionTypeSchema {
       Schema.Attribute.Private;
     nome: Schema.Attribute.String & Schema.Attribute.Required;
     publishedAt: Schema.Attribute.DateTime;
+    solicitacoes_voluntario: Schema.Attribute.Relation<
+      'manyToMany',
+      'api::ong.ong'
+    >;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -1137,7 +1221,6 @@ export interface PluginUsersPermissionsUser
   };
   options: {
     draftAndPublish: false;
-    timestamps: true;
   };
   attributes: {
     blocked: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
@@ -1198,6 +1281,8 @@ declare module '@strapi/strapi' {
       'api::author.author': ApiAuthorAuthor;
       'api::category.category': ApiCategoryCategory;
       'api::global.global': ApiGlobalGlobal;
+      'api::ong.ong': ApiOngOng;
+      'api::solicitacao.solicitacao': ApiSolicitacaoSolicitacao;
       'api::voluntario.voluntario': ApiVoluntarioVoluntario;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;
