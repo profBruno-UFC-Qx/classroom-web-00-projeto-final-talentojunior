@@ -1,0 +1,71 @@
+{
+  "kind": "collectionType",
+  "collectionName": "animals",
+  "info": {
+    "singularName": "animal",
+    "pluralName": "animals",
+    "displayName": "Animal"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "nome": {
+      "type": "string"
+    },
+    "disponivel": {
+      "type": "boolean"
+    },
+    "sobre": {
+      "type": "text"
+    },
+    "idade": {
+      "type": "integer"
+    },
+    "porte": {
+      "type": "string"
+    },
+    "localizacao": {
+      "type": "string"
+    },
+    "especie": {
+      "type": "string"
+    },
+    "animal_id": {
+      "type": "uid",
+      "targetField": "nome"
+    },
+    "imagens": {
+      "type": "media",
+      "multiple": true,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "status_do_animal": {
+      "type": "string"
+    },
+    "caracteristicas_do_animal": {
+      "type": "json"
+    },
+    "caracteristicas_gerais": {
+      "type": "json"
+    },
+    "necessidades_especiais": {
+      "type": "json"
+    },
+    "data_de_entrada": {
+      "type": "date"
+    },
+    "data_de_acolhimento": {
+      "type": "date"
+    },
+    "data_solicitacao": {
+      "type": "datetime"
+    }
+  }
+}
