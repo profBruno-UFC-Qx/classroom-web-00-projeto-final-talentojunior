@@ -65,7 +65,7 @@
       "type": "uid",
       "targetField": "cnpj"
     },
-    "users_permissions_user": {
+    "user": {
       "type": "relation",
       "relation": "oneToOne",
       "target": "plugin::users-permissions.user"
