@@ -674,7 +674,6 @@ export interface ApiOngOng extends Struct.CollectionTypeSchema {
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
-    email: Schema.Attribute.String;
     endereco: Schema.Attribute.Text;
     id_ong: Schema.Attribute.UID<'cnpj'>;
     imagem_perfil: Schema.Attribute.Media<
@@ -688,7 +687,6 @@ export interface ApiOngOng extends Struct.CollectionTypeSchema {
     preferencias_notificacoes: Schema.Attribute.JSON;
     publishedAt: Schema.Attribute.DateTime;
     requesitos_minimos: Schema.Attribute.Text;
-    senha: Schema.Attribute.String;
     solicitacoes: Schema.Attribute.Relation<
       'manyToMany',
       'api::voluntario.voluntario'
@@ -697,6 +695,10 @@ export interface ApiOngOng extends Struct.CollectionTypeSchema {
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
+    users_permissions_user: Schema.Attribute.Relation<
+      'oneToOne',
+      'plugin::users-permissions.user'
+    >;
   };
 }
 

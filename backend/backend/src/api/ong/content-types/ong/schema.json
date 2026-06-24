@@ -39,12 +39,6 @@
     "preferencias_notificacoes": {
       "type": "json"
     },
-    "senha": {
-      "type": "string"
-    },
-    "email": {
-      "type": "string"
-    },
     "imagem_perfil": {
       "type": "media",
       "multiple": false,
@@ -70,6 +64,11 @@
     "id_ong": {
       "type": "uid",
       "targetField": "cnpj"
+    },
+    "users_permissions_user": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "plugin::users-permissions.user"
     }
   }
 }
