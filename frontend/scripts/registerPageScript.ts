@@ -13,8 +13,20 @@ const senhaInput = document.getElementById("senha") as HTMLInputElement;
 const confirmacaoSenhaInput = document.getElementById("confirmacaoSenha") as HTMLInputElement;
 const termosInput = document.getElementById("termos") as HTMLInputElement;
 const registerMessage = document.getElementById("register-message") as HTMLParagraphElement;
+const cidadeInput = document.getElementById("cidade") as HTMLInputElement;
+const cidadeField = document.getElementById("cidade-field") as HTMLDivElement;
+
+
 
 let currentRole: "protetor" | "ong" = "protetor";
+
+if (currentRole === "protetor") {
+  cidadeField.style.display = "block";
+  cidadeInput.required = true;
+} else {
+  cidadeField.style.display = "none";
+  cidadeInput.required = false;
+}
 
 // URL base da API do Strapi
 const API_URL = "http://localhost:1337/api";
@@ -69,6 +81,8 @@ function animateForm(direction: "left" | "right") {
 
       submitButton.classList.remove("ong-btn");
       nomeInput.placeholder = "Como devemos te chamar?";
+      cidadeField.style.display = "block";
+      cidadeInput.required = true;
     } else {
       instructionText.textContent =
         "Cadastre sua ONG ou abrigo para encontrar voluntários e ampliar o impacto da sua causa.";
@@ -82,6 +96,9 @@ function animateForm(direction: "left" | "right") {
 
       submitButton.classList.add("ong-btn");
       nomeInput.placeholder = "Nome da sua ONG ou abrigo";
+      cidadeField.style.display = "none";
+      cidadeInput.required = false;
+      cidadeInput.value = "";
     }
 
     formContent.classList.remove("slide-out-left", "slide-out-right");
@@ -150,16 +167,16 @@ async function registerOng() {
   return data;
 }
 
-// Deixa preparado para quando você criar o endpoint do protetor
 async function registerProtetor() {
   const payload = {
     nome: nomeInput.value.trim(),
     email: emailInput.value.trim(),
     senha: senhaInput.value,
     confirmacaoSenha: confirmacaoSenhaInput.value,
+    cidade: cidadeInput.value.trim(),
   };
 
-  const response = await fetch(`${API_URL}/protetor/register`, {
+  const response = await fetch(`${API_URL}/voluntarios/register`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -170,7 +187,7 @@ async function registerProtetor() {
   const data = await response.json();
 
   if (!response.ok) {
-    throw new Error(data?.error?.message || "Erro ao cadastrar protetor.");
+    throw new Error(data?.error?.message || "Erro ao cadastrar voluntário.");
   }
 
   return data;
@@ -184,6 +201,7 @@ registerForm.addEventListener("submit", async (event) => {
   const email = emailInput.value.trim();
   const senha = senhaInput.value;
   const confirmacaoSenha = confirmacaoSenhaInput.value;
+  const cidade = cidadeInput.value.trim();
 
   if (!nome || !email || !senha || !confirmacaoSenha) {
     showMessage("Preencha todos os campos.");
@@ -197,6 +215,11 @@ registerForm.addEventListener("submit", async (event) => {
 
   if (senha !== confirmacaoSenha) {
     showMessage("A senha e a confirmação de senha não coincidem.");
+    return;
+  }
+
+  if (currentRole === "protetor" && !cidade) {
+    showMessage("Informe sua cidade.");
     return;
   }
 
@@ -224,8 +247,8 @@ registerForm.addEventListener("submit", async (event) => {
       localStorage.setItem("ong", JSON.stringify(result.ong));
     }
 
-    if (result.protetor) {
-      localStorage.setItem("protetor", JSON.stringify(result.protetor));
+    if (result.voluntario) {
+      localStorage.setItem("voluntario", JSON.stringify(result.voluntario));
     }
 
     showMessage("Cadastro realizado com sucesso!", "success");

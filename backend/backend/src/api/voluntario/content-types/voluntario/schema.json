@@ -28,6 +28,11 @@
       "relation": "manyToMany",
       "target": "api::ong.ong",
       "mappedBy": "solicitacoes"
+    },
+    "users_permissions_user": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "plugin::users-permissions.user"
     }
   }
 }
