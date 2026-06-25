@@ -98,6 +98,7 @@ module.exports = createCoreController("api::ong.ong", ({ strapi }) => ({
         },
         populate: {
           user: true,
+          imagem_perfil: true,
         },
       });
 
@@ -129,6 +130,13 @@ module.exports = createCoreController("api::ong.ong", ({ strapi }) => ({
             mensagemPush: false,
             mensagemWhatsapp: false,
           },
+          imagem_perfil: ong.imagem_perfil
+            ? {
+                id: ong.imagem_perfil.id,
+                url: ong.imagem_perfil.url,
+                name: ong.imagem_perfil.name,
+              }
+            : null,
         },
       };
     } catch (err) {
@@ -220,6 +228,76 @@ module.exports = createCoreController("api::ong.ong", ({ strapi }) => ({
       console.error("Erro ao atualizar ONG:", err);
       return ctx.internalServerError(
         err.message || "Erro ao atualizar dados da ONG.",
+      );
+    }
+  },
+  async uploadProfileImage(ctx) {
+    try {
+      const loggedUser = ctx.state.user;
+
+      if (!loggedUser) {
+        return ctx.unauthorized("Usuário não autenticado.");
+      }
+
+      const ongs = await strapi.entityService.findMany("api::ong.ong", {
+        filters: {
+          user: {
+            id: loggedUser.id,
+          },
+        },
+        populate: {
+          user: true,
+          imagem_perfil: true,
+        },
+      });
+
+      const ong = Array.isArray(ongs) ? ongs[0] : ongs;
+
+      if (!ong) {
+        return ctx.notFound("ONG não encontrada para este usuário.");
+      }
+
+      const { files } = ctx.request;
+
+      if (!files || !files.imagem) {
+        return ctx.badRequest("Nenhuma imagem foi enviada.");
+      }
+
+      const uploadedFiles = await strapi
+        .plugin("upload")
+        .service("upload")
+        .upload({
+          data: {},
+          files: files.imagem,
+        });
+
+      const uploadedFile = uploadedFiles?.[0];
+
+      if (!uploadedFile) {
+        return ctx.internalServerError("Falha ao fazer upload da imagem.");
+      }
+
+      const updatedOng = await strapi.entityService.update(
+        "api::ong.ong",
+        ong.id,
+        {
+          data: {
+            imagem_perfil: uploadedFile.id,
+          },
+          populate: {
+            imagem_perfil: true,
+          },
+        },
+      );
+
+      return {
+        message: "Imagem de perfil atualizada com sucesso.",
+        imagem_perfil: updatedOng.imagem_perfil,
+      };
+    } catch (err) {
+      console.error("Erro ao fazer upload da imagem de perfil:", err);
+      return ctx.internalServerError(
+        err.message || "Erro ao atualizar imagem de perfil.",
       );
     }
   },

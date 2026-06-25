@@ -83,9 +83,9 @@
                         <p>Ong Vida Animal</p>
                     </div>
 
-                    <img class="user-avatar"
+                    <img id="topbar-ong-avatar" class="user-avatar"
                         src="https://static.vecteezy.com/system/resources/previews/008/249/343/non_2x/veterinary-logo-cat-and-dog-logo-design-pet-care-vet-clinic-logo-pet-clinic-vector.jpg"
-                        alt="Foto de perfil do voluntário" />
+                        alt="Foto de perfil da ONG" />
                 </div>
             </div>
         </header>
@@ -101,9 +101,11 @@
                 </div>
                 <div class="ong-info">
                     <div class="org-image-container">
-                        <img src="https://static.vecteezy.com/system/resources/previews/008/249/343/non_2x/veterinary-logo-cat-and-dog-logo-design-pet-care-vet-clinic-logo-pet-clinic-vector.jpg"
-                            alt="Logo da ONG" class="ong-logo">
-                        <button class="btn-change-image" type="button">
+                        <img id="ong-logo-preview"
+                            src="https://static.vecteezy.com/system/resources/previews/008/249/343/non_2x/veterinary-logo-cat-and-dog-logo-design-pet-care-vet-clinic-logo-pet-clinic-vector.jpg"
+                            alt="Logo da ONG" class="ong-logo" />
+                        
+                        <button id="btn-change-image" class="btn-change-image" type="button">
                             <i class="bi bi-pencil"></i>
                         </button>
                     </div>
@@ -273,6 +275,53 @@
         </div>
     </main>
 
+    <!-- Modal de imagem da ONG -->
+    <div id="ong-image-modal" class="image-modal hidden">
+        <div class="image-modal-backdrop"></div>
+    
+        <div class="image-modal-content" role="dialog" aria-modal="true" aria-labelledby="image-modal-title">
+            <div class="image-modal-header">
+                <h3 id="image-modal-title">Alterar logo da ONG</h3>
+                <button type="button" id="btn-close-image-modal" class="btn-close-image-modal" aria-label="Fechar modal">
+                    <i class="bi bi-x-lg"></i>
+                </button>
+            </div>
+    
+            <div class="image-modal-body">
+                <div class="image-preview-wrapper">
+                    <img id="modal-image-preview"
+                        src="https://static.vecteezy.com/system/resources/previews/008/249/343/non_2x/veterinary-logo-cat-and-dog-logo-design-pet-care-vet-clinic-logo-pet-clinic-vector.jpg"
+                        alt="Preview da imagem da ONG" />
+                </div>
+    
+                <p class="image-modal-help">
+                    Selecione uma imagem PNG ou JPG com até 5MB.
+                </p>
+    
+                <input type="file" id="ong-image-input" accept="image/png, image/jpeg, image/jpg" hidden />
+    
+                <button type="button" id="btn-select-image" class="btn-select-image">
+                    <i class="bi bi-image"></i>
+                    Escolher imagem
+                </button>
+    
+                <p id="selected-image-name" class="selected-image-name">
+                    Nenhuma imagem selecionada
+                </p>
+            </div>
+    
+            <div class="image-modal-footer">
+                <button type="button" id="btn-cancel-image-modal" class="btn-cancel-image-modal">
+                    Cancelar
+                </button>
+    
+                <button type="button" id="btn-save-image-modal" class="btn-save-image-modal">
+                    <i class="bi bi-cloud-upload"></i>
+                    Salvar imagem
+                </button>
+            </div>
+        </div>
+    </div>
     <script src="../dist/scripts/sideBarScript.js"></script>
     <script src="../dist/scripts/settingsOngScript.js"></script>
 </body>

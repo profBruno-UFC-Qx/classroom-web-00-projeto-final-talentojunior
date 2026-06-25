@@ -26,5 +26,13 @@ module.exports = {
         auth: {},
       },
     },
+    {
+      method: "POST",
+      path: "/ong/me/upload-profile-image",
+      handler: "ong.uploadProfileImage",
+      config: {
+        auth: {},
+      },
+    }
   ],
 };

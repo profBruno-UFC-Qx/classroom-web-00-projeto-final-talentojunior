@@ -14,6 +14,11 @@ type Notificacoes = {
   mensagemWhatsapp: boolean;
 };
 
+type ImagemPerfil = {
+  id: number;
+  url: string;
+  name?: string;
+};
 type OngData = {
   id?: number;
   nome: string;
@@ -25,42 +30,147 @@ type OngData = {
   animais_que_trabalha: string[];
   requesitos_minimos: string;
   preferencias_notificacoes: Notificacoes;
+  imagem_perfil?: ImagemPerfil;
 };
 
 const ongNameInput = document.getElementById("ong-name") as HTMLInputElement;
 const ongCnpjInput = document.getElementById("ong-cnpj") as HTMLInputElement;
-const ongResponseNameInput = document.getElementById("ong-response-name") as HTMLInputElement;
+const ongResponseNameInput = document.getElementById(
+  "ong-response-name",
+) as HTMLInputElement;
 const ongTellInput = document.getElementById("ong-tell") as HTMLInputElement;
-const ongAddressInput = document.getElementById("ong-address") as HTMLInputElement;
+const ongAddressInput = document.getElementById(
+  "ong-address",
+) as HTMLInputElement;
 const ongBioInput = document.getElementById("ong-bio") as HTMLTextAreaElement;
 
 const dogCheckbox = document.getElementById("dog") as HTMLInputElement;
 const catCheckbox = document.getElementById("cat") as HTMLInputElement;
 const otherCheckbox = document.getElementById("other") as HTMLInputElement;
 
-const minimalRequestInput = document.getElementById("minimal-request-voluntar") as HTMLInputElement;
+const minimalRequestInput = document.getElementById(
+  "minimal-request-voluntar",
+) as HTMLInputElement;
 
-const notifyRequestEmail = document.getElementById("notify-request-email") as HTMLInputElement;
-const notifyRequestPush = document.getElementById("notify-request-push") as HTMLInputElement;
-const notifyRequestWhatsapp = document.getElementById("notify-request-whatsapp") as HTMLInputElement;
+const notifyRequestEmail = document.getElementById(
+  "notify-request-email",
+) as HTMLInputElement;
+const notifyRequestPush = document.getElementById(
+  "notify-request-push",
+) as HTMLInputElement;
+const notifyRequestWhatsapp = document.getElementById(
+  "notify-request-whatsapp",
+) as HTMLInputElement;
 
-const notifyStatusEmail = document.getElementById("notify-status-email") as HTMLInputElement;
-const notifyStatusPush = document.getElementById("notify-status-push") as HTMLInputElement;
-const notifyStatusWhatsapp = document.getElementById("notify-status-whatsapp") as HTMLInputElement;
+const notifyStatusEmail = document.getElementById(
+  "notify-status-email",
+) as HTMLInputElement;
+const notifyStatusPush = document.getElementById(
+  "notify-status-push",
+) as HTMLInputElement;
+const notifyStatusWhatsapp = document.getElementById(
+  "notify-status-whatsapp",
+) as HTMLInputElement;
 
-const notifyMessageEmail = document.getElementById("notify-message-email") as HTMLInputElement;
-const notifyMessagePush = document.getElementById("notify-message-push") as HTMLInputElement;
-const notifyMessageWhatsapp = document.getElementById("notify-message-whatsapp") as HTMLInputElement;
+const notifyMessageEmail = document.getElementById(
+  "notify-message-email",
+) as HTMLInputElement;
+const notifyMessagePush = document.getElementById(
+  "notify-message-push",
+) as HTMLInputElement;
+const notifyMessageWhatsapp = document.getElementById(
+  "notify-message-whatsapp",
+) as HTMLInputElement;
 
-const saveButton = document.getElementById("btn-save-changes") as HTMLButtonElement;
-const discardButton = document.getElementById("btn-discard-changes") as HTMLButtonElement;
+const saveButton = document.getElementById(
+  "btn-save-changes",
+) as HTMLButtonElement;
+const discardButton = document.getElementById(
+  "btn-discard-changes",
+) as HTMLButtonElement;
 
-const userInfoName = document.querySelector(".user-info p") as HTMLParagraphElement;
+const userInfoName = document.querySelector(
+  ".user-info p",
+) as HTMLParagraphElement;
+
+//  Modal elements
+const btnChangeImage = document.getElementById(
+  "btn-change-image",
+) as HTMLButtonElement;
+const ongImageModal = document.getElementById(
+  "ong-image-modal",
+) as HTMLDivElement;
+const btnCloseImageModal = document.getElementById(
+  "btn-close-image-modal",
+) as HTMLButtonElement;
+const btnCancelImageModal = document.getElementById(
+  "btn-cancel-image-modal",
+) as HTMLButtonElement;
+const btnSaveImageModal = document.getElementById(
+  "btn-save-image-modal",
+) as HTMLButtonElement;
+const btnSelectImage = document.getElementById(
+  "btn-select-image",
+) as HTMLButtonElement;
+const ongImageInput = document.getElementById(
+  "ong-image-input",
+) as HTMLInputElement;
+const modalImagePreview = document.getElementById(
+  "modal-image-preview",
+) as HTMLImageElement;
+const selectedImageName = document.getElementById(
+  "selected-image-name",
+) as HTMLParagraphElement;
+
+const ongLogoPreview = document.getElementById(
+  "ong-logo-preview",
+) as HTMLImageElement;
+const topbarOngAvatar = document.getElementById(
+  "topbar-ong-avatar",
+) as HTMLImageElement;
+let selectedProfileImageFile: File | null = null;
 
 let originalOngData: OngData | null = null;
 
 function getToken(): string | null {
   return localStorage.getItem("token");
+}
+
+function getImageUrl(url?: string | null): string {
+  if (!url) {
+    return "https://static.vecteezy.com/system/resources/previews/008/249/343/non_2x/veterinary-logo-cat-and-dog-logo-design-pet-care-vet-clinic-logo-pet-clinic-vector.jpg";
+  }
+
+  if (url.startsWith("http")) return url;
+
+  return `http://localhost:1337${url}`;
+}
+
+function openImageModal() {
+  if (!ongImageModal) return;
+
+  selectedProfileImageFile = null;
+  selectedImageName.textContent = "Nenhuma imagem selecionada";
+
+  const currentImage =
+    ongLogoPreview?.getAttribute("src") ||
+    topbarOngAvatar?.getAttribute("src") ||
+    getImageUrl(originalOngData?.imagem_perfil?.url);
+
+  if (modalImagePreview && currentImage) {
+    modalImagePreview.src = currentImage;
+  }
+
+  ongImageModal.classList.remove("hidden");
+  document.body.style.overflow = "hidden";
+}
+
+function closeImageModal() {
+  if (!ongImageModal) return;
+
+  ongImageModal.classList.add("hidden");
+  document.body.style.overflow = "";
+  selectedProfileImageFile = null;
 }
 
 function showFeedback(message: string, type: "success" | "error" = "success") {
@@ -151,20 +261,39 @@ function fillForm(data: OngData) {
 
   fillEspecies(data.animais_que_trabalha || []);
 
-  notifyRequestEmail.checked = data.preferencias_notificacoes?.solicitacaoEmail ?? false;
-  notifyRequestPush.checked = data.preferencias_notificacoes?.solicitacaoPush ?? false;
-  notifyRequestWhatsapp.checked = data.preferencias_notificacoes?.solicitacaoWhatsapp ?? false;
+  notifyRequestEmail.checked =
+    data.preferencias_notificacoes?.solicitacaoEmail ?? false;
+  notifyRequestPush.checked =
+    data.preferencias_notificacoes?.solicitacaoPush ?? false;
+  notifyRequestWhatsapp.checked =
+    data.preferencias_notificacoes?.solicitacaoWhatsapp ?? false;
 
-  notifyStatusEmail.checked = data.preferencias_notificacoes?.statusEmail ?? false;
-  notifyStatusPush.checked = data.preferencias_notificacoes?.statusPush ?? false;
-  notifyStatusWhatsapp.checked = data.preferencias_notificacoes?.statusWhatsapp ?? false;
+  notifyStatusEmail.checked =
+    data.preferencias_notificacoes?.statusEmail ?? false;
+  notifyStatusPush.checked =
+    data.preferencias_notificacoes?.statusPush ?? false;
+  notifyStatusWhatsapp.checked =
+    data.preferencias_notificacoes?.statusWhatsapp ?? false;
 
-  notifyMessageEmail.checked = data.preferencias_notificacoes.mensagemEmail ?? false;
-  notifyMessagePush.checked = data.preferencias_notificacoes.mensagemPush ?? false;
-  notifyMessageWhatsapp.checked = data.preferencias_notificacoes.mensagemWhatsapp ?? false;
+  notifyMessageEmail.checked =
+    data.preferencias_notificacoes.mensagemEmail ?? false;
+  notifyMessagePush.checked =
+    data.preferencias_notificacoes.mensagemPush ?? false;
+  notifyMessageWhatsapp.checked =
+    data.preferencias_notificacoes.mensagemWhatsapp ?? false;
 
   if (userInfoName) {
     userInfoName.textContent = data.nome || "ONG";
+  }
+
+  const imageUrl = getImageUrl(data.imagem_perfil?.url);
+
+  if (ongLogoPreview) {
+    ongLogoPreview.src = imageUrl;
+  }
+
+  if (topbarOngAvatar) {
+    topbarOngAvatar.src = imageUrl;
   }
 }
 
@@ -279,9 +408,118 @@ function handleDiscardChanges() {
   showFeedback("Alterações descartadas.", "success");
 }
 
+async function uploadProfileImage(file: File) {
+  const token = getToken();
+
+  if (!token) {
+    throw new Error("Usuário não autenticado.");
+  }
+
+  const formData = new FormData();
+  formData.append("imagem", file);
+
+  const response = await fetch(`${API_URL_ONG}/ong/me/upload-profile-image`, {
+    method: "POST",
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+    body: formData,
+  });
+
+  const data = await response.json();
+
+  if (!response.ok) {
+    throw new Error(data?.error?.message || "Erro ao enviar imagem.");
+  }
+
+  return data;
+}
+
 saveButton?.addEventListener("click", handleSaveChanges);
 discardButton?.addEventListener("click", handleDiscardChanges);
 
 document.addEventListener("DOMContentLoaded", () => {
   loadOngData();
+});
+
+// Change image events
+
+btnChangeImage?.addEventListener("click", openImageModal);
+btnCloseImageModal?.addEventListener("click", closeImageModal);
+btnCancelImageModal?.addEventListener("click", closeImageModal);
+
+btnSelectImage?.addEventListener("click", () => {
+  ongImageInput?.click();
+});
+
+ongImageInput?.addEventListener("change", (event) => {
+  const target = event.target as HTMLInputElement;
+  const file = target.files?.[0];
+
+  if (!file) return;
+
+  const allowedTypes = ["image/png", "image/jpeg", "image/jpg"];
+  if (!allowedTypes.includes(file.type)) {
+    showFeedback("Selecione uma imagem PNG ou JPG.", "error");
+    target.value = "";
+    return;
+  }
+
+  const maxSize = 5 * 1024 * 1024;
+  if (file.size > maxSize) {
+    showFeedback("A imagem deve ter no máximo 5MB.", "error");
+    target.value = "";
+    return;
+  }
+
+  selectedProfileImageFile = file;
+  selectedImageName.textContent = file.name;
+
+  const previewUrl = URL.createObjectURL(file);
+  modalImagePreview.src = previewUrl;
+});
+
+btnSaveImageModal?.addEventListener("click", async () => {
+  try {
+    if (!selectedProfileImageFile) {
+      showFeedback("Selecione uma imagem antes de salvar.", "error");
+      return;
+    }
+
+    btnSaveImageModal.disabled = true;
+    btnSaveImageModal.innerHTML = `
+      <i class="bi bi-arrow-repeat"></i>
+      Enviando...
+    `;
+
+    const result = await uploadProfileImage(selectedProfileImageFile);
+
+    const imageUrl = getImageUrl(result?.imagem_perfil?.url);
+
+    if (ongLogoPreview) {
+      ongLogoPreview.src = imageUrl;
+    }
+
+    if (topbarOngAvatar) {
+      topbarOngAvatar.src = imageUrl;
+    }
+
+    await loadOngData();
+
+    showFeedback("Imagem da ONG atualizada com sucesso!", "success");
+    closeImageModal();
+  } catch (error) {
+    const message =
+      error instanceof Error
+        ? error.message
+        : "Erro ao atualizar imagem da ONG.";
+
+    showFeedback(message, "error");
+  } finally {
+    btnSaveImageModal.disabled = false;
+    btnSaveImageModal.innerHTML = `
+      <i class="bi bi-cloud-upload"></i>
+      Salvar imagem
+    `;
+  }
 });
