@@ -33,6 +33,30 @@
       "type": "relation",
       "relation": "oneToOne",
       "target": "plugin::users-permissions.user"
+    },
+    "descricao": {
+      "type": "string",
+      "required": true
+    },
+    "aceita_gato": {
+      "type": "boolean",
+      "required": true,
+      "default": false
+    },
+    "aceita_cachorro": {
+      "type": "boolean",
+      "required": true,
+      "default": false
+    },
+    "porte_maximo": {
+      "type": "enumeration",
+      "required": true,
+      "enum": [
+        "pequeno",
+        "medio",
+        "grande",
+        "gigante"
+      ]
     }
   }
 }

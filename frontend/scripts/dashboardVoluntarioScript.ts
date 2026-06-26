@@ -1,4 +1,47 @@
 document.addEventListener("DOMContentLoaded", () => {
+
+    // --- proteção de rota + dados do usuário ---
+
+    const token = localStorage.getItem("token");
+    const voluntarioRaw = localStorage.getItem("voluntario");
+  
+    if (!token || !voluntarioRaw) {
+      window.location.href = "LoginPage.html"; // ajuste o caminho se necessário
+      return;
+    }
+  
+    const voluntario = JSON.parse(voluntarioRaw) as {
+      id: number;
+      nome: string;
+      email: string;
+      cidade: string;
+    };
+  
+    // saudação no topo do dashboard
+    const welcomeTitle = document.querySelector(".welcome-section h2");
+    if (welcomeTitle) {
+      welcomeTitle.textContent = `Olá, ${voluntario.nome} 👋`;
+    }
+  
+    // nome/cidade no topbar
+    const userInfoParagraphs = document.querySelectorAll(".user-info p");
+    if (userInfoParagraphs[0]) {
+      userInfoParagraphs[0].textContent = voluntario.nome;
+    }
+    if (userInfoParagraphs[1]) {
+      userInfoParagraphs[1].textContent = voluntario.cidade;
+    }
+  
+    // logout
+    const logoutLink = document.querySelector(".sidebar-logout .logout");
+    logoutLink?.addEventListener("click", (event) => {
+      event.preventDefault();
+      localStorage.removeItem("token");
+      localStorage.removeItem("user");
+      localStorage.removeItem("voluntario");
+      window.location.href = "LoginPage.html"; // ajuste o caminho se necessário
+    });
+
   const metricCards = document.querySelectorAll<HTMLElement>(".metric-card");
   const menuButton = document.querySelector<HTMLButtonElement>(".btn-menu");
   const sidebarOverlay = document.getElementById("sidebar-overlay");

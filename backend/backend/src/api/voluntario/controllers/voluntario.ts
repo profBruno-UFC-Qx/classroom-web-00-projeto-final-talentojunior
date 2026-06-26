@@ -63,6 +63,10 @@ module.exports = createCoreController("api::voluntario.voluntario", ({ strapi })
             nome,
             email: emailLower,
             cidade,
+            descricao: "",
+            aceita_cachorro: false,
+            aceita_gato: false,
+            porte_maximo: "medio",
             users_permissions_user: newUser.id,
             publishedAt: new Date(),
           },
@@ -122,6 +126,10 @@ module.exports = createCoreController("api::voluntario.voluntario", ({ strapi })
           nome: voluntario.nome || "",
           email: voluntario.email || "",
           cidade: voluntario.cidade || "",
+          descricao: voluntario.descricao || "",
+          aceita_cachorro: voluntario.aceita_cachorro ?? false,
+          aceita_gato: voluntario.aceita_gato ?? false,
+          porte_maximo: voluntario.porte_maximo || "medio",
         },
       };
     } catch (err) {
@@ -155,13 +163,13 @@ module.exports = createCoreController("api::voluntario.voluntario", ({ strapi })
         return ctx.notFound("Voluntário não encontrado para este usuário.");
       }
 
-      const { nome, cidade } = ctx.request.body;
+      const { nome, cidade, descricao, aceita_cachorro, aceita_gato, porte_maximo } = ctx.request.body;
 
       const updatedVoluntario = await strapi.entityService.update(
         "api::voluntario.voluntario",
         voluntario.id,
         {
-          data: { nome, cidade },
+          data: { nome, cidade, descricao, aceita_cachorro, aceita_gato, porte_maximo },
         }
       );
 
@@ -171,6 +179,10 @@ module.exports = createCoreController("api::voluntario.voluntario", ({ strapi })
           nome: updatedVoluntario.nome || "",
           email: updatedVoluntario.email || "",
           cidade: updatedVoluntario.cidade || "",
+          descricao: updatedVoluntario.descricao || "",
+          aceita_cachorro: updatedVoluntario.aceita_cachorro ?? false,
+          aceita_gato: updatedVoluntario.aceita_gato ?? false,
+          porte_maximo: updatedVoluntario.porte_maximo || "medio",
         },
       };
     } catch (err) {
