@@ -78,6 +78,16 @@
       "relation": "oneToOne",
       "target": "api::solicitacao.solicitacao",
       "mappedBy": "animal"
+    },
+    "imagem_capa": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
     }
   }
 }

@@ -492,6 +492,9 @@ export interface ApiAnimalAnimal extends Struct.CollectionTypeSchema {
     disponivel: Schema.Attribute.Boolean;
     especie: Schema.Attribute.String;
     idade: Schema.Attribute.Integer;
+    imagem_capa: Schema.Attribute.Media<
+      'images' | 'files' | 'videos' | 'audios'
+    >;
     imagens: Schema.Attribute.Media<
       'images' | 'files' | 'videos' | 'audios',
       true
