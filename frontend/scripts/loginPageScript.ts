@@ -108,7 +108,7 @@ loginForm.addEventListener("submit", async (event) => {
     localStorage.setItem(perfil.tipo, JSON.stringify(perfil.dados));
 
     window.location.href =
-      perfil.tipo === "voluntario" ? "DashboardVoluntario.html" : "";
+      perfil.tipo === "voluntario" ? "DashboardVoluntario.html" : "../ongs/dashboard.html";
   } catch (error) {
     const message =
       error instanceof Error ? error.message : "Não foi possível fazer login.";
