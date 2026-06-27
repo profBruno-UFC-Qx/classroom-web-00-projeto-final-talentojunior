@@ -7,6 +7,18 @@ document.addEventListener("DOMContentLoaded", () => {
   const sidebarOverlay = document.getElementById("sidebar-overlay");
   const sidebarLinks = document.querySelectorAll<HTMLAnchorElement>(".sidebar .nav-link");
 
+
+    // --- logout ---
+    const logoutLink = document.querySelector(".sidebar-logout .logout, .nav-link.logout");
+    logoutLink?.addEventListener("click", (event) => {
+      event.preventDefault();
+      localStorage.removeItem("token");
+      localStorage.removeItem("user");
+      localStorage.removeItem("voluntario");
+      localStorage.removeItem("ong");
+      window.location.href = "../html/LoginPage.html"; // ajuste o caminho relativo se necessário
+    });
+
   // Menu hamburguer
   function openSidebar() {
     document.body.classList.add("sidebar-open");

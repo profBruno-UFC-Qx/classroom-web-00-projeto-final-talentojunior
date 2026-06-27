@@ -15,6 +15,8 @@ const termosInput = document.getElementById("termos") as HTMLInputElement;
 const registerMessage = document.getElementById("register-message") as HTMLParagraphElement;
 const cidadeInput = document.getElementById("cidade") as HTMLInputElement;
 const cidadeField = document.getElementById("cidade-field") as HTMLDivElement;
+const cnpjInput = document.getElementById("cnpj") as HTMLInputElement;
+const cnpjField = document.getElementById("cnpj-field") as HTMLDivElement;
 
 
 
@@ -23,9 +25,14 @@ let currentRole: "protetor" | "ong" = "protetor";
 if (currentRole === "protetor") {
   cidadeField.style.display = "block";
   cidadeInput.required = true;
+  cnpjField.style.display = "none";
+  cnpjInput.required = false;
+  cnpjInput.value = "";
 } else {
   cidadeField.style.display = "none";
   cidadeInput.required = false;
+  cnpjField.style.display = "block";
+  cnpjInput.required = true;
 }
 
 // URL base da API do Strapi
@@ -71,34 +78,27 @@ function animateForm(direction: "left" | "right") {
     if (currentRole === "protetor") {
       instructionText.textContent =
         "Cadastre-se para acolher animais temporariamente e ajudar a desafogar os abrigos.";
-
       labelName.textContent = "Nome Completo";
-
-      submitButton.innerHTML = `
-        Criar Conta
-        <span class="bi bi-arrow-right"></span>
-      `;
-
+      submitButton.innerHTML = `Criar Conta <span class="bi bi-arrow-right"></span>`;
       submitButton.classList.remove("ong-btn");
       nomeInput.placeholder = "Como devemos te chamar?";
       cidadeField.style.display = "block";
       cidadeInput.required = true;
+      cnpjField.style.display = "none";
+      cnpjInput.required = false;
+      cnpjInput.value = "";
     } else {
       instructionText.textContent =
         "Cadastre sua ONG ou abrigo para encontrar voluntários e ampliar o impacto da sua causa.";
-
       labelName.textContent = "Nome da ONG / Abrigo";
-
-      submitButton.innerHTML = `
-        Cadastrar ONG
-        <span class="bi bi-arrow-right"></span>
-      `;
-
+      submitButton.innerHTML = `Cadastrar ONG <span class="bi bi-arrow-right"></span>`;
       submitButton.classList.add("ong-btn");
       nomeInput.placeholder = "Nome da sua ONG ou abrigo";
       cidadeField.style.display = "none";
       cidadeInput.required = false;
       cidadeInput.value = "";
+      cnpjField.style.display = "block";
+      cnpjInput.required = true;
     }
 
     formContent.classList.remove("slide-out-left", "slide-out-right");
@@ -148,6 +148,7 @@ async function registerOng() {
     email: emailInput.value.trim(),
     senha: senhaInput.value,
     confirmacaoSenha: confirmacaoSenhaInput.value,
+    cnpj: cnpjInput.value.trim(),
   };
 
   const response = await fetch(`${API_URL}/ong/register`, {
@@ -164,6 +165,7 @@ async function registerOng() {
     throw new Error(data?.error?.message || "Erro ao cadastrar ONG.");
   }
 
+  
   return data;
 }
 
@@ -235,6 +237,10 @@ registerForm.addEventListener("submit", async (event) => {
     }
 
     // salva autenticação no navegador
+
+    localStorage.removeItem("voluntario");
+    localStorage.removeItem("ong");
+
     if (result.jwt) {
       localStorage.setItem("token", result.jwt);
     }
@@ -255,7 +261,11 @@ registerForm.addEventListener("submit", async (event) => {
 
     // redireciona depois de um pequeno delay
     setTimeout(() => {
-      window.location.href = "../index.html";
+      if (currentRole === "ong") {
+        window.location.href = "DashboardOng.html"; // ajuste se o nome do arquivo for diferente
+      } else {
+        window.location.href = "DashboardVoluntario.html"; // ajuste se o nome do arquivo for diferente
+      }
     }, 1200);
   } catch (error) {
     const message =

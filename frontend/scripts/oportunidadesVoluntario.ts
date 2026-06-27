@@ -31,6 +31,17 @@ document.addEventListener("DOMContentLoaded", () => {
     menuButton?.setAttribute("aria-expanded", "false");
   }
 
+  // --- logout ---
+  const logoutLink = document.querySelector(".sidebar-logout .logout, .nav-link.logout");
+  logoutLink?.addEventListener("click", (event) => {
+    event.preventDefault();
+    localStorage.removeItem("token");
+    localStorage.removeItem("user");
+    localStorage.removeItem("voluntario");
+    localStorage.removeItem("ong");
+    window.location.href = "../html/LoginPage.html"; // ajuste o caminho relativo se necessário
+  });
+
   menuButton?.addEventListener("click", () => {
     if (document.body.classList.contains("sidebar-open")) {
       closeSidebar();

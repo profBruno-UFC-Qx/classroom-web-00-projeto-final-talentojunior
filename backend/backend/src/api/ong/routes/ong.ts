@@ -1,7 +1,23 @@
-/**
- * ong router
- */
+import { factories } from "@strapi/strapi";
+const { createCoreRouter } = factories;
 
-import { factories } from '@strapi/strapi';
-
-export default factories.createCoreRouter('api::ong.ong');
+export default createCoreRouter("api::ong.ong", {
+  config: {
+    update: {
+      policies: [
+        {
+          name: "global::is-owner",
+          config: { model: "api::ong.ong", relationField: "user" },
+        },
+      ],
+    },
+    delete: {
+      policies: [
+        {
+          name: "global::is-owner",
+          config: { model: "api::ong.ong", relationField: "user" },
+        },
+      ],
+    },
+  },
+});

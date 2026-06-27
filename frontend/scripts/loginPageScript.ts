@@ -1,26 +1,25 @@
 const passwordInput = document.getElementById("password") as HTMLInputElement;
-  
-  const togglePasswordButton = document.getElementById("toggle-pw") as HTMLButtonElement;
-  
-  const toggleIcon =
-    togglePasswordButton.querySelector("span");
-  
-  togglePasswordButton.addEventListener("click", () => {
-    const isPassword =
-      passwordInput.type === "password";
-  
-    passwordInput.type = isPassword
-      ? "text"
-      : "password";
-  
-    if (toggleIcon) {
-      toggleIcon.textContent = isPassword
-        ? ""
-        : "";
-    }
-  });
 
-  // --- lógica de login ---
+const togglePasswordButton = document.getElementById("toggle-pw") as HTMLButtonElement;
+
+const toggleIcon =
+  togglePasswordButton.querySelector("span");
+
+togglePasswordButton.addEventListener("click", () => {
+  const isPassword =
+    passwordInput.type === "password";
+
+  passwordInput.type = isPassword
+    ? "text"
+    : "password";
+
+  if (toggleIcon) {
+    toggleIcon.classList.toggle("bi-eye", !isPassword);
+    toggleIcon.classList.toggle("bi-eye-slash", isPassword);
+  }
+});
+
+// --- lógica de login ---
 
 const API_URL = "http://localhost:1337/api";
 
@@ -104,6 +103,8 @@ loginForm.addEventListener("submit", async (event) => {
       showError("Não foi possível identificar o tipo de conta.");
       return;
     }
+    localStorage.removeItem("voluntario");
+    localStorage.removeItem("ong");
 
     localStorage.setItem(perfil.tipo, JSON.stringify(perfil.dados));
 
@@ -119,4 +120,4 @@ loginForm.addEventListener("submit", async (event) => {
 });
 
 
-export {};
+export { };

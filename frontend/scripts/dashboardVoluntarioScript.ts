@@ -39,6 +39,7 @@ document.addEventListener("DOMContentLoaded", () => {
       localStorage.removeItem("token");
       localStorage.removeItem("user");
       localStorage.removeItem("voluntario");
+      localStorage.removeItem("ong");
       window.location.href = "LoginPage.html"; // ajuste o caminho se necessário
     });
 

@@ -58,7 +58,8 @@ document.addEventListener("DOMContentLoaded", () => {
     localStorage.removeItem("token");
     localStorage.removeItem("user");
     localStorage.removeItem("voluntario");
-    window.location.href = "LoginPage.html"; // ajuste o caminho relativo se necessário
+    localStorage.removeItem("ong");
+    window.location.href = "../html/LoginPage.html"; // ajuste o caminho relativo se necessário
   });
 
   // --- resto do seu código original ---

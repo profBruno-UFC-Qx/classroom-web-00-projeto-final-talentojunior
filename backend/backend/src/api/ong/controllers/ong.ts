@@ -4,7 +4,7 @@ const { createCoreController } = require("@strapi/strapi").factories;
 
 module.exports = createCoreController("api::ong.ong", ({ strapi }) => ({
   async register(ctx) {
-    const { nome, email, senha, confirmacaoSenha } = ctx.request.body;
+    const { nome, email, senha, confirmacaoSenha, cnpj } = ctx.request.body;
 
     if (!nome || !email || !senha || !confirmacaoSenha) {
       return ctx.badRequest(
@@ -58,6 +58,7 @@ module.exports = createCoreController("api::ong.ong", ({ strapi }) => ({
         data: {
           nome,
           email: emailLower,
+          cnpj: cnpj || "",
           user: newUser.id,
           publishedAt: new Date(),
         },
@@ -132,10 +133,10 @@ module.exports = createCoreController("api::ong.ong", ({ strapi }) => ({
           },
           imagem_perfil: ong.imagem_perfil
             ? {
-                id: ong.imagem_perfil.id,
-                url: ong.imagem_perfil.url,
-                name: ong.imagem_perfil.name,
-              }
+              id: ong.imagem_perfil.id,
+              url: ong.imagem_perfil.url,
+              name: ong.imagem_perfil.name,
+            }
             : null,
         },
       };

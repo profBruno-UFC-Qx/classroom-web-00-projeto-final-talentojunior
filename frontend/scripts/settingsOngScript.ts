@@ -146,6 +146,17 @@ function getImageUrl(url?: string | null): string {
   return `http://localhost:1337${url}`;
 }
 
+  // --- logout ---
+  const logoutLink = document.querySelector(".sidebar-logout .logout, .nav-link.logout");
+  logoutLink?.addEventListener("click", (event) => {
+    event.preventDefault();
+    localStorage.removeItem("token");
+    localStorage.removeItem("user");
+    localStorage.removeItem("voluntario");
+    localStorage.removeItem("ong");
+    window.location.href = "../html/LoginPage.html"; // ajuste o caminho relativo se necessário
+  });
+
 function openImageModal() {
   if (!ongImageModal) return;
 
