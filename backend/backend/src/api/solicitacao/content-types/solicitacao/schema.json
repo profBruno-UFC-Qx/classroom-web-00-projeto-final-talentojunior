@@ -25,6 +25,11 @@
     },
     "aprovada": {
       "type": "boolean"
+    },
+    "voluntario": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::voluntario.voluntario"
     }
   }
 }

@@ -13,6 +13,15 @@ module.exports = {
     },
     {
       method: "GET",
+      path: "/animals/disponiveis",
+      handler: "animal.findDisponiveis",
+      config: {
+        policies: [],
+        auth: {},
+      },
+    },
+    {
+      method: "GET",
       path: "/animals/me",
       handler: "animal.findAnimals",
       config: {

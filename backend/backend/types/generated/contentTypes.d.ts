@@ -770,6 +770,10 @@ export interface ApiSolicitacaoSolicitacao extends Struct.CollectionTypeSchema {
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
+    voluntario: Schema.Attribute.Relation<
+      'oneToOne',
+      'api::voluntario.voluntario'
+    >;
   };
 }
 

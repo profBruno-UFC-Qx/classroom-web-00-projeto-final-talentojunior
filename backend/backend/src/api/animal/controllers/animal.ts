@@ -7,6 +7,26 @@ import { factories } from "@strapi/strapi";
 const { createCoreController } = factories;
 
 export default createCoreController("api::animal.animal", ({ strapi }) => ({
+
+  async findDisponiveis(ctx) {
+    try {
+      const loggedUser = ctx.state.user;
+      if (!loggedUser) return ctx.unauthorized("Usuário não autenticado.");
+  
+      const animals = await strapi.entityService.findMany("api::animal.animal", {
+        filters: { disponivel: true },
+        populate: { imagem_capa: true, ong: true },
+        sort: { createdAt: "desc" },
+      });
+  
+      return ctx.send({ animals, total: animals.length });
+    } catch (err) {
+      console.error("Erro ao buscar animais disponíveis:", err);
+      return ctx.internalServerError(err.message || "Erro ao buscar animais.");
+    }
+  },
+
+
   async createAnimal(ctx) {
     try {
       const loggedUser = ctx.state.user;
