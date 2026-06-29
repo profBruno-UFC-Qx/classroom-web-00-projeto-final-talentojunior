@@ -262,9 +262,9 @@ registerForm.addEventListener("submit", async (event) => {
     // redireciona depois de um pequeno delay
     setTimeout(() => {
       if (currentRole === "ong") {
-        window.location.href = "DashboardOng.html"; // ajuste se o nome do arquivo for diferente
+        window.location.href = "../ongs/dashboard.html"; 
       } else {
-        window.location.href = "DashboardVoluntario.html"; // ajuste se o nome do arquivo for diferente
+        window.location.href = "DashboardVoluntario.html"; 
       }
     }, 1200);
   } catch (error) {

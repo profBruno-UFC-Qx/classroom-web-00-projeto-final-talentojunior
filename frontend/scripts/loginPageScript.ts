@@ -19,7 +19,6 @@ togglePasswordButton.addEventListener("click", () => {
   }
 });
 
-// --- lógica de login ---
 
 const API_URL = "http://localhost:1337/api";
 
@@ -59,7 +58,6 @@ async function login(identifier: string, password: string) {
   return data;
 }
 
-// depois de logar, descobre se é voluntário ou ONG
 async function descobrirPerfil(jwt: string): Promise<{ tipo: "voluntario" | "ong"; dados: any } | null> {
   const headers = { Authorization: `Bearer ${jwt}` };
 

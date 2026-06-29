@@ -70,19 +70,26 @@
         <!-- Formulário -->
         <form class="register-form" id="register-form">
           <div class="form-content">
+            <div id="cidade-field" style="display: none;">
+              <div class="input-group">
+                <label for="cidade">Cidade</label>
+                <div class="input-wrapper">
+                  <span class="bi bi-house"></span>
+                  <input type="text" id="cidade" placeholder="Sua cidade" />
+                </div>
+              </div>
+            </div>
+
+            <div class="input-group" id="cnpj-field" style="display: none;">
+                <label for="cnpj">CNPJ</label>
+                <div class="input-wrapper">
+                  <span class="bi bi-card-list"></span>
+                  <input id="cnpj" name="cpnj" type="text" placeholder="00.000.000/0000-00" />
+                </div>
+              </div>
+
             <div class="input-group">
               <label id="label-name" for="nome">Nome Completo</label>
-
-              <div class="input-group" id="cnpj-field" style="display: none;">
-                <label for="cnpj">CNPJ</label>
-                <input id="cnpj" type="text" placeholder="00.000.000/0000-00" />
-              </div>
-
-              <div id="cidade-field" style="display: none;">
-                <label for="cidade">Cidade</label>
-                <input type="text" id="cidade" placeholder="Sua cidade" />
-              </div>
-
               <div class="input-wrapper">
                 <span class="bi bi-person"></span>
                 <input id="nome" name="nome" type="text" placeholder="Como devemos te chamar?" required />
