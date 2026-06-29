@@ -1,7 +1,3 @@
-/**
- * animal controller
- */
-
 import { factories } from "@strapi/strapi";
 
 const { createCoreController } = factories;
@@ -25,7 +21,6 @@ export default createCoreController("api::animal.animal", ({ strapi }) => ({
       return ctx.internalServerError(err.message || "Erro ao buscar animais.");
     }
   },
-
 
   async createAnimal(ctx) {
     try {
@@ -85,47 +80,71 @@ export default createCoreController("api::animal.animal", ({ strapi }) => ({
 
       const files = ctx.request.files;
 
-      if (files && Object.keys(files).length > 0) {
+      if (files && files.imagem_capa) {
         try {
-          if (files.imagem_capa) {
-            const capaFile = Array.isArray(files.imagem_capa)
-              ? files.imagem_capa[0]
-              : files.imagem_capa;
+          const capaFile = Array.isArray(files.imagem_capa)
+            ? files.imagem_capa[0]
+            : files.imagem_capa;
 
-            await strapi
+          const uploadedFile = await strapi
+            .plugin("upload")
+            .service("upload")
+            .upload({
+              data: {
+                ref: "api::animal.animal",
+                refId: animal.id,
+                field: "imagem_capa",
+              },
+              files: capaFile,
+            });
+
+          if (uploadedFile && uploadedFile.length > 0) {
+            await strapi.entityService.update("api::animal.animal", animal.id, {
+              data: {
+                imagem_capa: uploadedFile[0].id,
+              },
+            });
+          }
+        } catch (uploadError) {
+          console.error("Erro ao fazer upload de imagem de capa:", uploadError);
+        }
+      }
+
+      if (files && files.imagens) {
+        try {
+          const galleryFiles = Array.isArray(files.imagens)
+            ? files.imagens
+            : [files.imagens];
+
+          const uploadedImages = [];
+
+          for (const file of galleryFiles) {
+            const result = await strapi
               .plugin("upload")
               .service("upload")
               .upload({
                 data: {
                   ref: "api::animal.animal",
                   refId: animal.id,
-                  field: "imagem_capa",
+                  field: "imagens",
                 },
-                files: capaFile,
+                files: file,
               });
-          }
 
-          if (files.imagens) {
-            const galleryFiles = Array.isArray(files.imagens)
-              ? files.imagens
-              : [files.imagens];
-
-            for (const file of galleryFiles) {
-              await strapi
-                .plugin("upload")
-                .service("upload")
-                .upload({
-                  data: {
-                    ref: "api::animal.animal",
-                    refId: animal.id,
-                    field: "imagens",
-                  },
-                  files: file,
-                });
+            if (result && result.length > 0) {
+              uploadedImages.push(result[0].id);
             }
           }
+
+          if (uploadedImages.length > 0) {
+            await strapi.entityService.update("api::animal.animal", animal.id, {
+              data: {
+                imagens: uploadedImages,
+              },
+            });
+          }
         } catch (uploadError) {
-          console.error("Erro ao fazer upload de imagens:", uploadError);
+          console.error("Erro ao fazer upload de imagens da galeria:", uploadError);
         }
       }
 
@@ -246,7 +265,7 @@ export default createCoreController("api::animal.animal", ({ strapi }) => ({
         },
       );
 
-      const animal = Array.isArray(animals) ? animals[0] : animals;
+      const animal = Array.isArray(animals) && animals.length > 0 ? animals[0] : null;
 
       if (!animal) {
         return ctx.notFound("Animal não encontrado.");
@@ -294,10 +313,14 @@ export default createCoreController("api::animal.animal", ({ strapi }) => ({
               id: ong.id,
             },
           },
+          populate: {
+            imagem_capa: true,
+            imagens: true,
+          },
         },
       );
 
-      const animal = Array.isArray(animals) ? animals[0] : animals;
+      const animal = Array.isArray(animals) && animals.length > 0 ? (animals[0] as any) : null;
 
       if (!animal) {
         return ctx.notFound("Animal não encontrado.");
@@ -337,47 +360,92 @@ export default createCoreController("api::animal.animal", ({ strapi }) => ({
 
       const files = ctx.request.files;
 
-      if (files && Object.keys(files).length > 0) {
+      if (files && files.imagem_capa) {
         try {
-          if (files.imagem_capa) {
-            const capaFile = Array.isArray(files.imagem_capa)
-              ? files.imagem_capa[0]
-              : files.imagem_capa;
+          if (animal.imagem_capa?.id) {
+            try {
+              await strapi
+                .plugin("upload")
+                .service("upload")
+                .remove(animal.imagem_capa);
+            } catch (err) {
+              console.error("Erro ao remover imagem anterior:", err);
+            }
+          }
 
-            await strapi
+          const capaFile = Array.isArray(files.imagem_capa)
+            ? files.imagem_capa[0]
+            : files.imagem_capa;
+
+          const uploadedFile = await strapi
+            .plugin("upload")
+            .service("upload")
+            .upload({
+              data: {
+                ref: "api::animal.animal",
+                refId: animal.id,
+                field: "imagem_capa",
+              },
+              files: capaFile,
+            });
+
+          if (uploadedFile && uploadedFile.length > 0) {
+            await strapi.entityService.update("api::animal.animal", animal.id, {
+              data: {
+                imagem_capa: uploadedFile[0].id,
+              },
+            });
+          }
+        } catch (uploadError) {
+          console.error("Erro ao fazer upload de imagem de capa:", uploadError);
+        }
+      }
+
+      if (files && files.imagens) {
+        try {
+          if (animal.imagens && Array.isArray(animal.imagens)) {
+            for (const imagem of animal.imagens) {
+              try {
+                await strapi.plugin("upload").service("upload").remove(imagem);
+              } catch (err) {
+                console.error("Erro ao remover imagem anterior:", err);
+              }
+            }
+          }
+
+          const galleryFiles = Array.isArray(files.imagens)
+            ? files.imagens
+            : [files.imagens];
+
+          const uploadedImages = [];
+
+          for (const file of galleryFiles) {
+            const result = await strapi
               .plugin("upload")
               .service("upload")
               .upload({
                 data: {
                   ref: "api::animal.animal",
                   refId: animal.id,
-                  field: "imagem_capa",
+                  field: "imagens",
                 },
-                files: capaFile,
+                files: file,
               });
-          }
 
-          if (files.imagens) {
-            const galleryFiles = Array.isArray(files.imagens)
-              ? files.imagens
-              : [files.imagens];
-
-            for (const file of galleryFiles) {
-              await strapi
-                .plugin("upload")
-                .service("upload")
-                .upload({
-                  data: {
-                    ref: "api::animal.animal",
-                    refId: animal.id,
-                    field: "imagens",
-                  },
-                  files: file,
-                });
+            if (result && result.length > 0) {
+              uploadedImages.push(result[0].id);
             }
           }
+
+          if (uploadedImages.length > 0) {
+            await strapi.entityService.update("api::animal.animal", animal.id, {
+              data: {
+                imagens: uploadedImages,
+              },
+            });
+          }
         } catch (uploadError) {
-          console.error("Erro ao fazer upload de imagens:", uploadError);
+          console.error("Erro ao fazer upload de imagens da galeria:", uploadError);
         }
       }
 
