@@ -1,12 +1,10 @@
-export {}; // mantém o arquivo como módulo isolado
-
-// --- proteção de rota + dados da ONG ---
+export {}; 
 
 const token = localStorage.getItem("token");
 const ongRaw = localStorage.getItem("ong");
 
 if (!token || !ongRaw) {
-  window.location.href = "../LoginPage.html"; // ajuste o caminho relativo conforme sua estrutura de pastas
+  window.location.href = "../LoginPage.html";
 } else {
   const ong = JSON.parse(ongRaw) as {
     id: number;
@@ -18,7 +16,6 @@ if (!token || !ongRaw) {
     bio: string;
   };
 
-  // --- carregar animais reais da ONG ---
 
 async function carregarAnimaisDaOng() {
   const animalsGrid = document.querySelector(".animals-grid") as HTMLElement | null;
