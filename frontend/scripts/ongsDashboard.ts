@@ -38,7 +38,6 @@ if (!token || !ongRaw) {
 
       const animals = data.animals as any[];
 
-      // atualiza os cards de estatística com dados reais
       const statsValues = document.querySelectorAll(".stats-value");
       if (statsValues[0]) statsValues[0].textContent = String(animals.length);
       if (statsValues[1]) {
@@ -46,7 +45,15 @@ if (!token || !ongRaw) {
           animals.filter((a) => a.disponivel).length,
         );
       }
-
+      if (statsValues[3]) {
+        statsValues[3].textContent = String(
+          animals.filter(
+            (a) =>
+              a.status_do_animal?.toLowerCase() ==
+              "em lar temporário".toLowerCase(),
+          ).length,
+        );
+      }
       if (!animals.length) {
         animalsGrid.innerHTML =
           "<p>Você ainda não cadastrou nenhum animal.</p>";
@@ -66,7 +73,7 @@ if (!token || !ongRaw) {
         card.innerHTML = `
         <div class="animal-image-wrapper">
           <div class="animal-state-indicator">
-            <span>${animal.disponivel ? "Disponível" : "Indisponível"}</span>
+            <span>${animal.status_do_animal}</span>
           </div>
           ${imagemUrl ? `<img src="${imagemUrl}" alt="Foto de ${animal.nome}" />` : ""}
         </div>
@@ -154,7 +161,6 @@ if (!token || !ongRaw) {
 
       const solicitacoes = data.solicitacoes as any[];
 
-      // atualiza o card de estatística "Solicitações Pendentes"
       const statsValues = document.querySelectorAll(".stats-value");
       if (statsValues[2])
         statsValues[2].textContent = String(solicitacoes.length);
@@ -256,7 +262,7 @@ if (!token || !ongRaw) {
     localStorage.removeItem("user");
     localStorage.removeItem("ong");
     localStorage.removeItem("voluntario");
-    window.location.href = "../html/LoginPage.html"; // ajuste o caminho relativo conforme sua estrutura de pastas
+    window.location.href = "../html/LoginPage.html"; 
   });
 }
 

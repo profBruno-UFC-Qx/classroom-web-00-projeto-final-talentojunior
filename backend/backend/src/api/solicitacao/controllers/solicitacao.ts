@@ -26,14 +26,21 @@ async function atualizarStatus(strapi: any, ctx: any, aprovada: boolean) {
     data: {
       aprovada,
       finalizada: true,
-      ...(aprovada ? {} : { animal: null }),
     },
   });
 
   if (aprovada && solicitacao.animal?.id) {
-    await strapi.entityService.update("api::animal.animal", solicitacao.animal.id, {
-      data: { disponivel: false },
-    });
+    await strapi.entityService.update(
+      "api::animal.animal",
+      solicitacao.animal.id,
+      {
+        data: {
+          disponivel: false,
+          status_do_animal: "Em lar temporário",
+          data_de_acolhimento: new Date(),
+        },
+      },
+    );
   }
 
   return ctx.send({ message: aprovada ? "Solicitação aprovada." : "Solicitação recusada." });
