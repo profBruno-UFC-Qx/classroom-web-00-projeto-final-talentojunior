@@ -1,3 +1,13 @@
+export {};
+
+const API_URL_ANIMALS = "http://localhost:1337/api";
+const token = localStorage.getItem("token");
+const ongRaw = localStorage.getItem("ong");
+
+if (!token || !ongRaw) {
+  window.location.href = "../html/LoginPage.html";
+}
+
 function getImageUrlAnimal(url?: string) {
   if (!url) {
     return "https://via.placeholder.com/60x60?text=Sem+Foto";
@@ -9,9 +19,6 @@ function getImageUrlAnimal(url?: string) {
 
   return `http://localhost:1337${url}`;
 }
-
-const API_URL_ANIMALS = "http://localhost:1337/api";
-const token = localStorage.getItem("token");
 
 const tbody = document.getElementById(
   "animals-table-body",

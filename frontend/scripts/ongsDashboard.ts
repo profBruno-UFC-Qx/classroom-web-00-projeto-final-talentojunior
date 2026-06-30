@@ -1,10 +1,10 @@
-export {}; 
+export {};
 
 const token = localStorage.getItem("token");
 const ongRaw = localStorage.getItem("ong");
 
 if (!token || !ongRaw) {
-  window.location.href = "../LoginPage.html";
+  window.location.href = "../html/LoginPage.html";
 } else {
   const ong = JSON.parse(ongRaw) as {
     id: number;
@@ -16,50 +16,54 @@ if (!token || !ongRaw) {
     bio: string;
   };
 
+  async function carregarAnimaisDaOng() {
+    const animalsGrid = document.querySelector(
+      ".animals-grid",
+    ) as HTMLElement | null;
+    if (!animalsGrid) return;
 
-async function carregarAnimaisDaOng() {
-  const animalsGrid = document.querySelector(".animals-grid") as HTMLElement | null;
-  if (!animalsGrid) return;
+    animalsGrid.innerHTML = "<p>Carregando animais...</p>";
 
-  animalsGrid.innerHTML = "<p>Carregando animais...</p>";
+    try {
+      const response = await fetch("http://localhost:1337/api/animals/me", {
+        headers: { Authorization: `Bearer ${token}` },
+      });
 
-  try {
-    const response = await fetch("http://localhost:1337/api/animals/me", {
-      headers: { Authorization: `Bearer ${token}` },
-    });
+      const data = await response.json();
 
-    const data = await response.json();
+      if (!response.ok) {
+        animalsGrid.innerHTML = `<p>${data?.error?.message || "Erro ao carregar animais."}</p>`;
+        return;
+      }
 
-    if (!response.ok) {
-      animalsGrid.innerHTML = `<p>${data?.error?.message || "Erro ao carregar animais."}</p>`;
-      return;
-    }
+      const animals = data.animals as any[];
 
-    const animals = data.animals as any[];
+      // atualiza os cards de estatística com dados reais
+      const statsValues = document.querySelectorAll(".stats-value");
+      if (statsValues[0]) statsValues[0].textContent = String(animals.length);
+      if (statsValues[1]) {
+        statsValues[1].textContent = String(
+          animals.filter((a) => a.disponivel).length,
+        );
+      }
 
-    // atualiza os cards de estatística com dados reais
-    const statsValues = document.querySelectorAll(".stats-value");
-    if (statsValues[0]) statsValues[0].textContent = String(animals.length);
-    if (statsValues[1]) {
-      statsValues[1].textContent = String(animals.filter((a) => a.disponivel).length);
-    }
+      if (!animals.length) {
+        animalsGrid.innerHTML =
+          "<p>Você ainda não cadastrou nenhum animal.</p>";
+        return;
+      }
 
-    if (!animals.length) {
-      animalsGrid.innerHTML = "<p>Você ainda não cadastrou nenhum animal.</p>";
-      return;
-    }
+      animalsGrid.innerHTML = "";
 
-    animalsGrid.innerHTML = "";
+      animals.forEach((animal) => {
+        const card = document.createElement("div");
+        card.className = "animal-card";
 
-    animals.forEach((animal) => {
-      const card = document.createElement("div");
-      card.className = "animal-card";
+        const imagemUrl = animal.imagem_capa?.url
+          ? `http://localhost:1337${animal.imagem_capa.url}`
+          : "";
 
-      const imagemUrl = animal.imagem_capa?.url
-        ? `http://localhost:1337${animal.imagem_capa.url}`
-        : "";
-
-      card.innerHTML = `
+        card.innerHTML = `
         <div class="animal-image-wrapper">
           <div class="animal-state-indicator">
             <span>${animal.disponivel ? "Disponível" : "Indisponível"}</span>
@@ -87,83 +91,93 @@ async function carregarAnimaisDaOng() {
         </div>
       `;
 
-      animalsGrid.appendChild(card);
-    });
-
-    // exclusão real, usando o endpoint que já existe
-    animalsGrid.querySelectorAll<HTMLButtonElement>(".btn-delete").forEach((btn) => {
-      btn.addEventListener("click", async () => {
-        const id = btn.dataset.id;
-        if (!confirm("Tem certeza que deseja excluir este animal?")) return;
-
-        try {
-          const delResponse = await fetch(`http://localhost:1337/api/animals/${id}/me`, {
-            method: "DELETE",
-            headers: { Authorization: `Bearer ${token}` },
-          });
-
-          if (!delResponse.ok) {
-            const delData = await delResponse.json();
-            alert(delData?.error?.message || "Erro ao excluir.");
-            return;
-          }
-
-          carregarAnimaisDaOng(); // recarrega a lista
-        } catch {
-          alert("Erro ao conectar ao servidor.");
-        }
+        animalsGrid.appendChild(card);
       });
-    });
-  } catch (err) {
-    animalsGrid.innerHTML = "<p>Erro ao conectar ao servidor.</p>";
+
+      animalsGrid
+        .querySelectorAll<HTMLButtonElement>(".btn-delete")
+        .forEach((btn) => {
+          btn.addEventListener("click", async () => {
+            const id = btn.dataset.id;
+            if (!confirm("Tem certeza que deseja excluir este animal?")) return;
+
+            try {
+              const delResponse = await fetch(
+                `http://localhost:1337/api/animals/${id}/me`,
+                {
+                  method: "DELETE",
+                  headers: { Authorization: `Bearer ${token}` },
+                },
+              );
+
+              if (!delResponse.ok) {
+                const delData = await delResponse.json();
+                alert(delData?.error?.message || "Erro ao excluir.");
+                return;
+              }
+
+              carregarAnimaisDaOng(); 
+            } catch {
+              alert("Erro ao conectar ao servidor.");
+            }
+          });
+        });
+    } catch (err) {
+      animalsGrid.innerHTML = "<p>Erro ao conectar ao servidor.</p>";
+    }
   }
-}
 
-carregarAnimaisDaOng();
+  carregarAnimaisDaOng();
 
-async function carregarSolicitacoesPendentes() {
-  const listContainer = document.querySelector(".animals-request-list") as HTMLElement | null;
-  if (!listContainer) return;
+  async function carregarSolicitacoesPendentes() {
+    const listContainer = document.querySelector(
+      ".animals-request-list",
+    ) as HTMLElement | null;
+    if (!listContainer) return;
 
-  listContainer.innerHTML = "<p>Carregando...</p>";
+    listContainer.innerHTML = "<p>Carregando...</p>";
 
-  try {
-    const response = await fetch("http://localhost:1337/api/solicitacoes/pendentes", {
-      headers: { Authorization: `Bearer ${token}` },
-    });
+    try {
+      const response = await fetch(
+        "http://localhost:1337/api/solicitacoes/pendentes",
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        },
+      );
 
-    const data = await response.json();
+      const data = await response.json();
 
-    if (!response.ok) {
-      listContainer.innerHTML = `<p>${data?.error?.message || "Erro ao carregar solicitações."}</p>`;
-      return;
-    }
+      if (!response.ok) {
+        listContainer.innerHTML = `<p>${data?.error?.message || "Erro ao carregar solicitações."}</p>`;
+        return;
+      }
 
-    const solicitacoes = data.solicitacoes as any[];
+      const solicitacoes = data.solicitacoes as any[];
 
-    // atualiza o card de estatística "Solicitações Pendentes"
-    const statsValues = document.querySelectorAll(".stats-value");
-    if (statsValues[2]) statsValues[2].textContent = String(solicitacoes.length);
+      // atualiza o card de estatística "Solicitações Pendentes"
+      const statsValues = document.querySelectorAll(".stats-value");
+      if (statsValues[2])
+        statsValues[2].textContent = String(solicitacoes.length);
 
-    if (!solicitacoes.length) {
-      listContainer.innerHTML = "<p>Nenhuma solicitação pendente.</p>";
-      return;
-    }
+      if (!solicitacoes.length) {
+        listContainer.innerHTML = "<p>Nenhuma solicitação pendente.</p>";
+        return;
+      }
 
-    listContainer.innerHTML = "";
+      listContainer.innerHTML = "";
 
-    solicitacoes.forEach((sol) => {
-      const animal = sol.animal;
-      const voluntario = sol.voluntario;
+      solicitacoes.forEach((sol) => {
+        const animal = sol.animal;
+        const voluntario = sol.voluntario;
 
-      const imagemUrl = animal?.imagem_capa?.url
-        ? `http://localhost:1337${animal.imagem_capa.url}`
-        : "";
+        const imagemUrl = animal?.imagem_capa?.url
+          ? `http://localhost:1337${animal.imagem_capa.url}`
+          : "";
 
-      const card = document.createElement("div");
-      card.className = "request-animal-card";
+        const card = document.createElement("div");
+        card.className = "request-animal-card";
 
-      card.innerHTML = `
+        card.innerHTML = `
         <div class="request-animal-info">
           ${imagemUrl ? `<img src="${imagemUrl}" alt="Foto de ${animal?.nome}" class="request-aniaml-image">` : ""}
           <div class="request-animal-info-content">
@@ -177,42 +191,53 @@ async function carregarSolicitacoesPendentes() {
         </div>
       `;
 
-      listContainer.appendChild(card);
-    });
+        listContainer.appendChild(card);
+      });
 
-    listContainer.querySelectorAll<HTMLButtonElement>(".btn-approve").forEach((btn) => {
-      btn.addEventListener("click", () => responderSolicitacao(btn.dataset.id!, "aprovar"));
-    });
+      listContainer
+        .querySelectorAll<HTMLButtonElement>(".btn-approve")
+        .forEach((btn) => {
+          btn.addEventListener("click", () =>
+            responderSolicitacao(btn.dataset.id!, "aprovar"),
+          );
+        });
 
-    listContainer.querySelectorAll<HTMLButtonElement>(".btn-reject").forEach((btn) => {
-      btn.addEventListener("click", () => responderSolicitacao(btn.dataset.id!, "recusar"));
-    });
-  } catch (err) {
-    listContainer.innerHTML = "<p>Erro ao conectar ao servidor.</p>";
-  }
-}
-
-async function responderSolicitacao(id: string, acao: "aprovar" | "recusar") {
-  try {
-    const response = await fetch(`http://localhost:1337/api/solicitacoes/${id}/${acao}`, {
-      method: "PUT",
-      headers: { Authorization: `Bearer ${token}` },
-    });
-
-    if (!response.ok) {
-      const data = await response.json();
-      alert(data?.error?.message || "Erro ao responder solicitação.");
-      return;
+      listContainer
+        .querySelectorAll<HTMLButtonElement>(".btn-reject")
+        .forEach((btn) => {
+          btn.addEventListener("click", () =>
+            responderSolicitacao(btn.dataset.id!, "recusar"),
+          );
+        });
+    } catch (err) {
+      listContainer.innerHTML = "<p>Erro ao conectar ao servidor.</p>";
     }
-
-    carregarSolicitacoesPendentes();
-    carregarAnimaisDaOng(); // atualiza disponibilidade do animal também
-  } catch {
-    alert("Erro ao conectar ao servidor.");
   }
-}
 
-carregarSolicitacoesPendentes();
+  async function responderSolicitacao(id: string, acao: "aprovar" | "recusar") {
+    try {
+      const response = await fetch(
+        `http://localhost:1337/api/solicitacoes/${id}/${acao}`,
+        {
+          method: "PUT",
+          headers: { Authorization: `Bearer ${token}` },
+        },
+      );
+
+      if (!response.ok) {
+        const data = await response.json();
+        alert(data?.error?.message || "Erro ao responder solicitação.");
+        return;
+      }
+
+      carregarSolicitacoesPendentes();
+      carregarAnimaisDaOng();
+    } catch {
+      alert("Erro ao conectar ao servidor.");
+    }
+  }
+
+  carregarSolicitacoesPendentes();
 
   const welcomeTitle = document.querySelector(".welcome-section h2");
   if (welcomeTitle) {
@@ -231,7 +256,7 @@ carregarSolicitacoesPendentes();
     localStorage.removeItem("user");
     localStorage.removeItem("ong");
     localStorage.removeItem("voluntario");
-    window.location.href = "../html/LoginPage.html";// ajuste o caminho relativo conforme sua estrutura de pastas
+    window.location.href = "../html/LoginPage.html"; // ajuste o caminho relativo conforme sua estrutura de pastas
   });
 }
 
