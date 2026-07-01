@@ -8,6 +8,19 @@ if (!token || !ongRaw) {
   window.location.href = "../html/LoginPage.html";
 }
 
+// Logout
+const logoutLink = document.querySelector(
+  ".sidebar-logout .logout, .nav-link.logout",
+);
+logoutLink?.addEventListener("click", (event) => {
+  event.preventDefault();
+  localStorage.removeItem("token");
+  localStorage.removeItem("user");
+  localStorage.removeItem("voluntario");
+  localStorage.removeItem("ong");
+  window.location.href = "../html/LoginPage.html";
+});
+
 function getImageUrlAnimal(url?: string) {
   if (!url) {
     return "https://via.placeholder.com/60x60?text=Sem+Foto";

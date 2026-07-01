@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const voluntarioRaw = localStorage.getItem("voluntario");
   
     if (!token || !voluntarioRaw) {
-      window.location.href = "LoginPage.html"; // ajuste o caminho se necessário
+      window.location.href = "LoginPage.html"; 
       return;
     }
   
@@ -40,7 +40,7 @@ document.addEventListener("DOMContentLoaded", () => {
       localStorage.removeItem("user");
       localStorage.removeItem("voluntario");
       localStorage.removeItem("ong");
-      window.location.href = "LoginPage.html"; // ajuste o caminho se necessário
+      window.location.href = "LoginPage.html";
     });
 
   const metricCards = document.querySelectorAll<HTMLElement>(".metric-card");

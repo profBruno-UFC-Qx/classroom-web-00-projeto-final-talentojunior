@@ -14,7 +14,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const voluntarioRaw = localStorage.getItem("voluntario");
 
   if (!token || !voluntarioRaw) {
-    window.location.href = "LoginPage.html"; // ajuste o caminho relativo se necessário
+    window.location.href = "LoginPage.html"; 
     return;
   }
 
@@ -29,7 +29,7 @@ document.addEventListener("DOMContentLoaded", () => {
     porte_maximo: string;
   };
 
-  // --- popular dados reais no form ---
+  // --- popular dados no form ---
   const nomeInput = document.getElementById("nome") as HTMLInputElement;
   const cidadeInput = document.getElementById("cidade") as HTMLInputElement;
   const bioInput = document.getElementById("bio") as HTMLTextAreaElement;
@@ -59,10 +59,9 @@ document.addEventListener("DOMContentLoaded", () => {
     localStorage.removeItem("user");
     localStorage.removeItem("voluntario");
     localStorage.removeItem("ong");
-    window.location.href = "../html/LoginPage.html"; // ajuste o caminho relativo se necessário
+    window.location.href = "../html/LoginPage.html";
   });
 
-  // --- resto do seu código original ---
   const menuButton = document.querySelector<HTMLButtonElement>(".btn-menu");
   const sidebarOverlay = document.getElementById("sidebar-overlay");
   const sidebarLinks = document.querySelectorAll<HTMLAnchorElement>(".sidebar .nav-link");
@@ -104,7 +103,6 @@ document.addEventListener("DOMContentLoaded", () => {
     if (checkbox?.checked) card.classList.add("active");
   });
 
-  // --- submit real, chamando a API direto (sem módulo separado) ---
   settingsForm?.addEventListener("submit", async (event) => {
     event.preventDefault();
     if (!submitButton) return;
