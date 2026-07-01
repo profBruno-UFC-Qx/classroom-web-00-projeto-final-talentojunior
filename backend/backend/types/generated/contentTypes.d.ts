@@ -716,6 +716,8 @@ export interface ApiSolicitacaoSolicitacao extends Struct.CollectionTypeSchema {
     draftAndPublish: true;
   };
   attributes: {
+    acolhimento_finalizado: Schema.Attribute.Boolean &
+      Schema.Attribute.DefaultTo<false>;
     animal: Schema.Attribute.Relation<'oneToOne', 'api::animal.animal'>;
     aprovada: Schema.Attribute.Boolean;
     createdAt: Schema.Attribute.DateTime;

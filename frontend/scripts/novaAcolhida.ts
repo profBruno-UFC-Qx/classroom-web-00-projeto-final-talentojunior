@@ -62,7 +62,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         const imagemUrl = animal.imagem_capa?.url
           ? `http://localhost:1337${animal.imagem_capa.url}`
-          : "../assets/placeholder-animal.png"; // ajuste pro seu placeholder real
+          : "../assets/placeholder-animal.png"; 
 
         card.innerHTML = `
           <img src="${imagemUrl}" alt="${animal.nome}" />

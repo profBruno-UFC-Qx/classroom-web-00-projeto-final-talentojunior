@@ -30,6 +30,10 @@
       "type": "relation",
       "relation": "oneToOne",
       "target": "api::voluntario.voluntario"
+    },
+    "acolhimento_finalizado": {
+      "type": "boolean",
+      "default": false
     }
   }
 }

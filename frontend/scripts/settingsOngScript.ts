@@ -146,7 +146,7 @@ function getImageUrl(url?: string | null): string {
   return `http://localhost:1337${url}`;
 }
 
-  // --- logout ---
+  // logout 
   const logoutLink = document.querySelector(".sidebar-logout .logout, .nav-link.logout");
   logoutLink?.addEventListener("click", (event) => {
     event.preventDefault();
@@ -154,7 +154,7 @@ function getImageUrl(url?: string | null): string {
     localStorage.removeItem("user");
     localStorage.removeItem("voluntario");
     localStorage.removeItem("ong");
-    window.location.href = "../html/LoginPage.html"; // ajuste o caminho relativo se necessário
+    window.location.href = "../html/LoginPage.html"; 
   });
 
 function openImageModal() {

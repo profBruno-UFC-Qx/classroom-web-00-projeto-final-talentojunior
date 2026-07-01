@@ -38,5 +38,19 @@ module.exports = {
       handler: "solicitacao.recusar",
       config: { policies: [], auth: {} },
     },
+    {
+      method: "GET",
+      path: "/solicitacoes/todas",
+      handler: "solicitacao.getAll",
+      config: { policies: [], auth: {} },
+    },
+    {
+      method: "PUT",
+      path: "/solicitacoes/:id/finalizar",
+      handler: "solicitacao.finalizar",
+      config: {
+        auth: {},
+      },
+    },
   ],
 };

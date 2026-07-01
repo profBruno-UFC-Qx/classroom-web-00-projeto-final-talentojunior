@@ -1,6 +1,5 @@
 const API_URL_ANIMAL = "http://localhost:1337/api";
 
-// ==================== MODAIS ====================
 const modal = document.getElementById("add-animal-modal") as HTMLElement;
 const btnOpen = document.querySelector(".btn-new-animal") as HTMLButtonElement;
 const btnClose = document.getElementById("close-animal-modal") as HTMLButtonElement;
@@ -32,7 +31,6 @@ document.addEventListener("keydown", (e) => {
   }
 });
 
-// ==================== STEPS ====================
 const steps = document.querySelectorAll(".animal-step");
 const progress = document.querySelectorAll(".step");
 
@@ -79,7 +77,6 @@ btnPrev.addEventListener("click", () => {
 
 updateStep();
 
-// ==================== PREVIEW DE IMAGENS ====================
 const capaInput = document.getElementById("imagem_capa") as HTMLInputElement;
 const capaPreview = document.getElementById("preview-capa") as HTMLElement;
 
@@ -173,7 +170,6 @@ galleryInput.addEventListener("change", () => {
   updateGalleryPreview();
 });
 
-// ==================== RESUMO ====================
 function generateSummary() {
   const summary = document.getElementById("animal-summary") as HTMLElement;
 
@@ -200,7 +196,6 @@ function generateSummary() {
   `;
 }
 
-// ==================== COLETA DE DADOS ====================
 function obterCaracteristicas(): string[] {
   const lista: string[] = [];
 
@@ -232,7 +227,6 @@ function obterNecessidades(): string[] {
   return lista;
 }
 
-// ==================== RESET DO FORMULÁRIO ====================
 function resetForm() {
   const form = document.getElementById("animal-form") as HTMLFormElement;
   form.reset();
@@ -242,13 +236,11 @@ function resetForm() {
   currentStep = 0;
   updateStep();
   
-  // Desmarcar checkboxes
   document.querySelectorAll(".animal-step input[type='checkbox']").forEach((checkbox) => {
     (checkbox as HTMLInputElement).checked = false;
   });
 }
 
-// ==================== SUBMISSÃO DO FORMULÁRIO ====================
 const form = document.getElementById("animal-form") as HTMLFormElement;
 
 form.addEventListener("submit", async (e) => {
@@ -282,12 +274,10 @@ form.addEventListener("submit", async (e) => {
   formData.append("caracteristicas_gerais", JSON.stringify([]));
   formData.append("necessidades_especiais", JSON.stringify(obterNecessidades()));
 
-  // IMPORTANTE: Adicionar imagem de capa
   if (capaInput.files?.length && capaInput.files[0] instanceof Blob) {
     formData.append("imagem_capa", capaInput.files[0]);
   }
 
-  // IMPORTANTE: Adicionar imagens da galeria
   galleryFiles.forEach((file) => {
     if (file instanceof Blob) {
       formData.append("imagens", file);
@@ -325,7 +315,6 @@ form.addEventListener("submit", async (e) => {
     resetForm();
     closeModal();
 
-    // Recarregar a lista de animais
     location.reload();
   } catch (err) {
     console.error("Erro ao conectar:", err);
@@ -336,7 +325,6 @@ form.addEventListener("submit", async (e) => {
   }
 });
 
-// ==================== FUNÇÃO DE EDIÇÃO ====================
 async function abrirModalEdicao(animalId: string) {
   try {
     const token = localStorage.getItem("token");
@@ -356,7 +344,6 @@ async function abrirModalEdicao(animalId: string) {
     const animal = data.animal;
     animalIdEmEdicao = animal.id;
 
-    // Preencher formulário com dados do animal
     (document.getElementById("nome") as HTMLInputElement).value = animal.nome || "";
     (document.getElementById("especie") as HTMLSelectElement).value = animal.especie || "";
     (document.getElementById("idade") as HTMLInputElement).value = animal.idade || "";
@@ -366,7 +353,6 @@ async function abrirModalEdicao(animalId: string) {
     (document.getElementById("status_do_animal") as HTMLSelectElement).value = animal.status_do_animal || "";
     (document.getElementById("disponivel") as HTMLInputElement).checked = animal.disponivel || false;
 
-    // Restaurar imagem de capa
     capaPreview.innerHTML = "";
     if (animal.imagem_capa?.url) {
       const img = document.createElement("img");
@@ -378,7 +364,6 @@ async function abrirModalEdicao(animalId: string) {
       capaPreview.appendChild(img);
     }
 
-    // Restaurar galeria
     galleryFiles.length = 0;
     galleryPreview.innerHTML = "";
     if (animal.imagens && Array.isArray(animal.imagens)) {
@@ -401,7 +386,6 @@ async function abrirModalEdicao(animalId: string) {
       });
     }
 
-    // Restaurar características
     document.querySelectorAll('[data-step="4"] input[type="checkbox"]').forEach((checkbox) => {
       const input = checkbox as HTMLInputElement;
       input.checked =
@@ -409,7 +393,6 @@ async function abrirModalEdicao(animalId: string) {
         animal.caracteristicas_do_animal.includes(input.value);
     });
 
-    // Restaurar necessidades
     document.querySelectorAll('[data-step="5"] input[type="checkbox"]').forEach((checkbox) => {
       const input = checkbox as HTMLInputElement;
       const label = input.parentElement?.textContent?.trim() || "";
@@ -417,13 +400,11 @@ async function abrirModalEdicao(animalId: string) {
         animal.necessidades_especiais && animal.necessidades_especiais.includes(label);
     });
 
-    // Alterar título e botão
     const formTitle = document.querySelector(".animal-modal-header h2") as HTMLElement;
     formTitle.textContent = `Editar Animal - ${animal.nome}`;
 
     btnSave.textContent = "Atualizar Animal";
 
-    // Abrir modal
     currentStep = 0;
     updateStep();
     modal.classList.remove("hidden");
@@ -434,11 +415,9 @@ async function abrirModalEdicao(animalId: string) {
   }
 }
 
-// ==================== ADICIONAR EVENT LISTENERS AOS BOTÕES DE EDIÇÃO ====================
 document.addEventListener("click", (e) => {
   const target = e.target as HTMLElement;
 
-  // Botão de edição nos cards de animal
   if (target.closest(".btn-edit")) {
     const btn = target.closest(".btn-edit") as HTMLElement;
     const animalId = btn.getAttribute("data-id");
@@ -448,7 +427,6 @@ document.addEventListener("click", (e) => {
   }
 });
 
-// ==================== RESTAURAR TÍTULO DO MODAL AO FECHAR ====================
 const observer = new MutationObserver(() => {
   if (modal.classList.contains("hidden")) {
     const formTitle = document.querySelector(".animal-modal-header h2") as HTMLElement;

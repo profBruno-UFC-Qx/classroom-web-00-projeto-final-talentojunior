@@ -39,7 +39,7 @@ document.addEventListener("DOMContentLoaded", () => {
     localStorage.removeItem("user");
     localStorage.removeItem("voluntario");
     localStorage.removeItem("ong");
-    window.location.href = "../html/LoginPage.html"; // ajuste o caminho relativo se necessário
+    window.location.href = "../html/LoginPage.html"; 
   });
 
   menuButton?.addEventListener("click", () => {
