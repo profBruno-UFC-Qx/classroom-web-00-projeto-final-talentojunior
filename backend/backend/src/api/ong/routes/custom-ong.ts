@@ -33,6 +33,14 @@ module.exports = {
       config: {
         auth: {},
       },
-    }
+    },
+    {
+      method: "GET",
+      path: "/ongs",
+      handler: "ong.findAll",
+      config: {
+        auth: false,
+      },
+    },
   ],
 };

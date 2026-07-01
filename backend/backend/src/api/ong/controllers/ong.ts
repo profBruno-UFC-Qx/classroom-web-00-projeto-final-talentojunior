@@ -3,6 +3,34 @@
 const { createCoreController } = require("@strapi/strapi").factories;
 
 module.exports = createCoreController("api::ong.ong", ({ strapi }) => ({
+  async findAll(ctx) {
+    try {
+      const ongs = await strapi.entityService.findMany("api::ong.ong", {
+        populate: {
+          imagem_perfil: true,
+        },
+        sort: {
+          nome: "asc",
+        },
+      });
+
+      return {
+        ongs: ongs.map((ong) => ({
+          id: ong.id,
+          nome: ong.nome,
+          imagem_perfil: ong.imagem_perfil
+            ? {
+                url: ong.imagem_perfil.url,
+                name: ong.imagem_perfil.name,
+              }
+            : null,
+        })),
+      };
+    } catch (err) {
+      console.error(err);
+      return ctx.internalServerError("Erro ao buscar ONGs.");
+    }
+  },
   async register(ctx) {
     const { nome, email, senha, confirmacaoSenha, cnpj } = ctx.request.body;
 
@@ -133,10 +161,10 @@ module.exports = createCoreController("api::ong.ong", ({ strapi }) => ({
           },
           imagem_perfil: ong.imagem_perfil
             ? {
-              id: ong.imagem_perfil.id,
-              url: ong.imagem_perfil.url,
-              name: ong.imagem_perfil.name,
-            }
+                id: ong.imagem_perfil.id,
+                url: ong.imagem_perfil.url,
+                name: ong.imagem_perfil.name,
+              }
             : null,
         },
       };

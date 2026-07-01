@@ -42,11 +42,71 @@ async function initAnimals() {
     });
   } catch (err) {
     console.error(err);
-    track.innerHTML = '<p class="error-message">Não foi possível carregar os animais.</p>';
+    track.innerHTML =
+      '<p class="error-message">Não foi possível carregar os animais.</p>';
   }
 }
 
 // Create a carrousel effect for the ONG cards
+const API_URL_HOME = "http://localhost:1337";
+
+interface Ong {
+  id: number;
+  nome: string;
+  imagem_perfil: {
+    url: string;
+  } | null;
+}
+async function loadOngs(): Promise<Ong[]> {
+  const response = await fetch(`${API_URL_HOME}/api/ongs`);
+
+  if (!response.ok) {
+    throw new Error("Erro ao carregar ONGs.");
+  }
+
+  const data = await response.json();
+
+  return data.ongs;
+}
+
+function createOngCard(ong: Ong): HTMLDivElement {
+  const card = document.createElement("div");
+
+  card.className = "ong-card";
+
+  const image = ong.imagem_perfil?.url
+    ? `${API_URL_HOME}${ong.imagem_perfil.url}`
+    : "assets/logo-example.png";
+
+  card.innerHTML = `
+      <img
+          class="ong-logo"
+          src="${image}"
+          alt="${ong.nome}">
+  `;
+
+  return card;
+}
+async function initOngs() {
+  const track = document.querySelector(".ongs-track") as HTMLDivElement;
+
+  if (!track) return;
+
+  try {
+    const ongs = await loadOngs();
+
+    track.innerHTML = "";
+
+    ongs.forEach((ong) => {
+      track.appendChild(createOngCard(ong));
+    });
+  } catch (err) {
+    console.error(err);
+
+    track.innerHTML = "<p>Não foi possível carregar as ONGs.</p>";
+  }
+}
+
 function initCarrouselOngs() {
   const list = document.querySelector(".ongs-list") as HTMLElement;
   const track = document.querySelector(".ongs-track") as HTMLElement;
@@ -148,5 +208,5 @@ function initCarrouselAnimals() {
   });
 }
 
-initCarrouselOngs();
+initOngs().then(initCarrouselOngs);
 initAnimals().then(initCarrouselAnimals);
