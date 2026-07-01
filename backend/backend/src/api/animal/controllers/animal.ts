@@ -3,23 +3,65 @@ import { factories } from "@strapi/strapi";
 const { createCoreController } = factories;
 
 export default createCoreController("api::animal.animal", ({ strapi }) => ({
-
   async findDisponiveis(ctx) {
     try {
-      
-      const animals = await strapi.entityService.findMany("api::animal.animal", {
-        filters: { disponivel: true },
-        populate: { imagem_capa: true, ong: true },
-        sort: { createdAt: "desc" },
-      });
-  
+      const animals = await strapi.entityService.findMany(
+        "api::animal.animal",
+        {
+          filters: { disponivel: true },
+          populate: { 
+            imagem_capa: true, 
+            imagens: true,
+            ong: {
+              populate: {
+                imagem_perfil: true,
+              },
+            } 
+          },
+          sort: { createdAt: "desc" },
+        },
+      );
+
       return ctx.send({ animals, total: animals.length });
     } catch (err) {
       console.error("Erro ao buscar animais disponíveis:", err);
       return ctx.internalServerError(err.message || "Erro ao buscar animais.");
     }
   },
+  async findDisponivelById(ctx) {
+    try {
+      const { id } = ctx.params;
 
+      const animal = await strapi.entityService.findOne(
+        "api::animal.animal",
+        id,
+        {
+          populate: {
+            imagem_capa: true,
+            imagens: true,
+            ong: {
+              populate: {
+                imagem_perfil: true,
+              },
+            },
+          },
+        },
+      );
+
+      if (!animal) {
+        return ctx.notFound("Animal não encontrado.");
+      }
+
+      if (!animal.disponivel) {
+        return ctx.notFound("Animal indisponível.");
+      }
+
+      return { animal };
+    } catch (err) {
+      console.error(err);
+      return ctx.internalServerError("Erro ao buscar animal.");
+    }
+  },
   async createAnimal(ctx) {
     try {
       const loggedUser = ctx.state.user;
@@ -142,7 +184,10 @@ export default createCoreController("api::animal.animal", ({ strapi }) => ({
             });
           }
         } catch (uploadError) {
-          console.error("Erro ao fazer upload de imagens da galeria:", uploadError);
+          console.error(
+            "Erro ao fazer upload de imagens da galeria:",
+            uploadError,
+          );
         }
       }
 
@@ -263,7 +308,8 @@ export default createCoreController("api::animal.animal", ({ strapi }) => ({
         },
       );
 
-      const animal = Array.isArray(animals) && animals.length > 0 ? animals[0] : null;
+      const animal =
+        Array.isArray(animals) && animals.length > 0 ? animals[0] : null;
 
       if (!animal) {
         return ctx.notFound("Animal não encontrado.");
@@ -318,7 +364,10 @@ export default createCoreController("api::animal.animal", ({ strapi }) => ({
         },
       );
 
-      const animal = Array.isArray(animals) && animals.length > 0 ? (animals[0] as any) : null;
+      const animal =
+        Array.isArray(animals) && animals.length > 0
+          ? (animals[0] as any)
+          : null;
 
       if (!animal) {
         return ctx.notFound("Animal não encontrado.");
@@ -443,7 +492,10 @@ export default createCoreController("api::animal.animal", ({ strapi }) => ({
             });
           }
         } catch (uploadError) {
-          console.error("Erro ao fazer upload de imagens da galeria:", uploadError);
+          console.error(
+            "Erro ao fazer upload de imagens da galeria:",
+            uploadError,
+          );
         }
       }
 

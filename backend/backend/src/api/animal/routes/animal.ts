@@ -56,5 +56,13 @@ module.exports = {
         auth: {},
       },
     },
+    {
+      method: "GET",
+      path: "/animals/disponiveis/:id",
+      handler: "animal.findDisponivelById",
+      config: {
+        auth: false,
+      },
+    },
   ],
 };
