@@ -6,9 +6,7 @@ export default createCoreController("api::animal.animal", ({ strapi }) => ({
 
   async findDisponiveis(ctx) {
     try {
-      const loggedUser = ctx.state.user;
-      if (!loggedUser) return ctx.unauthorized("Usuário não autenticado.");
-  
+      
       const animals = await strapi.entityService.findMany("api::animal.animal", {
         filters: { disponivel: true },
         populate: { imagem_capa: true, ong: true },

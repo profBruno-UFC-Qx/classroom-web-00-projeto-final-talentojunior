@@ -17,7 +17,7 @@ module.exports = {
       handler: "animal.findDisponiveis",
       config: {
         policies: [],
-        auth: {},
+        auth: false,
       },
     },
     {
