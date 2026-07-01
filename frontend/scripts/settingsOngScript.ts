@@ -453,8 +453,6 @@ document.addEventListener("DOMContentLoaded", () => {
   loadOngData();
 });
 
-// Change image events
-
 btnChangeImage?.addEventListener("click", openImageModal);
 btnCloseImageModal?.addEventListener("click", closeImageModal);
 btnCancelImageModal?.addEventListener("click", closeImageModal);

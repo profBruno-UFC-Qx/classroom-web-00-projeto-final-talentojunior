@@ -164,40 +164,15 @@
             </section>
 
             <div class="content-grid">
-                <section>
+                    <section>
                     <div class="section-header">
                         <h3>Animais Sob Seus Cuidados</h3>
-                        <a href="#">Ver todos</a>
+                        <a href="SolicitacoesVoluntario.html">Ver todos</a>
                     </div>
 
-                    <article class="animal-card">
-                        <div class="animal-card-image">
-                            <img src="../assets/pipoca.png" alt="Foto do cachorro Pipoca" />
-                            <span class="animal-status-badge">Sob Cuidado</span>
-                        </div>
-
-                        <div class="animal-card-body">
-                            <div class="animal-card-top">
-                                <div>
-                                    <h4>Pipoca</h4>
-                                    <p>Vira-lata</p>
-                                </div>
-                                <button class="btn-favorite" type="button" aria-label="Favoritar">
-                                    <i class="bi bi-heart"></i>
-                                </button>
-                            </div>
-
-                            <div class="animal-location">
-                                <i class="bi bi-geo-alt"></i>
-                                <span>ONG Vida Animal</span>
-                            </div>
-
-                            <button class="btn-atualizar-status" type="button">
-                                <i class="bi bi-arrow-repeat"></i>
-                                Atualizar Status
-                            </button>
-                        </div>
-                    </article>
+                    <div id="animals-under-care">
+                        <p class="empty-inline">Carregando acolhidos...</p>
+                    </div>
                 </section>
 
                 <section>
@@ -221,69 +196,9 @@
                                         <th>Ação</th>
                                     </tr>
                                 </thead>
-                                <tbody>
+                                <tbody id="requests-table-body">
                                     <tr>
-                                        <td>
-                                            <div class="animal-cell">
-                                                <div class="animal-thumb">
-                                                    <img src="../assets/thor.png" alt="Cachorro Thor" />
-                                                </div>
-                                                <span class="animal-name">Thor</span>
-                                            </div>
-                                        </td>
-                                        <td>Amigos de Patas</td>
-                                        <td>12 Mai, 2024</td>
-                                        <td>
-                                            <span class="status-badge pending">
-                                                <span class="status-dot pending"></span>
-                                                Pendente
-                                            </span>
-                                        </td>
-                                        <td>
-                                            <button class="btn-detalhes" type="button">Ver Detalhes</button>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <div class="animal-cell">
-                                                <div class="animal-thumb">
-                                                    <img src="../assets/luna.png" alt="Gato Luna" />
-                                                </div>
-                                                <span class="animal-name">Luna</span>
-                                            </div>
-                                        </td>
-                                        <td>Gatinhos da Vila</td>
-                                        <td>10 Mai, 2024</td>
-                                        <td>
-                                            <span class="status-badge approved">
-                                                <span class="status-dot approved"></span>
-                                                Aprovado
-                                            </span>
-                                        </td>
-                                        <td>
-                                            <button class="btn-detalhes" type="button">Ver Detalhes</button>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <div class="animal-cell">
-                                                <div class="animal-thumb">
-                                                    <img src="../assets/max.png" alt="Cachorro Max" />
-                                                </div>
-                                                <span class="animal-name">Max</span>
-                                            </div>
-                                        </td>
-                                        <td>ONG Vida Animal</td>
-                                        <td>08 Mai, 2024</td>
-                                        <td>
-                                            <span class="status-badge pending">
-                                                <span class="status-dot pending"></span>
-                                                Pendente
-                                            </span>
-                                        </td>
-                                        <td>
-                                            <button class="btn-detalhes" type="button">Ver Detalhes</button>
-                                        </td>
+                                        <td colspan="5">Carregando solicitações...</td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -303,7 +218,7 @@
             <section class="impact-section">
                 <div class="impact-content">
                     <span class="impact-tag">Seu Impacto</span>
-                    <h3>Você já ajudou 12 animais a encontrarem um lar permanente.</h3>
+                    <h3 id="impact-title">Carregando seu impacto...</h3>
                     <p>
                         Graças ao seu compromisso como micro-voluntário, o tempo médio de
                         espera para adoção na ONG Vida Animal reduziu em 15% este mês.
@@ -322,7 +237,7 @@
         </div>
     </main>
 
-    <script src="../dist/scripts/dashboardVoluntarioScript.js"></script>
+    <script type="module" src="../dist/scripts/dashboardVoluntarioScript.js"></script>
     <script type="module" src="../dist/scripts/novaAcolhida.js"></script>
 </body>
 

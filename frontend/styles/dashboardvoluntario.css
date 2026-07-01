@@ -43,7 +43,7 @@ body {
     color: var(--primary);
 }
 
-.logo-link{
+.logo-link {
     text-decoration: none;
 }
 
@@ -510,7 +510,7 @@ body {
     width: 100%;
 }
 
-.content-grid > section {
+.content-grid>section {
     width: 100%;
     min-width: 0;
 }
@@ -770,6 +770,26 @@ body {
     color: var(--sucess);
 }
 
+.status-badge.finished {
+    background-color: color-mix(in srgb, var(--text-muted) 15%, var(--surface));
+    color: var(--text-muted);
+}
+
+.status-badge.rejected {
+    background-color: color-mix(in srgb, #ef4444 15%, var(--surface));
+    color: #b91c1c;
+}
+
+.empty-inline {
+    color: var(--text-muted);
+    padding: 16px 0;
+}
+
+a.btn-atualizar-status,
+a.btn-detalhes {
+    text-decoration: none;
+}
+
 .status-dot {
     width: 6px;
     height: 6px;
@@ -783,6 +803,14 @@ body {
 
 .status-dot.approved {
     background-color: var(--sucess);
+}
+
+.status-dot.finished {
+    background-color: var(--text-muted);
+}
+
+.status-dot.rejected {
+    background-color: #ef4444;
 }
 
 .btn-detalhes {

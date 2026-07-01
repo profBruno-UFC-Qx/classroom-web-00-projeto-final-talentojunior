@@ -1,8 +1,33 @@
 "use strict";
 
 import { factories } from "@strapi/strapi";
-import { permission } from "process";
 const { createCoreController } = factories;
+
+function formatImagemPerfil(imagem: any) {
+  const imagemPerfil = Array.isArray(imagem) ? imagem[0] : imagem;
+
+  if (!imagemPerfil) return null;
+
+  return {
+    id: imagemPerfil.id,
+    url: imagemPerfil.url,
+    name: imagemPerfil.name,
+  };
+}
+
+function formatVoluntarioResponse(voluntario: any) {
+  return {
+    id: voluntario.id,
+    nome: voluntario.nome || "",
+    email: voluntario.email || "",
+    cidade: voluntario.cidade || "",
+    descricao: voluntario.descricao || "",
+    aceita_cachorro: voluntario.aceita_cachorro ?? false,
+    aceita_gato: voluntario.aceita_gato ?? false,
+    porte_maximo: voluntario.porte_maximo || "medio",
+    imagem_perfil: formatImagemPerfil(voluntario.imagem_perfil),
+  };
+}
 
 module.exports = createCoreController("api::voluntario.voluntario", ({ strapi }) => ({
   async register(ctx) {
@@ -102,17 +127,10 @@ module.exports = createCoreController("api::voluntario.voluntario", ({ strapi })
         return ctx.unauthorized("Usuário não autenticado.");
       }
 
-      const voluntarios = await strapi.entityService.findMany(
-        "api::voluntario.voluntario",
-        {
-          filters: {
-            users_permissions_user: {
-              id: loggedUser.id,
-            },
-          },
-          populate: { users_permissions_user: true },
-        }
-      );
+      const voluntarios = await strapi.entityService.findMany("api::voluntario.voluntario", {
+        filters: { users_permissions_user: { id: loggedUser.id } },
+        populate: { users_permissions_user: true, imagem_perfil: true },
+      }) as any[];
 
       const voluntario = Array.isArray(voluntarios) ? voluntarios[0] : voluntarios;
 
@@ -121,16 +139,7 @@ module.exports = createCoreController("api::voluntario.voluntario", ({ strapi })
       }
 
       return {
-        voluntario: {
-          id: voluntario.id,
-          nome: voluntario.nome || "",
-          email: voluntario.email || "",
-          cidade: voluntario.cidade || "",
-          descricao: voluntario.descricao || "",
-          aceita_cachorro: voluntario.aceita_cachorro ?? false,
-          aceita_gato: voluntario.aceita_gato ?? false,
-          porte_maximo: voluntario.porte_maximo || "medio",
-        },
+        voluntario: formatVoluntarioResponse(voluntario),
       };
     } catch (err) {
       console.error("Erro ao buscar voluntário logado:", err);
@@ -170,26 +179,65 @@ module.exports = createCoreController("api::voluntario.voluntario", ({ strapi })
         voluntario.id,
         {
           data: { nome, cidade, descricao, aceita_cachorro, aceita_gato, porte_maximo },
+          populate: { imagem_perfil: true },
         }
       );
 
       return {
-        voluntario: {
-          id: updatedVoluntario.id,
-          nome: updatedVoluntario.nome || "",
-          email: updatedVoluntario.email || "",
-          cidade: updatedVoluntario.cidade || "",
-          descricao: updatedVoluntario.descricao || "",
-          aceita_cachorro: updatedVoluntario.aceita_cachorro ?? false,
-          aceita_gato: updatedVoluntario.aceita_gato ?? false,
-          porte_maximo: updatedVoluntario.porte_maximo || "medio",
-        },
+        voluntario: formatVoluntarioResponse(updatedVoluntario),
       };
     } catch (err) {
       console.error("Erro ao atualizar voluntário:", err);
       return ctx.internalServerError(
         err.message || "Erro ao atualizar dados do voluntário."
       );
+    }
+  },
+
+  async uploadProfileImage(ctx) {
+    try {
+      const loggedUser = ctx.state.user;
+      if (!loggedUser) return ctx.unauthorized("Usuário não autenticado.");
+
+      const voluntarios = await strapi.entityService.findMany("api::voluntario.voluntario", {
+        filters: { users_permissions_user: { id: loggedUser.id } },
+        populate: { imagem_perfil: true },
+      }) as any[];
+
+      const voluntario = Array.isArray(voluntarios) ? voluntarios[0] : voluntarios;
+
+      if (!voluntario) return ctx.notFound("Voluntário não encontrado.");
+
+      const { files } = ctx.request;
+      if (!files || !files.imagem) return ctx.badRequest("Nenhuma imagem foi enviada.");
+
+      const uploadedFiles = await strapi
+        .plugin("upload")
+        .service("upload")
+        .upload({
+          data: {},
+          files: files.imagem,
+        });
+
+      const uploadedFile = uploadedFiles?.[0];
+      if (!uploadedFile) return ctx.internalServerError("Falha ao fazer upload da imagem.");
+
+      const updatedVoluntario = await strapi.entityService.update(
+        "api::voluntario.voluntario",
+        voluntario.id,
+        {
+          data: { imagem_perfil: uploadedFile.id },
+          populate: { imagem_perfil: true },
+        }
+      ) as any;
+
+      return {
+        message: "Imagem de perfil atualizada com sucesso.",
+        imagem_perfil: formatImagemPerfil(updatedVoluntario.imagem_perfil),
+      };
+    } catch (err) {
+      console.error("Erro ao fazer upload da imagem de perfil:", err);
+      return ctx.internalServerError(err.message || "Erro ao atualizar imagem de perfil.");
     }
   },
 }));

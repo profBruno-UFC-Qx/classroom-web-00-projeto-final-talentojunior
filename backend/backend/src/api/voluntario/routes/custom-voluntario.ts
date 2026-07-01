@@ -9,11 +9,17 @@ export default {
         },
       },
       {
+        method: "POST",
+        path: "/voluntarios/me/upload-profile-image",
+        handler: "voluntario.uploadProfileImage",
+        config: { auth: {} },
+      },
+      {
         method: "GET",
         path: "/voluntarios/me",
         handler: "voluntario.me",
         config: {
-          policies: [],
+          auth: {},
         },
       },
       {
@@ -21,7 +27,7 @@ export default {
         path: "/voluntarios/me",
         handler: "voluntario.updateMe",
         config: {
-          policies: [],
+          auth: {},
         },
       },
     ],

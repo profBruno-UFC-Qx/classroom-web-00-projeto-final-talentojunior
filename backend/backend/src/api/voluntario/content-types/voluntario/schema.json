@@ -57,6 +57,16 @@
         "grande",
         "gigante"
       ]
+    },
+    "imagem_perfil": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
     }
   }
 }
