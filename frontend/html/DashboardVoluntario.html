@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Dashboard - Voluntário</title>
+
+    <!-- Links css -->
+    <link rel="stylesheet" href="../styles/global.css" />
+    <link rel="stylesheet" href="../styles/novaacolhida.css" />
+    <link rel="stylesheet" href="../styles/dashboardvoluntario.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css" />
+</head>
+
+<body class="dashboard-voluntario">
+
+    <!-- Menu Lateral -->
+    <aside class="sidebar">
+        <div class="sidebar-brand">
+            <a class="logo-link" href="../index.html"><h1>Adote Lar</h1></a>
+            <p>Portal do Voluntário</p>
+        </div>
+
+        <nav class="sidebar-nav">
+            <a class="nav-link active" href="#">
+                <i class="bi bi-speedometer2"></i>
+                <span>Dashboard</span>
+            </a>
+            <a class="nav-link" href="SolicitacoesVoluntario.html">
+                <i class="bi bi-heart-pulse"></i>
+                <span>Meus Acolhidos</span>
+            </a>
+            <a class="nav-link" href="OportunidadesVoluntario.html">
+                <i class="bi bi-hand-thumbs-up"></i>
+                <span>Oportunidades</span>
+            </a>
+            <a class="nav-link" href="ConfiguracoesVoluntario.html">
+                <i class="bi bi-gear"></i>
+                <span>Configurações</span>
+            </a>
+        </nav>
+
+        <div class="sidebar-footer">
+            <button class="btn-nova-acolhida" type="button">
+                <i class="bi bi-plus-lg"></i>
+                Nova Acolhida
+            </button>
+
+            <div id="nova-acolhida-modal" class="acolhida-modal hidden">
+                <div class="acolhida-modal-overlay"></div>
+              
+                <div class="acolhida-modal-container">
+                  <div class="acolhida-modal-header">
+                    <h2>Nova Acolhida</h2>
+                    <button id="close-acolhida-modal">&times;</button>
+                  </div>
+              
+                  <div class="acolhida-modal-body">
+                    <p>Escolha um animal disponível para solicitar acolhida:</p>
+                    <div id="animais-disponiveis-list" class="acolhida-grid"></div>
+                  </div>
+                </div>
+              </div>
+
+            <div class="sidebar-logout">
+                <a class="nav-link logout" href="#">
+                    <i class="bi bi-box-arrow-right"></i>
+                    <span>Sair</span>
+                </a>
+            </div>
+        </div>
+    </aside>
+
+    <div class="sidebar-overlay" id="sidebar-overlay" aria-hidden="true"></div>
+
+    <!-- Nav -->
+    <main class="dashboard-main">
+        <header class="topbar">
+            <div class="topbar-left">
+                <button class="btn-menu" type="button" aria-label="Abrir menu" aria-expanded="false">
+                    <i class="bi bi-list"></i>
+                </button>
+
+                <a class="topbar-logo" href="../index.html">Adote Lar</a>
+            </div>
+
+            <div class="topbar-actions">
+                <div class="search-box">
+                    <input type="text" placeholder="Buscar acolhidos..." />
+                    <i class="bi bi-search"></i>
+                </div>
+
+                <div class="user-section">
+                    <button class="btn-notification" type="button" aria-label="Notificações">
+                        <i class="bi bi-bell"></i>
+                    </button>
+
+                    <div class="user-info">
+                        <p>Usuário</p>
+                        <p>Voluntário Senior</p>
+                    </div>
+
+                    <img class="user-avatar"
+                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuCpko0SVkSxjcoDdOgj7KEAl4032oLN0MaWcXqbaomirLDFifhwzpNHXGdQLeKfcKRab1aj9tE-Wm51LcZkeT2Nx7qoLi3b2KhaSX4DHQKqdE-aFDd6pOZd8Itfj2X-q3QXkXQZEcVkRFR0kajE9gdeeOdPs_nTaVeGiovPfcqZ2bQaTGpWRvTtIupMyhVZeYnAlgGmy3tQc_UHalAxqeL9GurGlg6bJekxV8o4FvVdpUgkGb8TqGwbtEzbLTV0gEj8dKfQtmlL4Dbm"
+                        alt="Foto de perfil do voluntário" />
+                </div>
+            </div>
+        </header>
+
+        <!-- Dashboard  -->
+        <div class="dashboard-content">
+            <section class="welcome-section">
+                <h2>Olá, usuário 👋</h2>
+                <p>Veja o resumo das suas atividades e o impacto que você está gerando.</p>
+            </section>
+
+            <section class="metrics-grid">
+                <div class="metric-card">
+                    <div class="metric-header">
+                        <div class="metric-icon primary">
+                            <i class="bi bi-list-ul"></i>
+                        </div>
+                        <span class="metric-hint">+2 esta semana</span>
+                    </div>
+                    <p class="metric-label">Total de Solicitações</p>
+                    <p class="metric-value">8</p>
+                </div>
+
+                <div class="metric-card">
+                    <div class="metric-header">
+                        <div class="metric-icon orange">
+                            <i class="bi bi-clock-history"></i>
+                        </div>
+                        <span class="metric-badge orange">Atenção</span>
+                    </div>
+                    <p class="metric-label">Solicitações Pendentes</p>
+                    <p class="metric-value orange">2</p>
+                </div>
+
+                <div class="metric-card">
+                    <div class="metric-header">
+                        <div class="metric-icon green">
+                            <i class="bi bi-house-heart"></i>
+                        </div>
+                        <span class="metric-badge green">Ativo</span>
+                    </div>
+                    <p class="metric-label">Animais Sob Cuidado</p>
+                    <p class="metric-value green">1</p>
+                </div>
+
+                <div class="metric-card">
+                    <div class="metric-header">
+                        <div class="metric-icon neutral">
+                            <i class="bi bi-check-circle"></i>
+                        </div>
+                        <span class="metric-hint">Histórico</span>
+                    </div>
+                    <p class="metric-label">Solicitações Finalizadas</p>
+                    <p class="metric-value">5</p>
+                </div>
+            </section>
+
+            <div class="content-grid">
+                    <section>
+                    <div class="section-header">
+                        <h3>Animais Sob Seus Cuidados</h3>
+                        <a href="SolicitacoesVoluntario.html">Ver todos</a>
+                    </div>
+
+                    <div id="animals-under-care">
+                        <p class="empty-inline">Carregando acolhidos...</p>
+                    </div>
+                </section>
+
+                <section>
+                    <div class="section-header">
+                        <h3>Últimas Solicitações</h3>
+                        <button class="btn-filter" type="button">
+                            <i class="bi bi-funnel"></i>
+                            Filtrar
+                        </button>
+                    </div>
+
+                    <div class="requests-table-wrapper">
+                        <div class="requests-table-scroll">
+                            <table class="requests-table">
+                                <thead>
+                                    <tr>
+                                        <th>Animal</th>
+                                        <th>ONG</th>
+                                        <th>Data</th>
+                                        <th>Status</th>
+                                        <th>Ação</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="requests-table-body">
+                                    <tr>
+                                        <td colspan="5">Carregando solicitações...</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <div class="load-more-wrapper">
+                            <button class="btn-load-more" type="button">
+                                Carregar mais solicitações
+                                <i class="bi bi-chevron-down"></i>
+                            </button>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+            <!-- Impacto -->
+            <section class="impact-section">
+                <div class="impact-content">
+                    <span class="impact-tag">Seu Impacto</span>
+                    <h3 id="impact-title">Carregando seu impacto...</h3>
+                    <p>
+                        Graças ao seu compromisso como micro-voluntário, o tempo médio de
+                        espera para adoção na ONG Vida Animal reduziu em 15% este mês.
+                    </p>
+                </div>
+
+                <div class="impact-actions">
+                    <button class="impact-btn tilt-left" type="button" aria-label="Compartilhar">
+                        <i class="bi bi-share"></i>
+                    </button>
+                    <button class="impact-btn tilt-right" type="button" aria-label="Conquistas">
+                        <i class="bi bi-trophy"></i>
+                    </button>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <script type="module" src="../dist/scripts/dashboardVoluntarioScript.js"></script>
+    <script type="module" src="../dist/scripts/novaAcolhida.js"></script>
+</body>
+
+</html>

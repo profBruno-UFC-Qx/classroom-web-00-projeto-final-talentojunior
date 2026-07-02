@@ -1,0 +1,39 @@
+{
+  "kind": "collectionType",
+  "collectionName": "solicitacaos",
+  "info": {
+    "singularName": "solicitacao",
+    "pluralName": "solicitacaos",
+    "displayName": "solicitacao"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "finalizada": {
+      "type": "boolean"
+    },
+    "id_solicitacao": {
+      "type": "uid"
+    },
+    "animal": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::animal.animal",
+      "inversedBy": "solicitacao"
+    },
+    "aprovada": {
+      "type": "boolean"
+    },
+    "voluntario": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::voluntario.voluntario"
+    },
+    "acolhimento_finalizado": {
+      "type": "boolean",
+      "default": false
+    }
+  }
+}

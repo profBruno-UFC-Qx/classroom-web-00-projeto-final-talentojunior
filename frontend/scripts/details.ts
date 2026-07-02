@@ -1,37 +1,60 @@
+const API_URL_DETAILS = "http://localhost:1337";
+
 interface Animal {
   id: number;
-  name: string;
-  species: string;
-  breed: string;
-  gender: string;
-  age: string;
-  ageDetail: string;
-  size: string;
-  status: string;
-  statusType: "available" | "urgent";
-  location: string;
-  images: string[];
-  description: string;
-  specialNeeds: string | null;
-  vaccinated: boolean;
-  neutered: boolean;
-  dewormed: boolean;
-  goodWithKids: boolean;
-  goodWithDogs: boolean;
-  goodWithCats: boolean;
-  tags: string[];
-  ong: {
-    name: string;
-    registeredAt: string;
-    avatar: string;
+  nome: string;
+  especie: string;
+  idade: number;
+  porte: string;
+  localizacao: string;
+  sobre: string;
+  disponivel: boolean;
+  status_do_animal: string;
+
+  caracteristicas_do_animal: string[];
+  caracteristicas_gerais: string[];
+  necessidades_especiais: string[];
+
+  imagem_capa?: {
+    url: string;
+  };
+
+  imagens?: {
+    url: string;
+  }[];
+
+  ong?: {
+    nome: string;
+    imagem_perfil?: {
+      url: string;
+    };
+    createdAt?: string;
   };
 }
 
+async function loadAnimal(id: number): Promise<Animal> {
+  const response = await fetch(
+    `${API_URL_DETAILS}/api/animals/disponiveis/${id}`,
+  );
+
+  if (!response.ok) {
+    throw new Error("Animal não encontrado.");
+  }
+
+  const data = await response.json();
+
+  return data.animal;
+}
 async function loadAnimals(): Promise<Animal[]> {
-  const res = await fetch("data/animals.json");
-  if (!res.ok) throw new Error("Não foi possível carregar os animais.");
-  const data = await res.json();
-  return data;
+  const response = await fetch(`${API_URL_DETAILS}/api/animals/disponiveis`);
+
+  if (!response.ok) {
+    throw new Error();
+  }
+
+  const data = await response.json();
+
+  return data.animals;
 }
 
 function getIdFromUrl(): number | null {
@@ -53,23 +76,40 @@ function setMainImage(src: string, alt: string) {
 }
 
 function buildGallery(animal: Animal) {
-  const thumbsContainer = document.getElementById("gallery-thumbs")!;
-  const maxThumbs = 4;
-  const showImages = animal.images.slice(0, maxThumbs);
-  const extra = animal.images.length - maxThumbs;
+  const thumbsContainer = document.getElementById(
+    "gallery-thumbs",
+  ) as HTMLElement;
 
-  showImages.forEach((src, i) => {
+  thumbsContainer.innerHTML = "";
+
+  if (!animal.imagens || animal.imagens.length === 0) {
+    return;
+  }
+
+  const maxThumbs = 4;
+  const showImages = animal.imagens.slice(0, maxThumbs);
+  const extra = animal.imagens.length - maxThumbs;
+
+  showImages.forEach((imagem, index) => {
     const img = document.createElement("img");
-    img.src = src;
-    img.alt = `${animal.name} - foto ${i + 1}`;
-    img.className = "gallery-thumb" + (i === 0 ? " active" : "");
+
+    img.src = `${API_URL_DETAILS}${imagem.url}`;
+    img.alt = `${animal.nome} - Foto ${index + 1}`;
+    img.className = `gallery-thumb${index === 0 ? " active" : ""}`;
+
     img.addEventListener("click", () => {
-      setMainImage(src, img.alt);
+      setMainImage(
+        `${API_URL_DETAILS}${imagem.url}`,
+        `${animal.nome} - Foto ${index + 1}`,
+      );
+
       thumbsContainer
         .querySelectorAll(".gallery-thumb")
-        .forEach((t) => t.classList.remove("active"));
+        .forEach((thumb) => thumb.classList.remove("active"));
+
       img.classList.add("active");
     });
+
     thumbsContainer.appendChild(img);
   });
 
@@ -82,148 +122,258 @@ function buildGallery(animal: Animal) {
 }
 
 function buildStatusBadge(animal: Animal) {
-  const badge = document.getElementById("status-badge")!;
-  badge.textContent = animal.status;
-  badge.className = `status-badge ${animal.statusType}`;
+  const badge = document.getElementById("status-badge") as HTMLElement;
+
+  badge.textContent = animal.status_do_animal;
+
+  badge.className = "status-badge";
+
+  switch (animal.status_do_animal.toLowerCase()) {
+    case "disponível":
+      badge.classList.add("available");
+      break;
+
+    case "reservado":
+      badge.classList.add("reserved");
+      break;
+
+    case "adotado":
+      badge.classList.add("adopted");
+      break;
+
+    case "em tratamento":
+      badge.classList.add("treatment");
+      break;
+
+    default:
+      badge.classList.add("default");
+      break;
+  }
 }
 
 function buildTags(animal: Animal) {
-  const container = document.getElementById("animal-tags")!;
-  animal.tags.forEach((tag) => {
+  const container = document.getElementById("animal-tags") as HTMLElement;
+
+  container.innerHTML = "";
+
+  if (
+    !animal.caracteristicas_do_animal ||
+    animal.caracteristicas_do_animal.length === 0
+  ) {
+    return;
+  }
+
+  animal.caracteristicas_do_animal.forEach((tag) => {
     const span = document.createElement("span");
-    span.className =
-      "animal-tag" + (tag.toLowerCase() === "urgente" ? " urgent" : "");
+    span.className = "animal-tag";
     span.textContent = tag;
+
     container.appendChild(span);
   });
 }
 
 function buildHealthList(animal: Animal) {
-  const container = document.getElementById("health-list")!;
-  const items = [
-    { label: "Vacinado", value: animal.vaccinated, icon: "bi-shield-check" },
-    { label: "Castrado", value: animal.neutered, icon: "bi-scissors" },
-    { label: "Vermifugado", value: animal.dewormed, icon: "bi-capsule" },
-  ];
-  items.forEach(({ label, value, icon }) => {
-    const chip = document.createElement("div");
-    chip.className = `health-chip ${value ? "yes" : "no"}`;
-    chip.innerHTML = `<i class="bi ${icon}"></i> ${label}`;
-    container.appendChild(chip);
-  });
-}
+  const container = document.getElementById("health-list") as HTMLElement;
 
-function buildCompatList(animal: Animal) {
-  const container = document.getElementById("compat-list")!;
+  container.innerHTML = "";
+
+  const caracteristicas = animal.caracteristicas_do_animal ?? [];
+
   const items = [
-    { label: "Com crianças", value: animal.goodWithKids, icon: "bi-people" },
-    { label: "Com cães", value: animal.goodWithDogs, icon: "bi-egg" },
-    { label: "Com gatos", value: animal.goodWithCats, icon: "bi-moon-stars" },
+    {
+      label: "Vacinado",
+      value: caracteristicas.includes("Vacinado"),
+      icon: "bi-shield-check",
+    },
+    {
+      label: "Castrado",
+      value: caracteristicas.includes("Castrado"),
+      icon: "bi-scissors",
+    },
+    {
+      label: "Vermifugado",
+      value: caracteristicas.includes("Vermifugado"),
+      icon: "bi-capsule",
+    },
   ];
+
   items.forEach(({ label, value, icon }) => {
     const chip = document.createElement("div");
-    chip.className = `compat-chip ${value ? "yes" : "no"}`;
-    chip.innerHTML = `<i class="bi ${icon}"></i> ${value ? "Convive bem" : "Não recomendado"} ${label}`;
+
+    chip.className = `health-chip ${value ? "yes" : "no"}`;
+
+    chip.innerHTML = `
+      <i class="bi ${icon}"></i>
+      ${label}
+    `;
+
     container.appendChild(chip);
   });
 }
 
 function buildOngCard(animal: Animal) {
-  const container = document.getElementById("ong-card")!;
+  const container = document.getElementById("ong-card") as HTMLElement;
+
+  if (!animal.ong) {
+    container.innerHTML = "";
+    return;
+  }
+
+  const avatar = animal.ong.imagem_perfil?.url
+    ? `${API_URL_DETAILS}${animal.ong.imagem_perfil.url}`
+    : "assets/logo-example.png";
+
+  const dataRegistro = animal.ong.createdAt
+    ? new Date(animal.ong.createdAt).toLocaleDateString("pt-BR")
+    : "-";
+
   container.innerHTML = `
-    <img class="ong-avatar" src="${animal.ong.avatar}" alt="${animal.ong.name}" />
+    <img
+      class="ong-avatar"
+      src="${avatar}"
+      alt="${animal.ong.nome}"
+    />
+
     <div class="ong-info">
-      <span class="ong-name">${animal.ong.name}</span>
-      <span class="ong-registered">Registrada em: ${animal.ong.registeredAt}</span>
+      <span class="ong-name">${animal.ong.nome}</span>
+      <span class="ong-registered">
+        Registrada em: ${dataRegistro}
+      </span>
     </div>
-    <a href="#" class="ong-profile-link">Ver Perfil</a>
+
+    <a href="#" class="ong-profile-link">
+      Ver Perfil
+    </a>
   `;
 }
 
 function buildOtherAnimals(animals: Animal[], currentId: number) {
-  const grid = document.getElementById("other-animals-grid")!;
-  const others = animals.filter((a) => a.id !== currentId).slice(0, 3);
+  const grid = document.getElementById("other-animals-grid") as HTMLElement;
 
-  others.forEach((a) => {
+  grid.innerHTML = "";
+
+  const others = animals
+    .filter((animal) => animal.id !== currentId)
+    .slice(0, 3);
+
+  others.forEach((animal) => {
     const card = document.createElement("a");
-    card.href = `details.html?id=${a.id}`;
+
+    card.href = `details.html?id=${animal.id}`;
     card.className = "other-card";
+
+    const imagem = animal.imagem_capa?.url
+      ? `${API_URL_DETAILS}${animal.imagem_capa.url}`
+      : "assets/no-image.png";
+
     card.innerHTML = `
       <div class="other-card-img-wrap">
-        <img class="other-card-img" src="${a.images[0]}" alt="${a.name}" />
-        <span class="other-card-tag ${a.statusType}">${a.status}</span>
-        <div class="other-card-fav"><i class="bi bi-heart"></i></div>
+        <img
+          class="other-card-img"
+          src="${imagem}"
+          alt="${animal.nome}"
+        />
+
+        <span class="other-card-tag">
+          ${animal.status_do_animal}
+        </span>
       </div>
+
       <div class="other-card-body">
         <div class="other-card-name-row">
-          <span class="other-card-name">${a.name}</span>
+          <span class="other-card-name">
+            ${animal.nome}
+          </span>
         </div>
-        <p class="other-card-meta">${a.gender} • ${a.age} • ${a.species === "Cachorro" ? "Porte " + a.size.split(" ")[0] : a.species}</p>
+
+        <p class="other-card-meta">
+          ${animal.especie} • ${animal.idade} ano(s) • Porte ${animal.porte}
+        </p>
+
         <div class="other-card-footer">
-          <span class="other-card-location"><i class="bi bi-geo-alt"></i> ${a.location}</span>
-          <span class="other-card-cta">Saiba mais</span>
+          <span class="other-card-location">
+            <i class="bi bi-geo-alt"></i>
+            ${animal.localizacao}
+          </span>
+
+          <span class="other-card-cta">
+            Saiba mais
+          </span>
         </div>
       </div>
     `;
+
     grid.appendChild(card);
   });
 }
 
 function renderAnimal(animal: Animal, allAnimals: Animal[]) {
-  if (!animal.images[0]) return;
+  const imagemPrincipal = animal.imagem_capa?.url
+    ? `${API_URL_DETAILS}${animal.imagem_capa.url}`
+    : "assets/no-image.png";
 
-  // Breadcrumb
-  document.getElementById("breadcrumb-name")!.textContent = animal.name;
-  document.title = `Adote Lar — ${animal.name}`;
+  document.getElementById("breadcrumb-name")!.textContent = animal.nome;
+  document.title = `Adote Lar — ${animal.nome}`;
 
-  // Gallery
   const mainImg = document.getElementById("main-image") as HTMLImageElement;
-  mainImg.src = animal.images[0];
-  mainImg.alt = `Foto de ${animal.name}`;
+  mainImg.src = imagemPrincipal;
+  mainImg.alt = animal.nome;
+
   buildGallery(animal);
+
   buildStatusBadge(animal);
 
-  // Name & meta
-  document.getElementById("animal-name")!.textContent = animal.name;
+  document.getElementById("animal-name")!.textContent = animal.nome;
+
   document.getElementById("animal-meta")!.innerHTML = `
-    ${animal.breed}
+    ${animal.especie}
     <span class="dot"></span>
-    ${animal.gender}
+    ${animal.idade} ano(s)
     <span class="dot"></span>
-    ${animal.age}
+    Porte ${animal.porte}
   `;
 
-  // Tags
   buildTags(animal);
 
-  // Info grid
-  document.getElementById("info-size")!.textContent = animal.size;
-  document.getElementById("info-age")!.textContent = animal.ageDetail;
-  document.getElementById("info-location")!.textContent = animal.location;
-  document.getElementById("info-species")!.textContent = animal.species;
+  document.getElementById("info-size")!.textContent = animal.porte;
 
-  // About
-  document.getElementById("about-title")!.textContent =
-    `Sobre ${animal.name.startsWith("a") || animal.name.startsWith("e") || animal.name.startsWith("i") ? "a" : "o"} ${animal.name}`;
+  document.getElementById("info-age")!.textContent = `${animal.idade} ano(s)`;
+
+  document.getElementById("info-location")!.textContent = animal.localizacao;
+
+  document.getElementById("info-species")!.textContent = animal.especie;
+
+  // Sobre
+  document.getElementById("about-title")!.textContent = `Sobre ${animal.nome}`;
+
   document.getElementById("animal-description")!.textContent =
-    animal.description;
+    animal.sobre || "Nenhuma descrição cadastrada.";
 
-  // Special Needs
-  if (animal.specialNeeds) {
-    const snBox = document.getElementById("special-needs")!;
-    snBox.style.display = "flex";
-    document.getElementById("special-needs-text")!.textContent =
-      animal.specialNeeds;
+  // Necessidades especiais
+  const specialNeedsBox = document.getElementById(
+    "special-needs",
+  ) as HTMLElement;
+  const specialNeedsText = document.getElementById(
+    "special-needs-text",
+  ) as HTMLElement;
+
+  if (
+    animal.necessidades_especiais &&
+    animal.necessidades_especiais.length > 0
+  ) {
+    specialNeedsBox.style.display = "flex";
+    specialNeedsText.textContent = animal.necessidades_especiais.join(", ");
+  } else {
+    specialNeedsBox.style.display = "none";
   }
 
-  // Health & Compat
+  // Saúde
   buildHealthList(animal);
-  buildCompatList(animal);
 
   // ONG
   buildOngCard(animal);
 
-  // Others
+  // Outros animais
   buildOtherAnimals(allAnimals, animal.id);
 }
 
