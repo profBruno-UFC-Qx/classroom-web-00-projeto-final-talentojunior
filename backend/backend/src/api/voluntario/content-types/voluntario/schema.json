@@ -67,6 +67,18 @@
         "videos",
         "audios"
       ]
+    },
+    "possui_animais": {
+      "type": "boolean"
+    },
+    "notificacoes_email": {
+      "type": "boolean"
+    },
+    "notificacoes_push": {
+      "type": "boolean"
+    },
+    "notificacoes_whatsapp": {
+      "type": "boolean"
     }
   }
 }

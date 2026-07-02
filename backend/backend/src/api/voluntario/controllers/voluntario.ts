@@ -26,6 +26,10 @@ function formatVoluntarioResponse(voluntario: any) {
     aceita_gato: voluntario.aceita_gato ?? false,
     porte_maximo: voluntario.porte_maximo || "medio",
     imagem_perfil: formatImagemPerfil(voluntario.imagem_perfil),
+    possui_animais: voluntario.possui_animais ?? false,
+    notificacoes_email: voluntario.notificacoes_email ?? false,
+    notificacoes_push: voluntario.notificacoes_push ?? false,
+    notificacoes_whatsapp: voluntario.notificacoes_whatsapp ?? false,
   };
 }
 
@@ -172,15 +176,36 @@ module.exports = createCoreController("api::voluntario.voluntario", ({ strapi })
         return ctx.notFound("Voluntário não encontrado para este usuário.");
       }
 
-      const { nome, cidade, descricao, aceita_cachorro, aceita_gato, porte_maximo } = ctx.request.body;
-
+      const {
+        nome,
+        cidade,
+        descricao,
+        aceita_cachorro,
+        aceita_gato,
+        porte_maximo,
+        possui_animais,
+        notificacoes_email,
+        notificacoes_push,
+        notificacoes_whatsapp,
+      } = ctx.request.body;
       const updatedVoluntario = await strapi.entityService.update(
         "api::voluntario.voluntario",
         voluntario.id,
         {
-          data: { nome, cidade, descricao, aceita_cachorro, aceita_gato, porte_maximo },
+          data: {
+            nome,
+            cidade,
+            descricao,
+            aceita_cachorro,
+            aceita_gato,
+            porte_maximo,
+            possui_animais,
+            notificacoes_email,
+            notificacoes_push,
+            notificacoes_whatsapp,
+          },
           populate: { imagem_perfil: true },
-        }
+        },
       );
 
       return {

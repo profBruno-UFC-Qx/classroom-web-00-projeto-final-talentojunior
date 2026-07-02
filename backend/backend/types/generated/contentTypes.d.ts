@@ -775,10 +775,14 @@ export interface ApiVoluntarioVoluntario extends Struct.CollectionTypeSchema {
     > &
       Schema.Attribute.Private;
     nome: Schema.Attribute.String & Schema.Attribute.Required;
+    notificacoes_email: Schema.Attribute.Boolean;
+    notificacoes_push: Schema.Attribute.Boolean;
+    notificacoes_whatsapp: Schema.Attribute.Boolean;
     porte_maximo: Schema.Attribute.Enumeration<
       ['pequeno', 'medio', 'grande', 'gigante']
     > &
       Schema.Attribute.Required;
+    possui_animais: Schema.Attribute.Boolean;
     publishedAt: Schema.Attribute.DateTime;
     solicitacoes_voluntario: Schema.Attribute.Relation<
       'manyToMany',

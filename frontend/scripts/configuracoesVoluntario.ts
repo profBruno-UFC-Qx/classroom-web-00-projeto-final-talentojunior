@@ -18,6 +18,10 @@ type VoluntarioData = {
   aceita_gato: boolean;
   porte_maximo: string;
   imagem_perfil: ImagemPerfil | null;
+  possui_animais: boolean;
+  notificacoes_email: boolean;
+  notificacoes_push: boolean;
+  notificacoes_whatsapp: boolean;
 };
 
 function porteParaEnum(texto: string): string {
@@ -61,6 +65,16 @@ document.addEventListener("DOMContentLoaded", () => {
   const speciesCards = document.querySelectorAll<HTMLLabelElement>(".species-card");
   const settingsForm = document.querySelector<HTMLFormElement>(".settings-form");
   const submitButton = document.querySelector<HTMLButtonElement>(".btn-submit");
+  
+  const possuiAnimais = document.querySelector(
+    ".toggle-label input",
+  ) as HTMLInputElement;
+
+  const notificacoes = document.querySelectorAll(".notification-item input");
+
+  const emailNotif = notificacoes[0] as HTMLInputElement;
+  const pushNotif = notificacoes[1] as HTMLInputElement;
+  const whatsappNotif = notificacoes[2] as HTMLInputElement;
 
   const imageModal = document.getElementById("voluntario-image-modal") as HTMLElement;
   const modalOverlay = imageModal.querySelector(".image-modal-backdrop") as HTMLElement;
@@ -73,6 +87,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const modalPreview = document.getElementById("modal-image-preview") as HTMLImageElement;
   const selectedImageName = document.getElementById("selected-image-name") as HTMLParagraphElement;
 
+  
   let selectedFile: File | null = null;
   let originalVoluntarioData: VoluntarioData | null = null;
 
@@ -88,7 +103,11 @@ document.addEventListener("DOMContentLoaded", () => {
     gatosCheckbox.checked = data.aceita_gato ?? false;
     caesCheckbox.closest(".species-card")?.classList.toggle("active", caesCheckbox.checked);
     gatosCheckbox.closest(".species-card")?.classList.toggle("active", gatosCheckbox.checked);
-
+    possuiAnimais.checked = data.possui_animais;
+    emailNotif.checked = data.notificacoes_email;
+    pushNotif.checked = data.notificacoes_push;
+    whatsappNotif.checked = data.notificacoes_whatsapp;
+    
     if (userSectionSpan) userSectionSpan.textContent = data.nome;
 
     const imageUrl = getImageUrl(data.imagem_perfil?.url);
@@ -252,6 +271,10 @@ document.addEventListener("DOMContentLoaded", () => {
           aceita_cachorro: caesCheckbox.checked,
           aceita_gato: gatosCheckbox.checked,
           porte_maximo: porteParaEnum(porteSelect.value),
+          possui_animais: possuiAnimais.checked,
+          notificacoes_email: emailNotif.checked,
+          notificacoes_push: pushNotif.checked,
+          notificacoes_whatsapp: whatsappNotif.checked,
         }),
       });
 
