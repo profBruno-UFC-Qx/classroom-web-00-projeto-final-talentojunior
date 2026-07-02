@@ -38,10 +38,6 @@ O viés de extensão e impacto social se dá por:
 - Abrigos;
 - Protetores independentes.
 
-## Administradores
-
-Responsáveis pelo gerenciamento completo da plataforma.
-
 
 ## :star2: Impacto Esperado
 
@@ -76,19 +72,6 @@ Pode:
 
 ---
 
-## Administrador
-
-Possui acesso total ao sistema.
-
-Pode:
-
-- gerenciar usuários;
-- gerenciar ONGs;
-- gerenciar voluntários;
-- remover conteúdos indevidos;
-- administrar todo o sistema.
-
----
 
 # 🚀 Funcionalidades
 
