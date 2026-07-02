@@ -1,52 +1,144 @@
+const API_URL_HOME = "http://localhost:1337";
+
 interface Animal {
   id: number;
-  name: string;
-  species: string;
-  location: string;
-  images: string[];
+  nome: string;
+  especie: string;
+  localizacao: string;
+  imagem_capa?: {
+    url: string;
+  };
+}
+
+interface AnimalsResponse {
+  animals: Animal[];
 }
 
 async function loadHomeAnimals(): Promise<Animal[]> {
-  const res = await fetch("data/animals.json");
-  if (!res.ok) throw new Error("Não foi possível carregar os animais.");
-  return res.json();
+  const response = await fetch(`${API_URL_HOME}/api/animals/disponiveis`);
+
+  if (!response.ok) {
+    throw new Error("Não foi possível carregar os animais.");
+  }
+
+  const data: AnimalsResponse = await response.json();
+
+  return data.animals;
 }
 
 function createAnimalCard(animal: Animal): HTMLAnchorElement {
   const card = document.createElement("a");
+
   card.className = "animal-card";
   card.href = `details.html?id=${animal.id}`;
+
+  const imagem = animal.imagem_capa?.url
+    ? `http://localhost:1337${animal.imagem_capa.url}`
+    : "assets/no-image.png";
+
   card.innerHTML = `
-    <img class="animal-image" src="${animal.images[0]}" alt="Foto de ${animal.name}, disponível para acolhimento." />
+    <img
+      class="animal-image"
+      src="${imagem}"
+      alt="${animal.nome}"
+    />
+
     <div class="animal-info">
-      <h3 class="animal-name">${animal.name}</h3>
-      <p class="animal-race">${animal.species}</p>
+      <h3 class="animal-name">${animal.nome}</h3>
+      <p class="animal-race">${animal.especie}</p>
     </div>
+
     <div class="animal-location">
       <i class="bi bi-geo-alt"></i>
-      <span>${animal.location}</span>
+      <span>${animal.localizacao}</span>
     </div>
   `;
+
   return card;
 }
 
 async function initAnimals() {
   const track = document.querySelector(".animals-track") as HTMLElement;
+
   if (!track) return;
 
   try {
     const animals = await loadHomeAnimals();
+
     track.innerHTML = "";
+
     animals.forEach((animal) => {
       track.appendChild(createAnimalCard(animal));
     });
+
+    initCarrouselAnimals();
   } catch (err) {
     console.error(err);
-    track.innerHTML = '<p class="error-message">Não foi possível carregar os animais.</p>';
+
+    track.innerHTML =
+      '<p class="error-message">Não foi possível carregar os animais.</p>';
   }
 }
 
 // Create a carrousel effect for the ONG cards
+
+interface Ong {
+  id: number;
+  nome: string;
+  imagem_perfil: {
+    url: string;
+  } | null;
+}
+async function loadOngs(): Promise<Ong[]> {
+  const response = await fetch(`${API_URL_HOME}/api/ongs`);
+
+  if (!response.ok) {
+    throw new Error("Erro ao carregar ONGs.");
+  }
+
+  const data = await response.json();
+
+  return data.ongs;
+}
+
+function createOngCard(ong: Ong): HTMLDivElement {
+  const card = document.createElement("div");
+
+  card.className = "ong-card";
+
+  const image = ong.imagem_perfil?.url
+    ? `${API_URL_HOME}${ong.imagem_perfil.url}`
+    : "assets/logo-example.png";
+
+  card.innerHTML = `
+      <img
+          class="ong-logo"
+          src="${image}"
+          alt="${ong.nome}">
+  `;
+
+  return card;
+}
+async function initOngs() {
+  const track = document.querySelector(".ongs-track") as HTMLDivElement;
+
+  if (!track) return;
+
+  try {
+    const ongs = await loadOngs();
+
+    track.innerHTML = "";
+
+    ongs.forEach((ong) => {
+      track.appendChild(createOngCard(ong));
+    });
+  } catch (err) {
+    console.error(err);
+
+    track.innerHTML = "<p>Não foi possível carregar as ONGs.</p>";
+  }
+}
+
 function initCarrouselOngs() {
   const list = document.querySelector(".ongs-list") as HTMLElement;
   const track = document.querySelector(".ongs-track") as HTMLElement;
@@ -148,5 +240,5 @@ function initCarrouselAnimals() {
   });
 }
 
-initCarrouselOngs();
+initOngs().then(initCarrouselOngs);
 initAnimals().then(initCarrouselAnimals);

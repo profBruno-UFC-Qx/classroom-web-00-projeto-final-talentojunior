@@ -1,0 +1,84 @@
+{
+  "kind": "collectionType",
+  "collectionName": "voluntarios",
+  "info": {
+    "singularName": "voluntario",
+    "pluralName": "voluntarios",
+    "displayName": "Voluntario"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "nome": {
+      "type": "string",
+      "required": true
+    },
+    "email": {
+      "type": "email",
+      "required": true
+    },
+    "cidade": {
+      "type": "string",
+      "required": true
+    },
+    "solicitacoes_voluntario": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::ong.ong",
+      "mappedBy": "solicitacoes"
+    },
+    "users_permissions_user": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "plugin::users-permissions.user"
+    },
+    "descricao": {
+      "type": "string",
+      "required": true
+    },
+    "aceita_gato": {
+      "type": "boolean",
+      "required": true,
+      "default": false
+    },
+    "aceita_cachorro": {
+      "type": "boolean",
+      "required": true,
+      "default": false
+    },
+    "porte_maximo": {
+      "type": "enumeration",
+      "required": true,
+      "enum": [
+        "pequeno",
+        "medio",
+        "grande",
+        "gigante"
+      ]
+    },
+    "imagem_perfil": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "possui_animais": {
+      "type": "boolean"
+    },
+    "notificacoes_email": {
+      "type": "boolean"
+    },
+    "notificacoes_push": {
+      "type": "boolean"
+    },
+    "notificacoes_whatsapp": {
+      "type": "boolean"
+    }
+  }
+}

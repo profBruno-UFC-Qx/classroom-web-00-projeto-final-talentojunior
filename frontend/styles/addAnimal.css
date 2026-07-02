@@ -1,0 +1,479 @@
+.animal-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 30px;
+}
+
+.animal-modal.hidden {
+    display: none;
+}
+
+.animal-modal-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, .55);
+    backdrop-filter: blur(6px);
+}
+
+.animal-modal-container {
+    position: relative;
+    z-index: 2;
+
+    width: min(100%, 980px);
+    max-height: 92vh;
+
+    overflow-y: auto;
+
+    background: #fff;
+    border-radius: 20px;
+
+    box-shadow: 0 20px 70px rgba(0, 0, 0, .25);
+
+    animation: modalAppear .25s ease;
+}
+
+@keyframes modalAppear {
+    from {
+        opacity: 0;
+        transform: translateY(20px) scale(.97);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.animal-modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 22px 30px;
+
+    border-bottom: 1px solid #ececec;
+}
+
+.animal-modal-header h2 {
+    font-size: 1.6rem;
+    color: #2d3436;
+}
+
+#close-animal-modal {
+    width: 42px;
+    height: 42px;
+
+    border: none;
+    border-radius: 50%;
+
+    cursor: pointer;
+
+    background: #f2f2f2;
+
+    font-size: 28px;
+
+    transition: .2s;
+}
+
+#close-animal-modal:hover {
+    background: #e2e2e2;
+}
+
+.animal-progress {
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 25px 35px;
+
+    gap: 10px;
+}
+
+.step {
+
+    flex: 1;
+
+    text-align: center;
+
+    position: relative;
+
+    font-weight: 700;
+
+    color: #b7b7b7;
+}
+
+.step::before {
+
+    content: "";
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    margin: auto auto 10px;
+
+    width: 44px;
+    height: 44px;
+
+    border-radius: 50%;
+
+    background: #ececec;
+
+    color: #777;
+
+    transition: .25s;
+}
+
+.step:nth-child(1)::before {
+    content: "1";
+}
+
+.step:nth-child(2)::before {
+    content: "2";
+}
+
+.step:nth-child(3)::before {
+    content: "3";
+}
+
+.step:nth-child(4)::before {
+    content: "4";
+}
+
+.step:nth-child(5)::before {
+    content: "5";
+}
+
+.step:nth-child(6)::before {
+    content: "6";
+}
+
+.step.active {
+
+    color: var(--primary);
+}
+
+.step.active::before {
+
+    background: var(--primary);
+    color: white;
+}
+
+.step span {
+    font-size: .82rem;
+    display: block;
+}
+
+#animal-form {
+
+    padding: 0 35px 35px;
+}
+
+.animal-step {
+
+    display: none;
+}
+
+.animal-step.active {
+
+    display: block;
+}
+
+.animal-step h3 {
+
+    margin-bottom: 25px;
+
+    color: #333;
+}
+
+.animal-step label {
+
+    display: block;
+
+    margin-top: 18px;
+    margin-bottom: 8px;
+
+    font-weight: 600;
+
+    color: #555;
+}
+
+.animal-step input[type=text],
+.animal-step input[type=number],
+.animal-step input[type=file],
+.animal-step textarea,
+.animal-step select {
+
+    width: 100%;
+
+    padding: 14px 16px;
+
+    border-radius: 10px;
+    border: 1px solid #D9D9D9;
+
+    font-size: .95rem;
+
+    transition: .2s;
+
+    background: white;
+}
+
+.animal-step textarea {
+
+    min-height: 130px;
+    resize: vertical;
+}
+
+.animal-step input:focus,
+.animal-step textarea:focus,
+.animal-step select:focus {
+
+    outline: none;
+
+    border-color: var(--primary);
+
+    box-shadow: 0 0 0 4px rgba(76, 175, 80, .15);
+}
+
+.animal-step input[type=checkbox] {
+
+    margin-right: 8px;
+}
+
+.animal-step label:has(input[type=checkbox]) {
+
+    display: flex;
+    align-items: center;
+
+    margin: 12px 0;
+
+    cursor: pointer;
+
+    font-weight: 500;
+}
+
+#preview-capa {
+
+    width: 220px;
+    height: 220px;
+
+    margin-top: 15px;
+
+    border-radius: 16px;
+
+    border: 2px dashed #d6d6d6;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    overflow: hidden;
+
+    background: #fafafa;
+}
+
+#preview-capa img {
+
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+#preview-galeria {
+
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+
+    gap: 15px;
+
+    margin-top: 18px;
+}
+
+#preview-galeria img {
+
+    width: 100%;
+    height: 120px;
+
+    border-radius: 12px;
+
+    object-fit: cover;
+
+    box-shadow: 0 5px 15px rgba(0, 0, 0, .08);
+}
+
+#animal-summary {
+
+    background: #f8f8f8;
+
+    border-radius: 14px;
+
+    padding: 20px;
+
+    margin-top: 20px;
+
+    border: 1px solid #ececec;
+}
+
+.animal-modal-footer {
+
+    margin-top: 40px;
+
+    padding-top: 25px;
+
+    border-top: 1px solid #ececec;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.animal-modal-footer>div {
+
+    display: flex;
+    gap: 12px;
+}
+
+.animal-modal-footer button {
+
+    padding: 13px 26px;
+
+    border-radius: 10px;
+
+    border: none;
+
+    cursor: pointer;
+
+    font-size: .95rem;
+    font-weight: 600;
+
+    transition: .25s;
+}
+
+#cancel-animal {
+
+    background: #ececec;
+    color: #444;
+}
+
+#cancel-animal:hover {
+
+    background: #dddddd;
+}
+#prev-step {
+
+    background: #f3f3f3;
+}
+
+#prev-step:hover {
+
+    background: #e6e6e6;
+}
+
+#next-step {
+
+    background: var(--primary);
+
+    color: white;
+}
+
+#next-step:hover {
+
+    background: #43a047;
+}
+
+#save-animal {
+
+    display: none;
+
+    background: var(--sucess);
+
+    color: white;
+}
+
+#save-animal:hover {
+
+    background: var(--sucess);
+}
+
+.animal-modal-container::-webkit-scrollbar {
+
+    width: 10px;
+}
+
+.animal-modal-container::-webkit-scrollbar-thumb {
+
+    background: #cccccc;
+
+    border-radius: 20px;
+}
+
+@media (max-width:900px) {
+
+    .animal-modal {
+
+        padding: 15px;
+    }
+
+    .animal-progress {
+
+        overflow-x: auto;
+
+        justify-content: flex-start;
+    }
+
+    .step {
+
+        min-width: 90px;
+    }
+
+    .animal-modal-footer {
+
+        flex-direction: column;
+        gap: 20px;
+        align-items: stretch;
+    }
+
+    .animal-modal-footer>div {
+
+        width: 100%;
+        justify-content: space-between;
+    }
+
+    .animal-modal-footer button {
+
+        width: 100%;
+    }
+
+}
+
+@media (max-width:600px) {
+
+    .animal-modal-header {
+
+        padding: 18px;
+    }
+
+    #animal-form {
+
+        padding: 20px;
+    }
+
+    .animal-progress {
+
+        padding: 20px;
+    }
+
+    #preview-capa {
+
+        width: 100%;
+        height: 240px;
+    }
+
+}

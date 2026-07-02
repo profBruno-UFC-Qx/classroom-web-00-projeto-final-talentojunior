@@ -9,6 +9,7 @@
 
     <!-- Links css -->
     <link rel="stylesheet" href="../styles/global.css" />
+    <link rel="stylesheet" href="../styles/novaacolhida.css" />
     <link rel="stylesheet" href="../styles/configuracoesVoluntario.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css" />
 </head>
@@ -64,7 +65,6 @@
                 <button class="btn-menu" type="button" aria-label="Abrir menu" aria-expanded="false">
                     <i class="bi bi-list"></i>
                 </button>
-
                 <a class="topbar-logo" href="../index.html">Adote Lar</a>
             </div>
 
@@ -75,9 +75,7 @@
 
                 <div class="user-section">
                     <span>Mariana Silva</span>
-                    <img class="user-avatar"
-                        src="../assets/usuario_perfil.png"
-                        alt="Foto de perfil do voluntário" />
+                    <img class="user-avatar" src="../assets/usuario_perfil.png" alt="Foto de perfil do voluntário" />
                 </div>
             </div>
         </header>
@@ -89,7 +87,6 @@
             </header>
 
             <form class="settings-form">
-                <!-- Formulário de perfil -->
                 <section class="settings-section">
                     <div class="section-title">
                         <i class="bi bi-person-circle"></i>
@@ -99,8 +96,7 @@
                     <div class="profile-grid">
                         <div class="avatar-upload">
                             <div class="avatar-wrapper">
-                                <img src="../assets/foto_perfil_configuracoes.png"
-                                    alt="Avatar do usuário" />
+                                <img src="../assets/foto_perfil_configuracoes.png" alt="Avatar do usuário" />
                                 <button class="btn-avatar-edit" type="button" aria-label="Alterar foto">
                                     <i class="bi bi-camera"></i>
                                 </button>
@@ -113,21 +109,18 @@
                                 <label for="nome">Nome Completo</label>
                                 <input class="form-input" id="nome" type="text" value="Mariana Silva de Souza" />
                             </div>
-
                             <div class="form-group">
                                 <label for="cidade">Cidade</label>
                                 <input class="form-input" id="cidade" type="text" value="São Paulo, SP" />
                             </div>
-
                             <div class="form-group">
                                 <label for="bio">Bio</label>
-                                <textarea class="form-textarea" id="bio" rows="3">Apaixonada por animais e dedicada a oferecer um lar temporário seguro e amoroso enquanto eles esperam por suas famílias definitivas.</textarea>
+                                <textarea class="form-textarea" id="bio" rows="3">Apaixonada por animais</textarea>
                             </div>
                         </div>
                     </div>
                 </section>
 
-                <!-- Preferências -->
                 <section class="settings-section">
                     <div class="section-title">
                         <i class="bi bi-heart"></i>
@@ -139,7 +132,7 @@
                             <label>Espécies preferidas</label>
                             <div class="species-options">
                                 <label class="species-card active">
-                                    <input type="checkbox" checked />
+                                    <input type="checkbox" />
                                     <i class="bi bi-emoji-smile"></i>
                                     <span>Cães</span>
                                 </label>
@@ -163,7 +156,7 @@
 
                         <label class="toggle-label">
                             <span class="toggle-switch">
-                                <input type="checkbox" checked />
+                                <input type="checkbox" />
                                 <span class="toggle-slider"></span>
                             </span>
                             <span class="toggle-text">Possuo outros animais em casa</span>
@@ -186,9 +179,8 @@
                                     <p>Novas oportunidades e mensagens</p>
                                 </div>
                             </div>
-                            <input class="form-checkbox" type="checkbox" checked />
+                            <input class="form-checkbox" type="checkbox"  />
                         </div>
-
                         <div class="notification-item">
                             <div class="notification-info">
                                 <i class="bi bi-bell"></i>
@@ -197,9 +189,8 @@
                                     <p>Alertas em tempo real no navegador</p>
                                 </div>
                             </div>
-                            <input class="form-checkbox" type="checkbox" checked />
+                            <input class="form-checkbox" type="checkbox"  />
                         </div>
-
                         <div class="notification-item">
                             <div class="notification-info">
                                 <i class="bi bi-whatsapp"></i>
@@ -212,7 +203,7 @@
                         </div>
                     </div>
                 </section>
-                
+
                 <section class="settings-section">
                     <div class="section-title">
                         <i class="bi bi-shield-check"></i>
@@ -227,7 +218,6 @@
                             </div>
                             <i class="bi bi-chevron-right security-chevron"></i>
                         </button>
-
                         <button class="security-btn" type="button">
                             <div class="security-btn-content">
                                 <i class="bi bi-laptop"></i>
@@ -246,7 +236,54 @@
         </div>
     </main>
 
-    <script src="../dist/scripts/configuracoesVoluntario.js"></script>
+    <!-- Modal Nova Acolhida-->
+    <div id="nova-acolhida-modal" class="acolhida-modal hidden">
+        <div class="acolhida-modal-overlay"></div>
+        <div class="acolhida-modal-container">
+            <div class="acolhida-modal-header">
+                <h2>Nova Acolhida</h2>
+                <button id="close-acolhida-modal" type="button">&times;</button>
+            </div>
+            <div class="acolhida-modal-body">
+                <p>Escolha um animal disponível para solicitar acolhida:</p>
+                <div id="animais-disponiveis-list" class="acolhida-grid"></div>
+            </div>
+        </div>
+    </div>
+
+    <div id="voluntario-image-modal" class="image-modal hidden">
+        <div class="image-modal-backdrop"></div>
+        <div class="image-modal-content" role="dialog" aria-modal="true">
+            <div class="image-modal-header">
+                <h3>Alterar foto de perfil</h3>
+                <button type="button" id="btn-close-image-modal" class="btn-close-image-modal">
+                    <i class="bi bi-x-lg"></i>
+                </button>
+            </div>
+            <div class="image-modal-body">
+                <div class="image-preview-wrapper">
+                    <img id="modal-image-preview" src="../assets/usuario_perfil.png" alt="Preview" />
+                </div>
+                <p class="image-modal-help">Selecione uma imagem PNG ou JPG com até 5MB.</p>
+                <input type="file" id="voluntario-image-input" accept="image/png, image/jpeg, image/jpg" hidden />
+                <button type="button" id="btn-select-image" class="btn-select-image">
+                    <i class="bi bi-image"></i>
+                    Escolher imagem
+                </button>
+                <p id="selected-image-name" class="selected-image-name">Nenhuma imagem selecionada</p>
+            </div>
+            <div class="image-modal-footer">
+                <button type="button" id="btn-cancel-image-modal" class="btn-cancel-image-modal">Cancelar</button>
+                <button type="button" id="btn-save-image-modal" class="btn-save-image-modal">
+                    <i class="bi bi-cloud-upload"></i>
+                    Salvar imagem
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script type="module" src="../dist/scripts/configuracoesVoluntario.js"></script>
+    <script type="module" src="../dist/scripts/novaAcolhida.js"></script>
 </body>
 
 </html>

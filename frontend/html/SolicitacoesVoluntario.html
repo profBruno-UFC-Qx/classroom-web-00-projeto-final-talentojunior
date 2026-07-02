@@ -9,6 +9,7 @@
 
     <!-- Links css -->
     <link rel="stylesheet" href="../styles/global.css" />
+    <link rel="stylesheet" href="../styles/novaacolhida.css" />
     <link rel="stylesheet" href="../styles/solicitacoesVoluntario.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css" />
 </head>
@@ -25,29 +26,27 @@
         </button>
 
         <div class="modal-header">
-            <img
-                src="https://lh3.googleusercontent.com/aida-public/AB6AXuDWiFVzH5vY23H0PZoiVl4JtIkT-4Jb5emVd7sQ9RM9zrHfZ_0dRhj2OWtnclTzvo1zTPVntj6jQ9mWkVDQD-B3XobQt1o01XnEfngtZY8It0aMsDc_5Z4ZPKicXm6rIalkba3MzJIw1-d6Mg5CBMPI-TFu6MGRR34d2Ui1dP2Mv4f9eTT5nwzxhtvlA_86CLvTPGxp0b0AbDparBStyyS7bJzAd6_WbCt7MEo3Ia3oFGZvqPQXFr8DZP-DRJdZ0oXGkUGdSM3Z_xXZ"
-                alt="Pipoca">
+            <img id="modal-animal-img" src="../assets/dog-1.png" alt="Animal">
 
             <div class="flex-1">
                 <div class="flex items-center justify-between mb-1">
-                    <h3>Pipoca</h3>
+                    <h3 id="modal-animal-name">Animal</h3>
 
-                    <span class="status-badge approved">
+                    <span class="status-badge approved" id="modal-status-badge">
                         <span class="status-dot"></span>
                         Sob Cuidado
                     </span>
                 </div>
 
                 <div class="animal-info">
-                    <p>
+                    <p id="modal-animal-species">
                         <i class="bi bi-heart"></i>
-                        Vira-lata
+                        -
                     </p>
 
-                    <p>
+                    <p id="modal-animal-ong">
                         <i class="bi bi-house"></i>
-                        ONG Vida Animal
+                        -
                     </p>
                 </div>
             </div>
@@ -190,6 +189,23 @@
                 Nova Acolhida
             </button>
 
+            <div id="nova-acolhida-modal" class="acolhida-modal hidden">
+                <div class="acolhida-modal-overlay"></div>
+              
+                <div class="acolhida-modal-container">
+                  <div class="acolhida-modal-header">
+                    <h2>Nova Acolhida</h2>
+                    <button id="close-acolhida-modal">&times;</button>
+                  </div>
+              
+                  <div class="acolhida-modal-body">
+                    <p>Escolha um animal disponível para solicitar acolhida:</p>
+                    <div id="animais-disponiveis-list" class="acolhida-grid"></div>
+                  </div>
+                </div>
+              </div>
+
+
             <a class="nav-link logout" href="#">
                 <i class="bi bi-box-arrow-right"></i>
                 <span>Sair</span>
@@ -241,116 +257,7 @@
             </div>
 
             <div class="requests-list">
-                <article class="request-card" data-status="aprovadas">
-                    <div class="request-card-header">
-                        <div class="request-card-image">
-                            <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuDWiFVzH5vY23H0PZoiVl4JtIkT-4Jb5emVd7sQ9RM9zrHfZ_0dRhj2OWtnclTzvo1zTPVntj6jQ9mWkVDQD-B3XobQt1o01XnEfngtZY8It0aMsDc_5Z4ZPKicXm6rIalkba3MzJIw1-d6Mg5CBMPI-TFu6MGRR34d2Ui1dP2Mv4f9eTT5nwzxhtvlA_86CLvTPGxp0b0AbDparBStyyS7bJzAd6_WbCt7MEo3Ia3oFGZvqPQXFr8DZP-DRJdZ0oXGkUGdSM3Z_xXZ"
-                                alt="Pipoca o cachorro" />
-                        </div>
-
-                        <div class="request-card-heading">
-                            <div class="request-animal">
-                                <h3>Pipoca</h3>
-                                <p>Cachorro</p>
-                            </div>
-
-                            <div class="request-status">
-                                <span class="status-badge approved">
-                                    <span class="status-dot"></span>
-                                    Aprovado
-                                </span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="request-card-details">
-                        <div>
-                            <p class="request-field-label">Instituição</p>
-                            <p class="request-field-value">NGO Vida Animal</p>
-                        </div>
-
-                        <div>
-                            <p class="request-field-label">Data do Pedido</p>
-                            <p class="request-field-value">15 de maio de 2025</p>
-                        </div>
-                    </div>
-
-                    <button class="btn-card primary" id="openStatusModal" type="button">Atualizar Status</button>
-                </article>
-
-                <article class="request-card" data-status="pendentes">
-                    <div class="request-card-header">
-                        <div class="request-card-image">
-                            <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuBjZyUcY1Ddw4c4TH83dC9jsHBkgknPvLUlZGF33qVuV3_gWmwiK-G9yZduV0fU-0jVc9XJyhfjiL5pDhdgLC1l0mD9pMtzcOYghdcvNpjw5aNupqqHV4JO3UAKvDpmuX4inH7ikzqAQtCNB2a_m38RZtoNv2gA9AxWMkPnga3qmdqWhbEglXOoWx18PzS20-jQ7CUaZ1xhBQ_OH7sbdMZi2E633x43W-JkM0gFwXA5R6mBx0VF55Ul8fGd1pSS4pcpnKR9MfwQZTmJ"
-                                alt="Thor o cachorro" />
-                        </div>
-
-                        <div class="request-card-heading">
-                            <div class="request-animal">
-                                <h3>Thor</h3>
-                                <p>Cachorro</p>
-                            </div>
-
-                            <div class="request-status">
-                                <span class="status-badge pending">
-                                    <span class="status-dot"></span>
-                                    Pendente
-                                </span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="request-card-details">
-                        <div>
-                            <p class="request-field-label">Instituição</p>
-                            <p class="request-field-value">NGO Abrigo Feliz</p>
-                        </div>
-
-                        <div>
-                            <p class="request-field-label">Data do Pedido</p>
-                            <p class="request-field-value">20 de maio de 2025</p>
-                        </div>
-                    </div>
-
-                    <button class="btn-card outline" type="button">Cancelar Solicitação</button>
-                </article>
-
-                <article class="request-card" data-status="finalizadas">
-                    <div class="request-card-header">
-                        <div class="request-card-image">
-                            <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuATci_e3pdLrlgHnoKtVXy7AUJIpvGfX3iDXrj6tcsPbSzj9QcX1at-diDCun29kptGhGZ9qMMtidO4fNAUJOJf2tn0A0zuOd4HFSqnfMWBvnBm6DUnQlzM4EMBwOwlt2mUMVv61bBY2uZCRZd7eTBDJ7wtyTe-lQ0rp5k2Ip_-0y-Y5PcAZLkCEfux7KhdAbWZiq0IElkeUq2kYa4LZu6wGTbvjfnb5r3LQtLfvxpNbUwTmLtBYjDTFMucok3G-5R6TNhxZNAFNBBD"
-                                alt="Luna a gata" />
-                        </div>
-
-                        <div class="request-card-heading">
-                            <div class="request-animal">
-                                <h3>Luna</h3>
-                                <p>Gato</p>
-                            </div>
-
-                            <div class="request-status">
-                                <span class="status-badge finished">
-                                    <span class="status-dot"></span>
-                                    Finalizado
-                                </span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="request-card-details">
-                        <div>
-                            <p class="request-field-label">Instituição</p>
-                            <p class="request-field-value">NGO Patas Livres</p>
-                        </div>
-
-                        <div>
-                            <p class="request-field-label">Data do Pedido</p>
-                            <p class="request-field-value">10 de maio de 2025</p>
-                        </div>
-                    </div>
-
-                    <button class="btn-card secondary" type="button">Ver Animal</button>
-                </article>
+                <p class="empty-inline">Carregando solicitações...</p>
             </div>
 
             <div class="empty-state" id="empty-state">
@@ -361,7 +268,8 @@
         </div>
     </main>
 
-    <script src="../dist/scripts/solicitacoesVoluntario.js"></script>
+    <script type="module" src="../dist/scripts/solicitacoesVoluntario.js"></script>
+    <script type="module" src="../dist/scripts/novaAcolhida.js"></script>
 </body>
 
 </html>
