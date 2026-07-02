@@ -26,88 +26,265 @@ O viés de extensão e impacto social se dá por:
 
 ## :eyes: Público-Alvo
 
-Protetores de Lar Temporário:
+## Voluntários
 
-- Pessoas interessadas em acolher animais temporariamente
-- Voluntários que desejam contribuir com a causa animal
-- Famílias que possuem espaço e disponibilidade para cuidados temporários
-- ONGs / Abrigos / Protetores Independentes:
-- Organizações de proteção animal
-- Abrigos com limitação de espaço físico
-- Protetores independentes que realizam resgates
+- Pessoas interessadas em oferecer lar temporário;
+- Famílias que desejam ajudar animais resgatados;
+- Pessoas que futuramente pretendem adotar.
 
-Comunidade em Geral:
+## ONGs e Abrigos
 
-- Pessoas interessadas em conhecer a causa
-- Possíveis adotantes futuros
-- Voluntários e apoiadores da proteção animal
+- ONGs de proteção animal;
+- Abrigos;
+- Protetores independentes.
+
+## Administradores
+
+Responsáveis pelo gerenciamento completo da plataforma.
+
 
 ## :star2: Impacto Esperado
 
 Impacto Social e Inclusão: O projeto busca ampliar a capacidade de resgate de animais, reduzir o abandono e incentivar a cultura de voluntariado. Ao facilitar o acesso a lares temporários, mais animais poderão ser retirados das ruas e encaminhados para adoção responsável.
 
-## :people_holding_hands: Papéis ou tipos de usuário da aplicação
+# :people_holding_hands: Tipos de UsuárioPapéis ou tipos de usuário da aplicação
 
-Protetor de Lar Temporário (Autenticado):
+## Voluntário
 
-- Acesso à área pública e ao Painel do Voluntário
-- Pode visualizar animais disponíveis
-- Pode solicitar acolhimento temporário
-- Pode gerenciar suas próprias solicitações
-- Pode atualizar o status do animal sob seus cuidados
-- Não pode cadastrar novos animais
+Pode:
 
-ONG / Abrigo / Protetor Independente (Autenticado):
+- realizar cadastro;
+- editar seu perfil;
+- visualizar animais disponíveis;
+- solicitar acolhimento;
+- acompanhar suas solicitações;
+- finalizar acolhimentos.
 
-- Acesso ao Painel da Organização
-- Possui permissão total (CRUD) sobre a entidade Animal
-- Pode visualizar solicitações de voluntários
-- Pode aprovar ou recusar solicitações
-- Pode acompanhar status dos animais
-Administrador (Autenticado):
+---
 
-- Acesso total ao sistema
-- Pode aprovar, suspender ou excluir cadastros
-- Pode remover animais ou solicitações indevidas
-- Pode gerenciar todo o sistema
+## ONG / Abrigo
 
-Tenha em mente que obrigatoriamente a aplicação deve possuir funcionalidades acessíveis a todos os tipos de usuário e outras funcionalidades restritas a certos tipos de usuários.
+Pode:
 
-## :triangular_flag_on_post: Principais funcionalidades da aplicação
+- realizar cadastro;
+- cadastrar animais;
+- editar animais;
+- remover animais;
+- visualizar solicitações;
+- aprovar ou recusar solicitações;
+- acompanhar acolhimentos.
 
-Para Protetores de Lar Temporário:
-- Visualização de Animais Disponíveis
-- Solicitação de Lar Temporário
-- Acompanhamento do status da solicitação
-- Atualização do status do animal sob cuidados
+---
 
-Para ONGs / Abrigos:
+## Administrador
 
-- Gestão de Animais (CRUD)
-- Visualização de Solicitações
-- Aprovação ou Recusa de Voluntários
-- Acompanhamento do status dos animais
+Possui acesso total ao sistema.
 
-Funcionalidades Gerais do Sistema:
-- Vitrine Pública com animais disponíveis
-- Cadastro de voluntários e organizações
-- Segurança e Controle de Acesso com JWT
-- Design Responsivo com Bootstrap
+Pode:
 
-## :spiral_calendar: Entidades ou tabelas do sistema
+- gerenciar usuários;
+- gerenciar ONGs;
+- gerenciar voluntários;
+- remover conteúdos indevidos;
+- administrar todo o sistema.
 
-User (Usuário):
-- Tabela padrão do Strapi. Armazena os dados de acesso, informações de perfil e o papel do usuário (Protetor, ONG ou Admin).
+---
 
-Animal:
-- Entidade que representa o animal disponível para lar temporário.
-- Atributos: Nome, Especie, Idade, Descricao, Status (Disponível, Em Lar Temporário, Adotado), NecessidadesEspeciais, Foto
-- Relacionamento: Pertence a 1 User (ONG/Abrigo responsável)
+# 🚀 Funcionalidades
 
-SolicitacaoLarTemporario:
-- Entidade dependente que conecta o voluntário ao animal.
-- Atributos: DataSolicitacao, Status (Pendente, Aprovado, Recusado, Finalizado)
-- Relacionamento: Pertence a 1 User (Protetor de Lar Temporário) e a 1 Animal
+## Área Pública
 
-Justificativa da restrição:
-- Não é possível criar uma solicitação sem que exista previamente um animal cadastrado.
+- Cadastro de voluntários
+- Cadastro de ONGs
+- Login utilizando JWT
+- Visualização dos animais disponíveis
+- Visualização das informações das ONGs
+
+---
+
+## Área do Voluntário
+
+- Editar perfil
+- Solicitar acolhimento
+- Visualizar solicitações
+- Atualizar informações pessoais
+- Configurar notificações
+- Finalizar acolhimentos
+
+---
+
+## Área da ONG
+
+- Cadastro de animais
+- Edição de animais
+- Exclusão de animais
+- Upload de imagem de capa
+- Upload de múltiplas imagens
+- Aprovar solicitações
+- Recusar solicitações
+- Gerenciar perfil da ONG
+
+---
+
+# 🔐 Controle de Acesso
+
+A autenticação é realizada utilizando **JWT**, através do plugin **Users & Permissions** do Strapi.
+
+Existem dois perfis principais:
+
+- ONG
+- Voluntário
+
+Cada perfil possui permissões específicas para acesso aos endpoints.
+
+---
+
+# 🗄️ Modelagem do Sistema
+
+## Usuário (Users & Permissions)
+
+Tabela nativa do Strapi utilizada para autenticação.
+
+### Responsabilidades
+
+- login
+- senha
+- e-mail
+- permissões
+- autenticação JWT
+
+Relacionamentos:
+
+- 1 ONG
+- 1 Voluntário
+
+---
+
+# 🐶 Animal
+
+Representa um animal disponível para acolhimento.
+
+## Atributos
+
+| Campo | Tipo |
+|--------|------|
+| nome | string |
+| animal_id | uid |
+| especie | string |
+| idade | integer |
+| porte | string |
+| disponivel | boolean |
+| status_do_animal | string |
+| sobre | text |
+| localizacao | string |
+| caracteristicas_do_animal | json |
+| caracteristicas_gerais | json |
+| necessidades_especiais | json |
+| data_de_entrada | date |
+| data_de_acolhimento | date |
+| data_solicitacao | datetime |
+| imagem_capa | media |
+| imagens | media[] |
+
+Relacionamentos:
+
+- pertence a uma ONG
+- possui uma Solicitação
+
+---
+
+# 🏢 ONG
+
+Representa uma organização responsável pelos animais.
+
+## Atributos
+
+| Campo | Tipo |
+|--------|------|
+| nome | string |
+| cnpj | string |
+| id_ong | uid |
+| nome_responsavel | string |
+| telefone | string |
+| endereco | text |
+| bio | text |
+| animais_que_trabalha | json |
+| requisitos_minimos | text |
+| preferencias_notificacoes | json |
+| imagem_perfil | media |
+
+Relacionamentos:
+
+- possui vários animais
+- possui um usuário
+- possui relacionamento com voluntários
+
+---
+
+# 🙋 Voluntário
+
+Representa um usuário que oferece lar temporário.
+
+## Atributos
+
+| Campo | Tipo |
+|--------|------|
+| nome | string |
+| email | email |
+| cidade | string |
+| descricao | string |
+| aceita_gato | boolean |
+| aceita_cachorro | boolean |
+| porte_maximo | enum |
+| possui_animais | boolean |
+| notificacoes_email | boolean |
+| notificacoes_push | boolean |
+| notificacoes_whatsapp | boolean |
+| imagem_perfil | media |
+
+Relacionamentos:
+
+- possui um usuário
+- relaciona-se com ONGs
+
+---
+
+# 📄 Solicitação
+
+Representa uma solicitação de acolhimento de um animal.
+
+## Atributos
+
+| Campo | Tipo |
+|--------|------|
+| id_solicitacao | uid |
+| aprovada | boolean |
+| finalizada | boolean |
+| acolhimento_finalizado | boolean |
+
+Relacionamentos:
+
+- um Animal
+- um Voluntário
+
+---
+
+# 🔗 Relacionamentos
+
+```
+User
+ ├── 1 ONG
+ └── 1 Voluntário
+
+ONG
+ ├── 1:N Animal
+ └── N:N Voluntário
+
+Animal
+ ├── N:1 ONG
+ └── 1:1 Solicitação
+
+Solicitação
+ ├── 1:1 Animal
+ └── 1:1 Voluntário
+```
