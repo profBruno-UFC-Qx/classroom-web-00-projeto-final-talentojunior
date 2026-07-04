@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Cadastro - Adote Lar</title>
+
+  <!-- Links css -->
+  <link rel="stylesheet" href="../styles/global.css">
+  <link rel="stylesheet" href="../styles/registerPageStyle.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet" />
+
+</head>
+
+<body>
+
+  <!-- Nav -->
+  <header class="header">
+    <nav class="navbar">
+      <div class="logo"><a href="../index.html">Adote Lar</div></a>
+
+    </nav>
+  </header>
+
+  <main class="main-content">
+    <div class="background-circle left"></div>
+    <div class="background-circle right"></div>
+
+    <!-- Conteúdo da esquerda -->
+    <section class="content-grid">
+      <div class="left-content">
+        <h1>Crie sua conta e faça a diferença</h1>
+
+        <p>
+          Junte-se à maior rede de micro-voluntariado animal. Seja como um
+          protetor temporário ou como uma organização, seu impacto começa
+          aqui.
+        </p>
+
+        <div class="image-container">
+          <img src="../assets/animal-register.png" alt="Cachorro feliz" />
+        </div>
+
+        <div class="verified">
+          <span class="bi bi-shield-check"></span>
+          <span>Plataforma segura e verificada</span>
+        </div>
+      </div>
+
+      <div class="form-container">
+        <div class="role-selector">
+          <button class="active" id="btn-protetor">
+            Protetor (Voluntário)
+          </button>
+
+          <button id="btn-ong">ONG / Abrigo</button>
+        </div>
+
+        <div class="instruction-box">
+          <p id="dynamic-instruction">
+            Cadastre-se para acolher animais temporariamente e ajudar a
+            desafogar os abrigos.
+          </p>
+        </div>
+
+        <!-- Formulário -->
+        <form class="register-form" id="register-form">
+          <div class="form-content">
+            <div id="cidade-field" style="display: none;">
+              <div class="input-group">
+                <label for="cidade">Cidade</label>
+                <div class="input-wrapper">
+                  <span class="bi bi-house"></span>
+                  <input type="text" id="cidade" placeholder="Sua cidade" />
+                </div>
+              </div>
+            </div>
+
+            <div class="input-group" id="cnpj-field" style="display: none;">
+                <label for="cnpj">CNPJ</label>
+                <div class="input-wrapper">
+                  <span class="bi bi-card-list"></span>
+                  <input id="cnpj" name="cpnj" type="text" placeholder="00.000.000/0000-00" />
+                </div>
+              </div>
+
+            <div class="input-group">
+              <label id="label-name" for="nome">Nome Completo</label>
+              <div class="input-wrapper">
+                <span class="bi bi-person"></span>
+                <input id="nome" name="nome" type="text" placeholder="Como devemos te chamar?" required />
+              </div>
+            </div>
+
+            <div class="input-group">
+              <label for="email">E-mail</label>
+
+              <div class="input-wrapper">
+                <span class="bi bi-envelope"></span>
+                <input id="email" name="email" type="email" placeholder="exemplo@email.com" required />
+              </div>
+            </div>
+
+            <div class="password-grid">
+              <div class="input-group">
+                <label for="senha">Senha</label>
+
+                <div class="input-wrapper">
+                  <span class="bi bi-lock"></span>
+                  <input id="senha" name="senha" type="password" placeholder="********" required />
+                </div>
+              </div>
+
+              <div class="input-group">
+                <label for="confirmacaoSenha">Confirmar Senha</label>
+
+                <div class="input-wrapper">
+                  <span class="bi bi-arrow-repeat"></span>
+                  <input id="confirmacaoSenha" name="confirmacaoSenha" type="password" placeholder="********"
+                    required />
+                </div>
+              </div>
+            </div>
+
+            <div class="terms">
+              <input id="termos" type="checkbox" required />
+              <p>
+                Eu concordo com os
+                <a href="#">Termos de Uso</a>
+                e a
+                <a href="#">Política de Privacidade</a>.
+              </p>
+            </div>
+
+            <button type="submit" class="submit-btn">
+              Criar Conta
+              <span class="bi bi-arrow-right"></span>
+            </button>
+
+            <p id="register-message" class="register-message"></p>
+          </div>
+        </form>
+
+        <div class="login-link">
+          <p>
+            Já tem uma conta?
+            <a href="../html/LoginPage.html">Faça login</a>
+          </p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footwr -->
+  <footer class="footer">
+    <div>
+      <h3>Adote Lar</h3>
+
+      <p>
+        © 2026 Adote Lar. Transformando vidas através do cuidado temporário.
+      </p>
+    </div>
+
+    <div class="links-form">
+      <h4>Links úteis</h4>
+
+      <a href="#">Privacidade</a>
+      <a href="#">Termos de Uso</a>
+      <a href="#">Contato</a>
+      <a href="#">Nossa Missão</a>
+    </div>
+
+    <div>
+      <h4>Redes Sociais</h4>
+
+      <div class="social-icons">
+        <a href="#"><span class="material-symbols-outlined"><i class="bi bi-facebook"></i></span></a>
+        <a href="#"><span class="material-symbols-outlined"><i class="bi bi-instagram"></i></span></a>
+        <a href="#"><span class="material-symbols-outlined"><i class="bi bi-twitter"></i></span></a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../dist/scripts/registerPageScript.js"></script>
+</body>
+
+</html>

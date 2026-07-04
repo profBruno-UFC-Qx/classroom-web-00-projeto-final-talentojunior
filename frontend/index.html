@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles/global.css">
+    <link rel="stylesheet" href="styles/homeStyle.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+    <title>Adote Lar</title>
+</head>
+
+<body>
+    <nav class="nav-bar">
+        <a class="nav-logo" href="">Adote Lar</a>
+        <ul class="nav-links">
+            <li class="nav-link-item"><a href="#how-to-works">Como Funciona</a></li>
+            <li class="nav-link-item"><a href="#partner-ongs">ONGs</a></li>
+            <li class="nav-link-item"><a href="#animals-showcase">Animais</a></li>
+        </ul>
+        <div class="nav-buttons">
+            <a href="../frontend/html/LoginPage.html"><button id="button-login" class="nav-button">Entrar</button></a>
+            <a href="../frontend/html/RegisterPage.html"><button id="button-register" class="nav-button">Cadastrar</button></a>
+        </div>
+        <!-- Mobile Nav Bar -->
+        <button id="menu-btn" class="hamburger" aria-label="Abrir Menu">
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+        </button>
+
+        <div class="mobile-nav-container" id="nav-mobile-menu">
+            <ul class="nav-links-mobile">
+                <li class="nav-link-item"><a href="#how-to-works">Como Funciona</a></li>
+                <li class="nav-link-item"><a href="#partner-ongs">ONGs</a></li>
+                <li class="nav-link-item"><a href="#animals-showcase">Animais</a></li>
+            </ul>
+            <div class="nav-buttons-mobile">
+                <a href="../frontend/html/LoginPage.html"><button id="button-login-mobile" class="nav-button">Entrar</button></a>
+                <a href="../frontend/html/RegisterPage.html"><button id="button-register-mobile" class="nav-button">Cadastrar</button></a>
+            </div>
+        </div>
+    </nav>
+    <main>
+        <section class="hero">
+            <div class="infos">
+                <p class="slogan">Juntos salvamos vidas.</p>
+                <h1 class="project-name">Adote Lar</h1>
+                <p class="description">
+                    Conectando ONGs e abrigos a lares cheios de amor. Juntos, reduzimos o abandono e salvamos vidas
+                    oferecendo um teto temporário.
+                </p>
+            </div>
+            <div class="hero-image-section">
+                <img class="hero-image" src="assets/hero-image.png"
+                    alt="Imagem de um cachorro, simbolizando a missão do Adote Lar de conectar ONGs e abrigos a lares cheios de amor.">
+                <div class="image-overlay">
+                    <div class="overlay-content">
+                        <div class="overlay-image-icon">
+                            <i class="bi bi-activity"></i>
+                        </div>
+                        <div class="overlay-text">
+                            <h2>+1.200</h2>
+                            <p>Vidas salvas este mês</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="how-to-help">
+            <h2 class="section-title">Como você pode ajudar?</h2>
+            <p>Escolha seu perfil e comece a transformar realidades hoje.</p>
+            <div class="help-profiles">
+                <div class="help-card">
+                    <div class="help-card-icon">
+                        <i class="bi bi-heart"></i>
+                    </div>
+                    <h3>Voluntários</h3>
+                    <p>Explore a vitrine de animais, solicite o acolhimento temporário e atualize o status do pet sob
+                        seus cuidados. Sua casa pode ser o primeiro passo para um final feliz.</p>
+                    <div class="help-card-link">
+                        <a href="" class="help-card-link-text">Quero ser um voluntário</a>
+                        <i class="bi bi-arrow-right"></i>
+                    </div>
+                </div>
+                <div class="help-card">
+                    <div class="help-card-icon">
+                        <i class="bi bi-house-heart-fill"></i>
+                    </div>
+                    <h3>ONGs e abrigos</h3>
+                    <p>Cadastre e faça a gestão dos animais resgatados, aprove novos lares temporários e acompanhe o
+                        status de cada pet. Organize sua rede de apoio com eficiência.</p>
+                    <div class="help-card-link">
+                        <a href="" class="help-card-link-text">Cadastrar minha ONG</a>
+                        <i class="bi bi-arrow-right"></i>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="how-to-works" id="how-to-works">
+            <h2 class="section-title">Como funciona?</h2>
+            <p>Um processo simples e seguro para conectar quem precisa de ajuda com quem quer ajudar.</p>
+            <div class="steps">
+                <div class="step">
+                    <div class="step-icon">
+                        <i class="bi bi-search"></i>
+                    </div>
+                    <h3 class="step-title">1. Cadastre-se</h3>
+                    <p class="step-text">Crie seu perfil na plataforma como voluntário ou representante de uma ONG.</p>
+                </div>
+                <i class="bi bi-arrow-right right-arrow-step"></i>
+                <i class="bi bi-arrow-down down-arrow-step"></i>
+                <div class="step">
+                    <div class="step-icon">
+                        <i class="bi bi-chat-dots"></i>
+                    </div>
+                    <h3 class="step-title">2. Conecte-se</h3>
+                    <p class="step-text">Encontre um pet que precisa de abrigo ou anuncie um novo resgate para a rede.
+                    </p>
+                </div>
+                <i class="bi bi-arrow-right right-arrow-step"></i>
+                <i class="bi bi-arrow-down down-arrow-step"></i>
+                <div class="step">
+                    <div class="step-icon">
+                        <i class="bi bi-house-heart"></i>
+                    </div>
+                    <h3 class="step-title">3. Salve uma vida</h3>
+                    <p class="step-text">Formalize o lar temporário através da plataforma e acompanhe a jornada do pet.
+                    </p>
+                </div>
+            </div>
+        </section>
+        <section class="partner-ongs" id="partner-ongs">
+            <h2 class="section-title">ONGs Parceiras</h2>
+            <p>Conheça as organizações que já utilizam nossa rede de acolhimento.</p>
+            <div class="ongs-list">
+                <div class="ongs-track">
+                    
+                </div>
+            </div>
+        </section>
+        <section class="animals-showcase" id="animals-showcase">
+            <h2 class="section-title">Alguns amiguinhos esperando por você</h2>
+            <p>Conheça os animais que precisam urgentemente de um lar temporário.</p>
+            <div class="animal-cards">
+                <div class="animals-track"></div>
+            </div>
+        </section>
+        <section class="call-to-action">
+            <h2 class="section-title">Pronto para fazer a diferença?</h2>
+            <p>Milhares de animais precisam de um lar agora mesmo. Junte-se à nossa comunidade e ajude-nos a transformar
+                o futuro do acolhimento animal no Brasil.</p>
+            <a href="../frontend/html/RegisterPage.html"><button class="call-to-action-button">Cadastre-se Gratuitamente</button></a>
+        </section>
+    </main>
+    <footer>
+        <div class="footer-column footer-info">
+            <div class="footer-content">
+                <h3>Adote Lar</h3>
+                <p>&copy; 2026 Adote Lar. Transformando vidas através do cuidado temporário.</p>
+            </div>
+        </div>
+        <div class="footer-column footer-social">
+            <div class="social-media">
+                <h3>Nossas Redes Sociais</h3>
+                <div class="social-icons">
+                    <a href="#" aria-label="Facebook"><i class="bi bi-facebook"></i></a>
+                    <a href="#" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
+                    <a href="#" aria-label="Twitter"><i class="bi bi-twitter"></i></a>
+                </div>
+                <p class="footer-text">"A compaixão pelos animais está intimamente ligada a bondade de caráter.</p>
+            </div>
+        </div>
+    </footer>
+    <script src="dist/scripts/global.js"></script>
+    <script src="dist/scripts/homeScript.js"></script>
+</body>
+
+</html>

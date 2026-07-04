@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Solicitações Recebidas - ONG</title>
+
+    <!-- Links css -->
+    <link rel="stylesheet" href="../styles/global.css" />
+    <link rel="stylesheet" href="../styles/voluntarRequestOng.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../styles/addAnimal.css" />
+</head>
+
+<body class="dashboard-ongs">
+
+    <div class="sidebar-overlay"></div>
+
+    <!-- Menu Lateral -->
+    <aside class="sidebar">
+        <div class="sidebar-brand">
+            <h1>Adote Lar</h1>
+            <p>Portal de ONGS</p>
+        </div>
+
+        <nav class="sidebar-nav">
+            <a class="nav-link" href="./dashboard.html">
+                <i class="bi bi-speedometer2"></i>
+                <span>Dashboard</span>
+            </a>
+            <a class="nav-link" href="./animalRegistry.html">
+                <i class="fa fa-paw"></i>
+                <span>Registro de animais</span>
+            </a>
+            <a class="nav-link active" href="./voluntarRequest.html">
+                <i class="bi bi-person-plus"></i>
+                <span>Solicitações de volutários</span>
+            </a>
+            <a class="nav-link" href="./settings.html">
+                <i class="bi bi-gear"></i>
+                <span>Configurações</span>
+            </a>
+        </nav>
+
+        <div class="sidebar-footer">
+            <button class="btn-new-animal" type="button">
+                <i class="bi bi-plus-lg"></i>
+                Registrar novo animal
+            </button>
+
+            <div class="sidebar-logout">
+                <a class="nav-link logout" href="#">
+                    <i class="bi bi-box-arrow-right"></i>
+                    <span>Sair</span>
+                </a>
+            </div>
+        </div>
+    </aside>
+
+    <!-- Nav -->
+    <main class="request-main">
+        <header class="topbar">
+            <button class="btn-toggle-sidebar" type="button" aria-label="Menu">
+                <i class="bi bi-list"></i>
+            </button>
+
+            <nav class="topbar-nav">
+                <a href="#" class="active">Registro de animais</a>
+                <a href="#">Relatórios</a>
+            </nav>
+
+            <div class="topbar-actions">
+
+                <div class="user-section">
+                    <button class="btn-notification" type="button" aria-label="Notificações">
+                        <i class="bi bi-bell"></i>
+                        <span class="notification-dot"></span>
+                    </button>
+
+                    <div class="user-info">
+                        <p>Ong Vida Animal</p>
+                    </div>
+
+                    <img class="user-avatar"
+                        src="https://static.vecteezy.com/system/resources/previews/008/249/343/non_2x/veterinary-logo-cat-and-dog-logo-design-pet-care-vet-clinic-logo-pet-clinic-vector.jpg"
+                        alt="Foto de perfil do voluntário" />
+                </div>
+            </div>
+        </header>
+
+        <!-- Dashboard  -->
+        <div class="request-content">
+            <section class="welcome-section">
+                <h2>Solicitações Recebidas</h2>
+                <p>Aprove ou recuse pedidos de voluntários para seus animais.</p>
+            </section>
+            <section class="show-animals-request">
+                <div class="filter-container">
+                    <div class="filter-item">Todas</div>
+                    <div class="filter-item filter-item-active" data-filter="pendentes">Pendentes <span class="request-size">3</span></div>
+                    <div class="filter-item">Aprovadas</div>
+                    <div class="filter-item">Recusadas</div>
+                    <div class="filter-item">Finalziadas</div>
+                </div>
+                <hr class="section-line">
+                <div class="animals-card-container">
+                    <div class="animal-card">
+                        <div class="animal-info">
+                            <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuDWpM-fQqn8WfAEB9jbzrUyyF0T4jEU0_rw33S7s28-b6c9mUK-eoYe_YaVjiyhxiwPBvKUUlBsjl1m_KYb7ivUhTg_bOM5So1Xc99bIca9ad7brtJl7C6rOuFl5iE7fx2No8riNM4dtMyF2MT9p_99bLFI6HJuHR173rwj1GhjgEParBuJf9mDTxDtW6-84C4sxlYf9wQhEeNUyXTo4jee3Qpp7MypJ3dMg0TWq_g2pvnMWs8XHvMVQW1LtFDCWBu5Bpl132-Qh2XN"
+                                alt="Imagem do animal">
+                            <div class="animal-info-content">
+                                <h3>Thor</h3>
+                                <div class="animal-race">
+                                    <i class="fa fa-paw"></i>
+                                    <p>Cão</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="voluntar-info">
+                            <h3>Volutário</h3>
+                            <h4>Ricardo Silva</h4>
+                            <p>ricardo@email.com</p>
+                        </div>
+                        <div class="request-date">
+                            <h3>Data</h3>
+                            <h4>20/05/2025</h4>
+                        </div>
+                        <div class="request-state">
+                            <h3>Status</h3>
+                            <h4>Pendente</h4>
+                        </div>
+                        <div class="request-buttons">
+                            <button class="accept-button">Aprovar</button>
+                            <button class="recuse-button">Recusar</button>
+                        </div>
+                    </div>
+                    <div class="animal-card">
+                        <div class="animal-info">
+                            <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuDWpM-fQqn8WfAEB9jbzrUyyF0T4jEU0_rw33S7s28-b6c9mUK-eoYe_YaVjiyhxiwPBvKUUlBsjl1m_KYb7ivUhTg_bOM5So1Xc99bIca9ad7brtJl7C6rOuFl5iE7fx2No8riNM4dtMyF2MT9p_99bLFI6HJuHR173rwj1GhjgEParBuJf9mDTxDtW6-84C4sxlYf9wQhEeNUyXTo4jee3Qpp7MypJ3dMg0TWq_g2pvnMWs8XHvMVQW1LtFDCWBu5Bpl132-Qh2XN"
+                                alt="Imagem do animal">
+                            <div class="animal-info-content">
+                                <h3>Thor</h3>
+                                <div class="animal-race">
+                                    <i class="fa fa-paw"></i>
+                                    <p>Cão</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="voluntar-info">
+                            <h3>Volutário</h3>
+                            <h4>Ricardo Silva</h4>
+                            <p>ricardo@email.com</p>
+                        </div>
+                        <div class="request-date">
+                            <h3>Data</h3>
+                            <h4>20/05/2025</h4>
+                        </div>
+                        <div class="request-state">
+                            <h3>Status</h3>
+                            <h4>Aprovada</h4>
+                        </div>
+                        <div class="request-buttons">
+                            <button class="end-reception-button">Finalizar acolhimento</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <div id="add-animal-modal" class="animal-modal hidden">
+        <div class="animal-modal-overlay"></div>
+
+        <div class="animal-modal-container">
+            <div class="animal-modal-header">
+                <h2>Registrar Novo Animal</h2>
+                <button id="close-animal-modal">&times;</button>
+            </div>
+
+            <div class="animal-progress">
+                <div class="step active">1<br><span>Básico</span></div>
+                <div class="step">2<br><span>Fotos</span></div>
+                <div class="step">3<br><span>Sobre</span></div>
+                <div class="step">4<br><span>Características</span></div>
+                <div class="step">5<br><span>Necessidades</span></div>
+                <div class="step">6<br><span>Finalizar</span></div>
+            </div>
+
+            <form id="animal-form">
+
+                <section class="animal-step active" data-step="1">
+                    <h3>Informações Básicas</h3>
+
+                    <label>Nome</label>
+                    <input id="nome" type="text">
+
+                    <label>Espécie</label>
+                    <select id="especie">
+                        <option>Cachorro</option>
+                        <option>Gato</option>
+                        <option>Outro</option>
+                    </select>
+
+                    <label>Idade</label>
+                    <input id="idade" type="number">
+
+                    <label>Porte</label>
+                    <select id="porte">
+                        <option>Pequeno</option>
+                        <option>Médio</option>
+                        <option>Grande</option>
+                    </select>
+
+                    <label>
+                        <input id="disponivel" type="checkbox">
+                        Disponível para adoção
+                    </label>
+                </section>
+
+                <section class="animal-step" data-step="2">
+                    <h3>Fotos</h3>
+
+                    <label>Imagem de capa</label>
+                    <input id="imagem_capa" type="file" accept="image/*">
+
+                    <div id="preview-capa"></div>
+
+                    <label>Galeria</label>
+                    <input id="imagens" type="file" multiple accept="image/*">
+
+                    <div id="preview-galeria"></div>
+                </section>
+
+                <section class="animal-step" data-step="3">
+                    <h3>Sobre</h3>
+
+                    <label>Descrição</label>
+                    <textarea id="sobre"></textarea>
+
+                    <label>Localização</label>
+                    <input id="localizacao" type="text">
+
+                    <label>Status</label>
+                    <select id="status_do_animal">
+                        <option>Disponível</option>
+                        <option>Reservado</option>
+                        <option>Adotado</option>
+                        <option>Em tratamento</option>
+                    </select>
+                </section>
+
+                <section class="animal-step" data-step="4">
+                    <h3>Características</h3>
+
+                    <label><input type="checkbox" value="Castrado"> Castrado</label>
+                    <label><input type="checkbox" value="Vacinado"> Vacinado</label>
+                    <label><input type="checkbox" value="Vermifugado"> Vermifugado</label>
+                    <label><input type="checkbox" value="Dócil"> Dócil</label>
+                    <label><input type="checkbox" value="Brincalhão"> Brincalhão</label>
+                    <label><input type="checkbox" value="Sociável"> Sociável</label>
+                </section>
+
+                <section class="animal-step" data-step="5">
+                    <h3>Necessidades Especiais</h3>
+
+                    <label><input type="checkbox"> Medicação contínua</label>
+                    <label><input type="checkbox"> Dieta especial</label>
+                    <label><input type="checkbox"> Deficiência visual</label>
+                    <label><input type="checkbox"> Deficiência motora</label>
+
+                    <label>Observações</label>
+                    <textarea></textarea>
+                </section>
+
+                <section class="animal-step" data-step="6">
+                    <h3>Revisão</h3>
+
+                    <p>Confira todas as informações antes de cadastrar o animal.</p>
+
+                    <div id="animal-summary"></div>
+                </section>
+
+                <div class="animal-modal-footer">
+                    <button type="button" id="cancel-animal">Cancelar</button>
+
+                    <div>
+                        <button type="button" id="prev-step">Voltar</button>
+                        <button type="button" id="next-step">Próximo</button>
+                        <button type="submit" id="save-animal">Cadastrar Animal</button>
+                    </div>
+                </div>
+
+            </form>
+
+        </div>
+    </div>
+    
+    <script src="../dist/scripts/ongGlobal.js"></script>
+    <script src="../dist/scripts/sideBarScript.js"></script>
+    <script type="module" src="../dist/scripts/voluntarRequestOngScript.js"></script>
+    <script src="../dist/scripts/addAnimal.js"></script>
+</body>
+
+</html>
